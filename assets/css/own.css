@@ -7,3 +7,13 @@
 #unfinished-alert {
     --bs-alert-margin-bottom: 0;
 }
+
+td.on {
+    color: #0f470f;
+    font-weight: bold;
+}
+
+td.off {
+    color: #880f0f;
+    font-weight: bold;
+}
