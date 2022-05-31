@@ -10,14 +10,8 @@
     <link rel="stylesheet" href="assets/css/own.css">
 </head>
 <body>
-  <div class="my-4">
-    <h1 class="text-center">Mitarbeiter- & Arbeitszeitübersicht</h1>
-    <h3 class="text-center">Straßenmeisterei Neuberg</h3>
-    </div>
 
-    <div class="container">
-
-    <?php
+  <?php
 
 $dbconnect=mysqli_connect("web-snake01.native-webspace.com","hypaxnat_dbmeisterei2","serder34!!","hypaxnat_meistereitest");
 
@@ -32,7 +26,19 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
 		if (empty($nrorows)) {
 	echo "<div class='alert alert-danger text-center' role='danger'><p>Es gibt noch keine Einträge!</p></div>";
-} ?>
+} 
+
+  $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
+  $num_currentOn = mysqli_num_rows($currentOn);
+
+?>
+
+  <div class="my-4">
+    <h1 class="text-center">Mitarbeiter- & Arbeitszeitübersicht</h1>
+    <h3 class="text-center">Straßenmeisterei Neuberg | Zurzeit Online: <?php echo "{$num_currentOn}" ?></h3>
+    </div>
+
+    <div class="container">
 
 <table class="table">
   <thead>
