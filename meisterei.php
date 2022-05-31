@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="assets/css/own.css">
 </head>
 <body>
-    <h1 class="text-center my-4">Mitarbeiter- & Arbeitszeitübersicht</h1>
+  <div class="my-4">
+    <h1 class="text-center">Mitarbeiter- & Arbeitszeitübersicht</h1>
+    <h3 class="text-center">Straßenmeisterei Neuberg</h3>
+    </div>
 
     <div class="container">
 
@@ -37,7 +40,6 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Spielzeit</th>
-      <th scope="col">Status</th>
       <th scope="col">Server</th>
       <th scope="col">Erstellt am</th>
       <th scope="col">Zuletzt am</th>
@@ -53,10 +55,8 @@ while ($row = mysqli_fetch_array($query)) {
 
     if ($row['online'] == 1) {
         $onlineSt = "Online";
-        $onlineCl = "on";
     } else {
         $onlineSt = "Offline";
-        $onlineCl = "off";
     }
 
     if ($row['server'] == "") {
@@ -68,12 +68,17 @@ while ($row = mysqli_fetch_array($query)) {
     $crAt = new DateTime($row['createdAt']);
     $upAt = new DateTime($row['updatedAt']);
 
+    if ($onlineSt == "Online") {
+      $OnlineBdg = '<span class="badge text-bg-success">Online</span>';
+    } else {
+      $OnlineBdg = '<span class="badge text-bg-danger">Offline</span>';
+    }
+
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
-            <td>{$row['name']}</td>
+            <td>{$row['name']} {$OnlineBdg}</td>
             <td>{$playtimeH} Std. ({$row['playtime']} Min.)</td>
-            <td class='{$onlineCl}'>{$onlineSt}</td>
             <td>{$serverSt}</td>
             <td>{$crAt->format('d.m.Y H:i:s')}</td>
             <td>{$upAt->format('d.m.Y H:i:s')}</td>
