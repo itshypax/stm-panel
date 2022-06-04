@@ -12,6 +12,7 @@ $sec = "45";
     <title>Zeiten &middot; Straßenmeisterei Neuberg</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/own.css">
     <link rel="stylesheet" href="../../assets/css/fb37.css">
     <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
@@ -35,18 +36,20 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
   $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
   $num_currentOn = mysqli_num_rows($currentOn);
+ 
 
+  include '../../assets/components/nav.php';
 ?>
 
-  <div class="my-4 text-center" id="top-text">
-    <div class="my-3">
-      <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="52px" width="auto">
-      <span class="text-uppercase fs-4 align-middle">Straßenmeisterei Neuberg</span>
+  <div class="px-4 py-5 text-center" id="meisterei-hero">
+      <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
+    <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Zurzeit Online: <?php echo "{$num_currentOn}" ?></p>
     </div>
-    <h5>Zurzeit Online: <?php echo "{$num_currentOn}" ?></h5>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded">
+    <div class="container bg-light shadow p-3 mb-5 rounded" style="min-height:450px;">
 
     <?php 
 
@@ -117,5 +120,8 @@ while ($row = mysqli_fetch_array($query)) {
 </table>
 </div>
 
+<?php include("../../assets/components/footer.php"); ?>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>
