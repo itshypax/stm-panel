@@ -12,9 +12,9 @@ $sec = "45";
     <title>Zeiten &middot; Straßenmeisterei Neuberg</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../assets/css/own.css">
-    <link rel="stylesheet" href="../../assets/css/fb37.css">
-    <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
+    <link rel="stylesheet" href="https://wiesberg.net/assets/css/own.css">
+    <link rel="stylesheet" href="https://wiesberg.net/assets/css/fb37.css">
+    <link rel="icon" type="image/ico" href="https://wiesberg.net/assets/images/favicon-fb37.ico">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
 <body>
@@ -42,7 +42,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 ?>
 
   <div class="px-4 py-5 text-center" id="meisterei-hero">
-      <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
+      <img src="https://wiesberg.net/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
     <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Zurzeit Online: <?php echo "{$num_currentOn}" ?></p>
