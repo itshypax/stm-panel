@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-        <img src="https://wiesberg.net/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
+        <img src="https://raw.githubusercontent.com/itshypax/rlrpg-wiesberg/master/assets/images/WiesbergBlack.png?token=GHSAT0AAAAAABPUBW6U6BSEX6REJOATB5M2YU3U6GQ" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
         Kreis Wiesberg
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
