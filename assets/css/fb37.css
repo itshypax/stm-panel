@@ -1,21 +1,10 @@
-#welcome-hero {
-    background-image: url("https://forum.realliferpg.de/gallery/userImages/8d/33570-8df1a121.png");
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-#unfinished-alert {
-    --bs-alert-margin-bottom: 0;
-}
-
-body {
-    background-color: #212529;
-}
-
-#top-text {
-    color: #fff;
-}
-
 .alert-primary, .alert-danger {
     padding-bottom: 0;
+}
+
+#meisterei-hero {
+    background: linear-gradient(to top, #ffffffba, #ffffffba), url("https://wiki.realliferpg.de/images/9/98/Meisterei_vehicles.jpg") no-repeat top center;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
 }

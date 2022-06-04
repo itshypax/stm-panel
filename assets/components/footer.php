@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container bg-light">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="col-md-4 mb-0 text-muted">© <?php echo date("Y"); ?> Hypax, made for RealLifeRPG</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <img src="assets/images/WiesbergBlack.png" alt="Wiesberg" height="64px" width="auto"><use xlink:href="#bootstrap"></use></svg>
+      <img src="https://raw.githubusercontent.com/itshypax/rlrpg-wiesberg/master/assets/images/WiesbergBlack.png?token=GHSAT0AAAAAABPUBW6U6BSEX6REJOATB5M2YU3U6GQ" alt="Wiesberg" height="64px" width="auto"><use xlink:href="#bootstrap"></use></svg>
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
