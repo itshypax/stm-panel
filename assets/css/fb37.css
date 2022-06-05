@@ -3,8 +3,10 @@
 }
 
 #meisterei-hero {
-    background: linear-gradient(to top, #ffffffba, #ffffffba), url("https://wiki.realliferpg.de/images/9/98/Meisterei_vehicles.jpg") no-repeat top center;
+    /* background: linear-gradient(to top, #ffffffba, #ffffffba), url("https://wiki.realliferpg.de/images/9/98/Meisterei_vehicles.jpg") no-repeat top center; */
+    background-image: url("https://wiesberg.net/assets/images/bg2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     backdrop-filter: blur(5px);
+    color: #fff;
 }
