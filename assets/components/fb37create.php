@@ -135,10 +135,6 @@ if ($dbconnect->connect_error) {
             <label for="floatingInput">IBAN</label>
           </div>
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="date" name="laufstieg" placeholder="01.01.1900">
-            <label for="floatingInput">Letzter Rangaufstieg</label>
-          </div>
-          <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="gehalt" placeholder="1/2 Döner">
             <label for="floatingInput">Gehalt</label>
           </div>

@@ -50,3 +50,7 @@ body {
     transform: scale(1.05);
     background-color: rgb(243, 135, 52);
 }
+
+#member-table tr {
+    vertical-align: middle;
+}
