@@ -46,7 +46,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/components/fb37allowedids.php');
     
     foreach ($allowed_steamids as $allowedid) {
-    if (strstr($steamprofile['steamid'], $allowedid)) {?>
+    // if (strstr($steamprofile['steamid'], $allowedid))
+    if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
 
   <?php
 
@@ -154,7 +155,7 @@ while ($row = mysqli_fetch_array($query)) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
  <?php
-
+    return true;
     } else {
         ?>
 
@@ -168,6 +169,7 @@ while ($row = mysqli_fetch_array($query)) {
         </div>
 
         <?php
+        return false;
     }
 }
 }     

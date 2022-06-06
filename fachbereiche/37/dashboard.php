@@ -42,14 +42,14 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/components/fb37allowedids.php');
     
     foreach ($allowed_steamids as $allowedid) {
-    if (strstr($steamprofile['steamid'], $allowedid)) {?>
+    if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
 
     <h1>lol</h1>
 
     <?php
 
     logoutbutton(); //Logout Button
-
+        return true;
     } else {
         ?>
 
@@ -63,6 +63,7 @@ if(!isset($_SESSION['steamid'])) {
         </div>
 
         <?php
+        return false;
     }
 }
 }     
