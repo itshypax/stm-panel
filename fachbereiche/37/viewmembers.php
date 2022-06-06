@@ -1,21 +1,16 @@
-<?php
-$page = $_SERVER['PHP_SELF'];
-$sec = "45";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeiten &middot; Straßenmeisterei Neuberg</title>
+    <title>Mitgliederübersicht &middot; Straßenmeisterei Neuberg</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="../../assets/fonts/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/own.css">
     <link rel="stylesheet" href="../../assets/css/fb37.css">
     <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
-    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 </head>
 <body>
 
@@ -56,7 +51,7 @@ if ($dbconnect->connect_error) {
 	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
 }
 
-$query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
+$query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 		or die (mysqli_error($dbconnect));
 
 		$nrorows = $query->num_rows;
@@ -78,24 +73,20 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
     <div class="container bg-light shadow p-3 mb-5 rounded" style="min-height:450px;">
 
-    <?php 
-
-    		if (empty($nrorows)) {
-	echo "<div class='alert alert-danger text-center' role='danger'><p>Es gibt noch keine Einträge!</p></div>";
-} else {
-  echo "<div class='alert alert-primary text-center' role='info'><p>Damit Nutzer in dieser Liste auftauchen <u>müssen</u> sie den Tag <strong>[ST]</strong> vor ihrem Namen haben!</p></div>";
-}
-
-?>
-
 <table class="table">
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Spitzname</th>
       <th scope="col">Name</th>
-      <th scope="col">Spielzeit</th>
-      <th scope="col">Server</th>
-      <th scope="col">Erstellt am</th>
+      <th scope="col">Dienstgrad</th>
+      <th scope="col">Beitritt</th>
+      <th scope="col">Tel. Nr.</th>
+      <th scope="col">IBAN</th>
+      <th scope="col">L. Aufstieg</th>
+      <th scope="col">Gehalt</th>
+      <th scope="col">Notiz</th>
+      <th scope="col">Aktionen</th>
     </tr>
   </thead>
   <tbody>
@@ -104,40 +95,21 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
 while ($row = mysqli_fetch_array($query)) {
 
-    $playtimeH = round($row['playtime'] / 60, 2);
-
-    if ($row['online'] == 1) {
-        $onlineSt = "Online";
-    } else {
-        $onlineSt = "Offline";
-    }
-
-    if ($row['server'] == "") {
-        $serverSt = "-";
-    } else {
-        $serverSt = $row['server'];
-    }
-
-    $crAt = new DateTime($row['createdAt']);
-    $upAt = new DateTime($row['updatedAt']);
-
-    if ($onlineSt == "Online") {
-      $OnlineBdg = 'Online';
-      $spanClass = "text-bg-success";
-      $lastOn = "Gerade online!";
-    } else {
-      $OnlineBdg = 'Offline';
-      $spanClass = "text-bg-danger";
-      $lastOn = "Zuletzt online: {$upAt->format('d.m.Y H:i')}";
-    }
+    $btAt = new DateTime($row['beitritt']);
 
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
-            <td>{$row['name']} <span class='badge {$spanClass}' title='{$lastOn}'>{$OnlineBdg}</span></td>
-            <td>{$playtimeH} Std. ({$row['playtime']} Min.)</td>
-            <td>{$serverSt}</td>
-            <td>{$crAt->format('d.m.Y H:i')}</td>
+            <td>{$row['spitzname']}</td>
+            <td>{$row['icname']}</td>
+            <td>{$row['dienstgrad']}</td>
+            <td>{$btAt->format('d.m.Y')}</td>
+            <td>{$row['telnr']}</td>
+            <td>{$row['iban']}</td>
+            <td>{$row['laufstieg']}</td>
+            <td>{$row['gehalt']}</td>
+            <td>{$row['notiz']}</td>
+            <td><a href='../../assets/components/fb37edit.php?id={$row['id']}' title='Eintrag bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a> <a href='../../assets/components/fb37delete.php?id={$row['id']}' title='Eintrag löschen'><button type='button' class='btn btn-outline-danger'><i class='fa-solid fa-trash-can'></i></button></a></td>
     	</tr>";
 }
 
@@ -145,6 +117,8 @@ while ($row = mysqli_fetch_array($query)) {
 
 </tbody>
 </table>
+<hr class="my-4">
+<a href="../../assets/components/fb37create.php"><button class="w-100 mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Neuen Eintrag erstellen</button></a>
 </div>
 
 <?php include("../../assets/components/footer.php"); ?>
