@@ -145,8 +145,7 @@ if ($dbconnect->connect_error) {
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" rows="3">
-            </textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" rows="3"></textarea>
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag erstellen" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
