@@ -90,7 +90,7 @@ if(!isset($_SESSION['steamid'])) {
   <thead>
     <tr>
       <th scope="col">Datum</th>
-      <th scope="col">Steam-Profil</th>
+      <th scope="col"></th>
       <th scope="col">Name</th>
       <th scope="col">Kontakt</th>
       <th scope="col">Bewerbung</th>
