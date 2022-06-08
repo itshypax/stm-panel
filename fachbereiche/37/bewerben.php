@@ -92,7 +92,7 @@ if(!isset($_SESSION['steamid'])) {
       <th scope="col">Datum</th>
       <th scope="col">Steam-Profil</th>
       <th scope="col">Name</th>
-      <th scope="col">Alter</th>
+      <th scope="col">Kontakt</th>
       <th scope="col">Bewerbung</th>
       <th scope="col">Status</th>
       <th scope="col">Bearbeiter</th>
@@ -129,7 +129,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 	echo
 		"<tr>
             <td>{$crDatf}</td>
-            <td><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
+            <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['name']}</td>
             <td>{$rows['age']}</td>
             <td>{$rows['applytext']}</td>
@@ -163,23 +163,22 @@ while ($rows = mysqli_fetch_array($dbquery)) {
         <!-- <h5 class="modal-title">Modal title</h5> -->
         <h2 class="fw-bold mb-0">Bewerbung absenden</h2>
       </div>
-      <p><?= $steamprofile['steamid'] ?> // <a href="?update">update</a></p>
       <div class="modal-body p-5 pt-0">
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid2" value="<?= $steamprofile['steamid'] ?>" />
           <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="name" placeholder="TheLegend27" required>
-            <label for="floatingInput">Vor- und Zuname</label>
+            <label for="floatingInput">Vor- und Zuname (IC)</label>
           </div>
           <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="age" placeholder="Paul Panzer" required>
-            <label for="floatingInput">Alter</label>
+            <label for="floatingInput">Kontaktmöglichkeiten (IC Tel. Nr.)</label>
           </div>
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Schriftliche Bewerbung</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="applytext" placeholder="Ich bins, Tim" rows="3"></textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="applytext" placeholder="Kurzer, aber ausführlicher Vorstellungstext zu dir und deiner Person" rows="3"></textarea>
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
