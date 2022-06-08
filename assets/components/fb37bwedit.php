@@ -4,20 +4,19 @@ include("fb37dbconnect.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
+$id=$_REQUEST['id'];
+$result = mysqli_query($dbconnect, "SELECT * FROM applySystem WHERE id='".$id."'") or die (mysqli_error($dbconnect));
+$row = mysqli_fetch_assoc($result);
+
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
-    $spitzname =$_REQUEST['spitzname'];
-    $icname = $_REQUEST['icname'];
-    $dienstgrad = $_REQUEST['dienstgrad'];
-    $beitritt = $_REQUEST['beitritt'];
-    $telnr = $_REQUEST['telnr'];
-    $iban = $_REQUEST['iban'];
-    $laufstieg = $_REQUEST['laufstieg'];
-    $gehalt = $_REQUEST['gehalt'];
-    $notiz = $_REQUEST['notiz'];
-    mysqli_query($dbconnect,"INSERT INTO memberManagement (`spitzname`,`icname`,`dienstgrad`,`beitritt`,`telnr`,`iban`,`laufstieg`,`gehalt`,`notiz`) VALUES ('$spitzname','$icname','$dienstgrad','$beitritt','$telnr','$iban','$laufstieg','$gehalt','$notiz')")
+    $id=$_REQUEST['id'];
+    $astatus =$_REQUEST['astatus'];
+    $acomment = $_REQUEST['acomment'];
+    $auser = $_REQUEST['auser'];
+    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."'")
     or die(mysql_error());
-    $status = "Eintrag erfolgreich erstellt.";
+    $status = "Bewerbung erfolgreich bearbeitet.";
 }
 
 ?>
@@ -28,7 +27,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eintrag erstellen &middot; Straßenmeisterei Neuberg</title>
+    <title>Bewerbung bearbeiten &middot; Straßenmeisterei Neuberg</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
@@ -52,7 +51,6 @@ if(!isset($_SESSION['steamid'])) {
     <script type="text/javascript">
     window.location.href = "https://wiesberg.net/fachbereiche/37/dashboard.php";
     </script>
-
 
 <?php
 
@@ -95,56 +93,34 @@ if ($dbconnect->connect_error) {
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <!-- <h5 class="modal-title">Modal title</h5> -->
-        <h2 class="fw-bold mb-0">Neuen Eintrag erstellen</h2>
-        <a href="../../fachbereiche/37/viewmembers.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
+        <h2 class="fw-bold mb-0">Bewerbung bearbeiten</h2>
+        <a href="../../fachbereiche/37/bewerben.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
       </div>
 
       <div class="modal-body p-5 pt-0">
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
+        <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" required>
-            <label for="floatingInput">Spitzname / OOC Name</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="icname" placeholder="Paul Panzer" required>
-            <label for="floatingInput">Name / IC Name</label>
-          </div>
-          <div class="form-floating mb-3">
-            <select id="floatingInput" class="form-control rounded-3" name="dienstgrad" placeholder="Oberstabsgeneral 17">
-                <option selected>Dienstgrad auswählen...</option>
-                <option value="Geschäftsführer">Geschäftsführer</option>
-                <option value="Vorstand">Vorstand</option>
-                <option value="Straßenmeister">Straßenmeister</option>
-                <option value="Kolonnenführer">Kolonnenführer</option>
-                <option value="Straßenwärter">Straßenwärter</option>
-                <option value="Auszubildender">Auszubildender</option>
-                <option value="Praktikant">Praktikant</option>
+            <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen" value="<?php echo $row['astatus'];?>">
+                <option value="Ungesehen">Ungesehen</option>
+                <option value="Bearbeitung">Bearbeitung</option>
+                <option value="Einladung">Einladung</option>
+                <option value="Abgelehnt">Abgelehnt</option>
+                <option value="Angenommen">Angenommen</option>
             </select>
-            <label for="floatingInput">Dienstgrad</label>
+            <label for="floatingInput">Status</label>
           </div>
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="date" name="beitritt" placeholder="01.01.1900" required>
-            <label for="floatingInput">Beitrittsdatum</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="telnr" placeholder="0800 666 666">
-            <label for="floatingInput">Telefonnummer</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123">
-            <label for="floatingInput">IBAN</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="gehalt" placeholder="1/2 Döner">
-            <label for="floatingInput">Gehalt</label>
+            <input id="floatingInput" class="form-control rounded-3" type="text" name="auser" placeholder="TheLegend27" value="<?php echo $row['auser'];?>" required>
+            <label for="floatingInput">Sachbearbeiter</label>
           </div>
           <hr class="my-4">
           <div class="mb-3">
-            <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"></textarea>
+            <label for="floatingInput">Bemerkung</label>
+            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:100px;" value="<?php echo $row['acomment'];?>"></textarea>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag erstellen" /></p>
+          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
       </div>
