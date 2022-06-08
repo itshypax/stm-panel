@@ -51,6 +51,6 @@ body {
     background-color: rgb(243, 135, 52);
 }
 
-#member-table tr {
+#member-table tr, #apply-status tr, #apply-management tr {
     vertical-align: middle;
 }

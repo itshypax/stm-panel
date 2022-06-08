@@ -76,7 +76,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
     </div>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
 
     <?php 
 
