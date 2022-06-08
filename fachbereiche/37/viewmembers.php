@@ -71,9 +71,9 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
     </div>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
 
-<table class="table">
+<table class="table" id="member-table">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -83,7 +83,6 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
       <th scope="col">Beitritt</th>
       <th scope="col">Tel. Nr.</th>
       <th scope="col">IBAN</th>
-      <th scope="col">L. Aufstieg</th>
       <th scope="col">Gehalt</th>
       <th scope="col">Notiz</th>
       <th scope="col">Aktionen</th>
@@ -96,6 +95,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 while ($row = mysqli_fetch_array($query)) {
 
     $btAt = new DateTime($row['beitritt']);
+    $laAt = new DateTime($row['laufstieg']);
 
 	echo
 		"<tr>
@@ -106,7 +106,6 @@ while ($row = mysqli_fetch_array($query)) {
             <td>{$btAt->format('d.m.Y')}</td>
             <td>{$row['telnr']}</td>
             <td>{$row['iban']}</td>
-            <td>{$row['laufstieg']}</td>
             <td>{$row['gehalt']}</td>
             <td>{$row['notiz']}</td>
             <td><a href='../../assets/components/fb37edit.php?id={$row['id']}' title='Eintrag bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a> <a href='../../assets/components/fb37delete.php?id={$row['id']}' title='Eintrag löschen'><button type='button' class='btn btn-outline-danger'><i class='fa-solid fa-trash-can'></i></button></a></td>

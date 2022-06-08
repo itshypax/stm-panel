@@ -140,20 +140,15 @@ if ($dbconnect->connect_error) {
             <label for="floatingInput">IBAN</label>
           </div>
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="date" name="laufstieg" placeholder="01.01.1900" value="<?php echo $row['laufstieg'];?>">
-            <label for="floatingInput">Letzter Rangaufstieg</label>
-          </div>
-          <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="gehalt" placeholder="1/2 Döner" value="<?php echo $row['gehalt'];?>">
             <label for="floatingInput">Gehalt</label>
           </div>
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" rows="3" value="<?php echo $row['notiz'];?>">
-            </textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;" value="<?php echo $row['notiz'];?>"></textarea>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag erstellen" /></p>
+          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
       </div>
