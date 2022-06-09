@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <?php include 'assets/components/nav.php'; ?>
+  <?php include 'assets/components/main-nav.php'; ?>
 
   <div class="alert alert-danger text-center" role="alert" id="unfinished-alert">
     <strong>Achtung!</strong> Diese Seite befindet sich noch im Aufbau und kann Fehler aufweisen.
