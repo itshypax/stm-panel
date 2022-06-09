@@ -122,7 +122,9 @@ while ($row = mysqli_fetch_array($query)) {
     }
 
     $crAt = new DateTime($row['createdAt']);
+    $crAt->add(new DateInterval('PT2H'));
     $upAt = new DateTime($row['updatedAt']);
+    $upAt->add(new DateInterval('PT2H'));
 
     if ($onlineSt == "Online") {
       $OnlineBdg = 'Online';

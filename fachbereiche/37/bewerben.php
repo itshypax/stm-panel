@@ -114,6 +114,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
   }
 
   $crDat = new DateTime($rows['createdAt']);
+  $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
   if ($rows['astatus'] == "Bearbeitung") {
@@ -226,6 +227,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     $edAtf = "Noch nicht bearbeitet";
   } else {
     $edAt = new DateTime($row['editedAt']);
+    $edAt->add(new DateInterval('PT2H'));
     $edAtf = $edAt->format('d.m.Y H:i');
   }
 

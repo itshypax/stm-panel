@@ -9,6 +9,7 @@ $result = mysqli_query($dbconnect, "SELECT * FROM applySystem WHERE id='".$id."'
 $row = mysqli_fetch_assoc($result);
 
   $crDat = new DateTime($row['createdAt']);
+  $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
   $oldAstatus = $row['astatus'];
@@ -41,8 +42,6 @@ if(isset($_POST['new']) && $_POST['new']==1){
     }
     $status = "Bewerbung erfolgreich bearbeitet.";
     // Wait for 2 seconds then redirect
-    sleep(2);
-    header("Location:https://wiesberg.net/fachbereiche/37/bewerben.php");
 }
 
 ?>
@@ -170,6 +169,7 @@ if ($dbconnect->connect_error) {
                 } else {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['actionAt']);
+                        $acAt->add(new DateInterval('PT2H'));
                         echo
                         "
                         <small>{$eintrag['action']}<br/>{$acAt->format('d.m.Y H:i')}</small><hr>
