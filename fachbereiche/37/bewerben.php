@@ -82,7 +82,7 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/components/fb37allowedids.php');
     if (in_array($steamprofile['steamid'], $allowed_steamids)) {
       
-      $dbquery = mysqli_query($dbconnect, "SELECT * FROM applySystem")
+      $dbquery = mysqli_query($dbconnect, "SELECT * FROM applySystem ORDER BY createdAt DESC")
 		or die (mysqli_error($dbconnect));
       ?>
 
@@ -128,6 +128,8 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     $spanCl = "text-bg-dark";
   }
 
+  if ($rows['deleted'] != 1) {
+
 	echo
 		"<tr>
             <td>{$crDatf}</td>
@@ -136,7 +138,22 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
             <td><a href='../../assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
+
+} else {
+
+  echo
+		"<tr class='fst-italic'>
+            <td>{$crDatf}</td>
+            <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
+            <td>{$rows['name']}</td>
+            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
+            <td><a href='../../assets/components/bwreopen.php?id={$rows['id']}' title='Bewerbung wiederherstellen'><button type='button' class='btn btn-outline-success'><i class='fa-solid fa-repeat'></i></button></a></td>
+    	</tr>";
+
 }
+
+
+    }
 
 ?>
 
@@ -150,19 +167,15 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     <?php 
 
     $bwnr = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
+    $delcon = $dbconnect->query("SELECT deleted FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
+    $del = mysqli_fetch_array($delcon);
 
-    if ($bwnr->num_rows == 0) {
+    if ($bwnr->num_rows == 0 || $del['deleted'] == 1) {
 
     ?>
 
-<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <!-- <h5 class="modal-title">Modal title</h5> -->
-        <h2 class="fw-bold mb-0">Bewerbung absenden</h2>
-      </div>
-      <div class="modal-body p-5 pt-0">
+<div class="container bg-light shadow p-3 mb-5 rounded my-5">
+        <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid2" value="<?= $steamprofile['steamid'] ?>" />
@@ -177,14 +190,11 @@ while ($rows = mysqli_fetch_array($dbquery)) {
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Schriftliche Bewerbung</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="applytext" placeholder="Kurzer, aber ausführlicher Vorstellungstext zu dir und deiner Person" rows="3"></textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="applytext" placeholder="Kurzer, aber ausführlicher Vorstellungstext zu dir und deiner Person" style="height:250px;"></textarea>
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
-      </div>
-    </div>
-  </div>
 </div>
 
 <?php } else { ?>
@@ -234,7 +244,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 	echo
 		"<tr>
             <td><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['astatus']}</span></td>
-            <td>{$row['acomment']}</td>
+            <td style='white-space:pre-line;'>{$row['acomment']}</td>
             <td>{$row['auser']}</td>
     	</tr>";
 }
