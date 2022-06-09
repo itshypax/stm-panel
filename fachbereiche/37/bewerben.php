@@ -89,7 +89,7 @@ if(!isset($_SESSION['steamid'])) {
 
       <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
 
-      <input type="text" id="bewerberSuche" onkeyup="applicationSearch()" placeholder="Mitglied suchen...">
+      <input type="text" id="bewerberSuche" onkeyup="applicationSearch()" placeholder="Bewerber suchen...">
 
 <table class="table" id="apply-management">
   <thead>
