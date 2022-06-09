@@ -13,7 +13,7 @@
         include ('../../assets/components/fb37allowedids.php');
         if (in_array($steamprofile['steamid'], $allowed_steamids)) { ?>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
+          <a class="nav-link" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
         </li>
         <?php } ?>
         <li class="nav-item">

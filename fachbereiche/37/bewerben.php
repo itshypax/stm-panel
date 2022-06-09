@@ -26,12 +26,15 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerben &middot; Straßenmeisterei Neuberg</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../../assets/fonts/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/own.css">
     <link rel="stylesheet" href="../../assets/css/fb37.css">
     <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -62,8 +65,8 @@ if(!isset($_SESSION['steamid'])) {
 
   <?php
 
-  include ('../../assets/components/nav.php');
   include ('../../assets/steamauth/userInfo.php'); 
+  include ('../../assets/components/nav.php');
 
 ?>
 
@@ -94,10 +97,7 @@ if(!isset($_SESSION['steamid'])) {
       <th scope="col">Datum</th>
       <th scope="col"></th>
       <th scope="col">Name</th>
-      <th scope="col">Kontakt</th>
-      <th scope="col">Bewerbung</th>
       <th scope="col">Status</th>
-      <th scope="col">Bearbeiter</th>
       <th scope="col">Aktionen</th>
     </tr>
   </thead>
@@ -133,11 +133,8 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['name']}</td>
-            <td>{$rows['age']}</td>
-            <td>{$rows['applytext']}</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
-            <td>{$rows['auser']}</td>
-            <td><a href='../../assets/components/fb37bwedit.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
+            <td><a href='../../assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
 }
 
