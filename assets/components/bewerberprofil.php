@@ -142,7 +142,7 @@ if ($dbconnect->connect_error) {
                         </div>
                         <hr class="my-4">
                         <div class="form-floating mb-3">
-                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:100px;"><?php echo $row['acomment'];?></textarea>
+                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['acomment'];?></textarea>
                             <label for="floatingInput">Bemerkung</label>
                         </div>
                         <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
