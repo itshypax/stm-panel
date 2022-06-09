@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
         <img src="https://wiesberg.net/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
-        Kreis Wiesberg
+        Wiesberg
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
         include ('../../assets/components/fb37allowedids.php');
         if (in_array($steamprofile['steamid'], $allowed_steamids)) { ?>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
+          <a class="nav-link" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
         </li>
         <?php } ?>
         <li class="nav-item">

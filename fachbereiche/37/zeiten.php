@@ -16,6 +16,9 @@ $sec = "45";
     <link rel="stylesheet" href="../../assets/css/fb37.css">
     <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
