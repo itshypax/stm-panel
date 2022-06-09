@@ -44,12 +44,45 @@ if(!isset($_SESSION['steamid'])) {
     foreach ($allowed_steamids as $allowedid) {
     if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
 
-    <h1>lol</h1>
+         <?php
+
+  include("../../assets/components/fb37dbconnect.php");
+
+$dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
+
+if ($dbconnect->connect_error) {
+	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
+}
+  $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
+  $num_currentOn = mysqli_num_rows($currentOn);
+ 
+
+  include '../../assets/components/nav.php';
+?>
+
+  <div class="px-4 py-5 text-center" id="meisterei-hero">
+      <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
+    <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Zurzeit Online: <?php echo "{$num_currentOn}" ?></p>
+    </div>
+    </div>
+
+    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+        <h1>Wichtige Links</h1>
+        <hr class="my-4">
+        <ul>
+            <li><a href="https://docs.google.com/spreadsheets/d/1wCRuGmcE8S6YwTr-u_XfIDNv9D04-6zHe3BwLH4TC7o/edit?ouid=113465113714211559712&usp=sheets_home&ths=true">Infoboard</a></li></li>
+            <li><a href="https://wiesberg.net/fachbereiche/37/bewerben.php">Direktlink für Bewerbungen</a></li></li>
+        </ul>
+    </div>
+
+    <?php include("../../assets/components/footer.php"); ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
     <?php
-
-    logoutbutton(); //Logout Button
-        return true;
+    return true;
     } else {
         ?>
 
