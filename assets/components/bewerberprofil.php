@@ -21,7 +21,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $astatus =$_REQUEST['astatus'];
     $acomment = $_REQUEST['acomment'];
     $auser = $_REQUEST['auser'];
-    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."'")
+    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."' WHERE id='".$id."'")
     or die(mysql_error());
     $logentryAt = date("Y-m-d H:i:s");
     if ($oldAstatus != $astatus) {
@@ -147,6 +147,8 @@ if ($dbconnect->connect_error) {
                         </div>
                         <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
                         <small class="text-muted"><?php echo $status; ?></small>
+                        <br/>
+                        <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
                     </form>
                 </div>
                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
@@ -193,7 +195,7 @@ if ($dbconnect->connect_error) {
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
                 <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
-                <p><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
+                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
             </div>
         </div>
         <div class="row">
