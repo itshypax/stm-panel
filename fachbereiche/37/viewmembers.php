@@ -107,7 +107,7 @@ while ($row = mysqli_fetch_array($query)) {
             <td>{$row['telnr']}</td>
             <td>{$row['iban']}</td>
             <td>{$row['gehalt']}</td>
-            <td>{$row['notiz']}</td>
+            <td><i class='fa-solid fa-notebook' title='{$row['notiz']}'></i></td>
             <td><a href='../../assets/components/fb37edit.php?id={$row['id']}' title='Eintrag bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a> <a href='../../assets/components/fb37delete.php?id={$row['id']}' title='Eintrag löschen'><button type='button' class='btn btn-outline-danger'><i class='fa-solid fa-trash-can'></i></button></a></td>
     	</tr>";
 }

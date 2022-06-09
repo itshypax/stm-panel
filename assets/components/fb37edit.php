@@ -116,14 +116,14 @@ if ($dbconnect->connect_error) {
             <label for="floatingInput">Name / IC Name</label>
           </div>
           <div class="form-floating mb-3">
-            <select id="floatingInput" class="form-control rounded-3" name="dienstgrad" placeholder="Oberstabsgeneral 17" value="<?php echo $row['dienstgrad'];?>" required>
-                <option value="Geschäftsführer">Geschäftsführer</option>
-                <option value="Vorstand">Vorstand</option>
-                <option value="Straßenmeister">Straßenmeister</option>
-                <option value="Kolonnenführer">Kolonnenführer</option>
-                <option value="Straßenwärter">Straßenwärter</option>
-                <option value="Auszubildender">Auszubildender</option>
-                <option value="Praktikant">Praktikant</option>
+            <select id="floatingInput" class="form-control rounded-3" name="dienstgrad" placeholder="Oberstabsgeneral 17">
+                <option value="Geschäftsführer" <?php if($row['dienstgrad']=="Geschäftsführer") echo 'selected="selected"'; ?>>Geschäftsführer</option>
+                <option value="Vorstand" <?php if($row['dienstgrad']=="Vorstand") echo 'selected="selected"'; ?>>Vorstand</option>
+                <option value="Straßenmeister" <?php if($row['dienstgrad']=="Straßenmeister") echo 'selected="selected"'; ?>>Straßenmeister</option>
+                <option value="Kolonnenführer" <?php if($row['dienstgrad']=="Kolonnenführer") echo 'selected="selected"'; ?>>Kolonnenführer</option>
+                <option value="Straßenwärter" <?php if($row['dienstgrad']=="Straßenwärter") echo 'selected="selected"'; ?>>Straßenwärter</option>
+                <option value="Auszubildender" <?php if($row['dienstgrad']=="Auszubildender") echo 'selected="selected"'; ?>>Auszubildender</option>
+                <option value="Praktikant" <?php if($row['dienstgrad']=="Praktikant") echo 'selected="selected"'; ?>>Praktikant</option>
             </select>
             <label for="floatingInput">Dienstgrad</label>
           </div>
@@ -146,7 +146,7 @@ if ($dbconnect->connect_error) {
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;" value="<?php echo $row['notiz'];?>"></textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"><?php echo $row['notiz'];?></textarea>
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>

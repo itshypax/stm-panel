@@ -102,12 +102,12 @@ if ($dbconnect->connect_error) {
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
           <div class="form-floating mb-3">
-            <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen" value="<?php echo $row['astatus'];?>">
-                <option value="Ungesehen">Ungesehen</option>
-                <option value="Bearbeitung">Bearbeitung</option>
-                <option value="Einladung">Einladung</option>
-                <option value="Abgelehnt">Abgelehnt</option>
-                <option value="Angenommen">Angenommen</option>
+            <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen">
+                <option value="Ungesehen" <?php if($row['astatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
+                <option value="Bearbeitung" <?php if($row['astatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
+                <option value="Einladung" <?php if($row['astatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
+                <option value="Abgelehnt" <?php if($row['astatus']=="Abgelehnt") echo 'selected="selected"'; ?>>Abgelehnt</option>
+                <option value="Angenommen" <?php if($row['astatus']=="Angenommen") echo 'selected="selected"'; ?>>Angenommen</option>
             </select>
             <label for="floatingInput">Status</label>
           </div>
@@ -118,7 +118,7 @@ if ($dbconnect->connect_error) {
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Bemerkung</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:100px;" value="<?php echo $row['acomment'];?>"></textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:100px;"><?php echo $row['acomment'];?></textarea>
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
