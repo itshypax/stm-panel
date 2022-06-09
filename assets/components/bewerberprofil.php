@@ -11,6 +11,10 @@ $row = mysqli_fetch_assoc($result);
   $crDat = new DateTime($row['createdAt']);
   $crDatf = $crDat->format('d.m.Y H:i');
 
+  $oldAstatus = $row['astatus'];
+  $oldAcomment = $row['acomment'];
+  $oldAuser = $row['auser'];
+
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
     $id=$_REQUEST['id'];
@@ -19,6 +23,22 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $auser = $_REQUEST['auser'];
     mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."'")
     or die(mysql_error());
+    $logentryAt = date("Y-m-d H:i:s");
+    if ($oldAstatus != $astatus) {
+      $loginsert = "Status geändert von <strong>".$oldAstatus."</strong> zu <strong>".$astatus."</strong>.";
+      mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
+    or die(mysql_error());
+    }
+    if ($oldAcomment != $acomment) {
+      $loginsert = "Die Bemerkung wurde zu <strong>".$acomment."</strong> geändert.";
+      mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
+    or die(mysql_error());
+    }
+    if ($oldAuser != $auser) {
+      $loginsert = "Bearbeiter geändert von <strong>".$oldAuser."</strong> zu <strong>".$auser."</strong>.";
+      mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
+    or die(mysql_error());
+    }
     $status = "Bewerbung erfolgreich bearbeitet.";
     // Wait for 2 seconds then redirect
     sleep(2);
@@ -129,6 +149,36 @@ if ($dbconnect->connect_error) {
                         <small class="text-muted"><?php echo $status; ?></small>
                     </form>
                 </div>
+                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+                <div class="accordion-item">
+                <h4 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Änderungsverlauf
+                </button>
+                </h4>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                <?php
+                $log = mysqli_query($dbconnect,"SELECT * FROM `BewerbungsLog` WHERE `bewerbungsid` = '".$id."'");
+
+                $rowamount = $log->num_rows;
+
+                if($rowamount == 0) {
+                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Logs vorhanden.</div>";
+                } else {
+                    while ($eintrag = mysqli_fetch_array($log)) {
+                        $acAt = new DateTime($eintrag['actionAt']);
+                        echo
+                        "
+                        <small>{$eintrag['action']}<br/>{$acAt->format('d.m.Y H:i')}</small><hr>
+                        ";
+                    }
+                }
+                ?>
+                </div>
+                </div>
+            </div>
+            </div>
             </div>
             <div class="col-9">
                 <?php
