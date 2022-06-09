@@ -73,6 +73,8 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 
     <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
 
+    <input type="text" id="mitgliederSuche" onkeyup="memberSearch()" placeholder="Mitglied suchen...">
+
 <table class="table" id="member-table">
   <thead>
     <tr>
@@ -123,6 +125,7 @@ while ($row = mysqli_fetch_array($query)) {
 <?php include("../../assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<script src="../../assets/js/tablesearch.js"></script>
 
  <?php
     return true;

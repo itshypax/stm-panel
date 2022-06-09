@@ -86,6 +86,8 @@ if(!isset($_SESSION['steamid'])) {
 
       <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
 
+      <input type="text" id="bewerberSuche" onkeyup="applicationSearch()" placeholder="Mitglied suchen...">
+
 <table class="table" id="apply-management">
   <thead>
     <tr>
@@ -251,6 +253,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 include("../../assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<script src="../../assets/js/tablesearch.js"></script>
 
 <?php } ?>
 
