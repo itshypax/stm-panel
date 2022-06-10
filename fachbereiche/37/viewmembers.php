@@ -100,7 +100,9 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 while ($row = mysqli_fetch_array($query)) {
 
     $btAt = new DateTime($row['beitritt']);
+    $btAt->add(new DateInterval('PT2H'));
     $laAt = new DateTime($row['laufstieg']);
+    $laAt->add(new DateInterval('PT2H'));
 
 	echo
 		"<tr>

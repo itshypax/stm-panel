@@ -91,7 +91,9 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
 ?>
 
-<table class="table">
+<input type="text" id="zeitenSuche" onkeyup="timeSearch()" placeholder="Mitarbeiter suchen...">
+
+<table class="table" id="time-management">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -122,7 +124,9 @@ while ($row = mysqli_fetch_array($query)) {
     }
 
     $crAt = new DateTime($row['createdAt']);
+    $crAt->add(new DateInterval('PT2H'));
     $upAt = new DateTime($row['updatedAt']);
+    $upAt->add(new DateInterval('PT2H'));
 
     if ($onlineSt == "Online") {
       $OnlineBdg = 'Online';
@@ -136,7 +140,7 @@ while ($row = mysqli_fetch_array($query)) {
 
 	echo
 		"<tr>
-		    <th scope=''row'>{$row['id']}</th>
+		        <th scope='row'>{$row['id']}</th>
             <td>{$row['name']} <span class='badge {$spanClass}' title='{$lastOn}'>{$OnlineBdg}</span></td>
             <td>{$playtimeH} Std. ({$row['playtime']} Min.)</td>
             <td>{$serverSt}</td>
@@ -153,6 +157,7 @@ while ($row = mysqli_fetch_array($query)) {
 <?php include("../../assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<script src="../../assets/js/tablesearch.js"></script>
 
  <?php
     return true;

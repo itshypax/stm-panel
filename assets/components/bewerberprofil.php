@@ -9,6 +9,7 @@ $result = mysqli_query($dbconnect, "SELECT * FROM applySystem WHERE id='".$id."'
 $row = mysqli_fetch_assoc($result);
 
   $crDat = new DateTime($row['createdAt']);
+  $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
   $oldAstatus = $row['astatus'];
@@ -21,7 +22,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $astatus =$_REQUEST['astatus'];
     $acomment = $_REQUEST['acomment'];
     $auser = $_REQUEST['auser'];
-    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."'")
+    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."' WHERE id='".$id."'")
     or die(mysql_error());
     $logentryAt = date("Y-m-d H:i:s");
     if ($oldAstatus != $astatus) {
@@ -41,8 +42,6 @@ if(isset($_POST['new']) && $_POST['new']==1){
     }
     $status = "Bewerbung erfolgreich bearbeitet.";
     // Wait for 2 seconds then redirect
-    sleep(2);
-    header("Location:https://wiesberg.net/fachbereiche/37/bewerben.php");
 }
 
 ?>
@@ -142,11 +141,13 @@ if ($dbconnect->connect_error) {
                         </div>
                         <hr class="my-4">
                         <div class="form-floating mb-3">
-                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:100px;"><?php echo $row['acomment'];?></textarea>
+                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['acomment'];?></textarea>
                             <label for="floatingInput">Bemerkung</label>
                         </div>
                         <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
                         <small class="text-muted"><?php echo $status; ?></small>
+                        <br/>
+                        <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
                     </form>
                 </div>
                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
@@ -168,6 +169,7 @@ if ($dbconnect->connect_error) {
                 } else {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['actionAt']);
+                        $acAt->add(new DateInterval('PT2H'));
                         echo
                         "
                         <small>{$eintrag['action']}<br/>{$acAt->format('d.m.Y H:i')}</small><hr>
@@ -193,7 +195,7 @@ if ($dbconnect->connect_error) {
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
                 <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
-                <p><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
+                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
             </div>
         </div>
         <div class="row">
