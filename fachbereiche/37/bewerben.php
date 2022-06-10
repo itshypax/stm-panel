@@ -206,17 +206,15 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
     while ($row = mysqli_fetch_array($bwnr)) { ?>
 
-    <h2>Bewerbung - <?= $row['name'] ?></h2>
-    <p><?= $row['applytext'] ?></p>
+    <h4>Aktuelle Bewerbung</h4>
 
     <hr class="my-4">
 
 <table class="table" id="apply-status">
   <thead>
-    <tr>
-      <th scope="col">Status</th>
-      <th scope="col">Kommentar</th>
-      <th scope="col">Bearbeiter</th>
+    <tr class="text-center">
+      <th scope="col" colspan='4'>Status</th>
+      <th scope="col">Sachbearbeiter</th>
     </tr>
   </thead>
   <tbody>
@@ -245,9 +243,11 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
 	echo
 		"<tr>
-            <td><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['astatus']}</span></td>
-            <td style='white-space:pre-line;'>{$row['acomment']}</td>
-            <td>{$row['auser']}</td>
+            <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['astatus']}</span></td>
+            <td class='text-center fs-5'>{$row['auser']}</td>
+    	</tr>
+      <tr>
+            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$row['acomment']}</td>
     	</tr>";
 }
 ?>
