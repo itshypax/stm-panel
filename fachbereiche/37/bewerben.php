@@ -167,11 +167,12 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
     <?php 
 
-    $bwnr = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
-    $delcon = $dbconnect->query("SELECT deleted FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
+    $counter = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
+    $bwnr = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']} ORDER BY createdAt DESC LIMIT 1");
+    $delcon = $dbconnect->query("SELECT deleted FROM applySystem WHERE steamid = {$steamprofile['steamid']} AND deleted = 1");
     $del = mysqli_fetch_array($delcon);
 
-    if ($bwnr->num_rows == 0 || $del['deleted'] == 1) {
+    if ($counter->num_rows == 0 || $counter->num_rows == $delcon->num_rows) {
 
     ?>
 
