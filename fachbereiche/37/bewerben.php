@@ -185,8 +185,11 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <label for="floatingInput">Vor- und Zuname (IC)</label>
           </div>
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="age" placeholder="Paul Panzer" required>
-            <label for="floatingInput">Kontaktmöglichkeiten (IC Tel. Nr.)</label>
+            <input id="floatingInput" class="form-control rounded-3" type="text" name="age" placeholder="0800 666 666" aria-describedby="contactHelpBlock" required>
+            <label for="floatingInput">Kontaktmöglichkeiten</label>
+            <div id="contactHelpBlock" class="form-text">
+            Bestenfalls gibst du den Link zu deinem Foren-Profil und deine Ingame Telefonnummer an.
+            </div>
           </div>
           <hr class="my-4">
           <div class="mb-3">
