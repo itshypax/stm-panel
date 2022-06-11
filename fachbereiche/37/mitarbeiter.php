@@ -82,14 +82,8 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Spitzname</th>
       <th scope="col">Name</th>
       <th scope="col">Dienstgrad</th>
-      <th scope="col">Beitritt</th>
-      <th scope="col">Tel. Nr.</th>
-      <th scope="col">IBAN</th>
-      <th scope="col">Gehalt</th>
-      <th scope="col">Notiz</th>
       <th scope="col">Aktionen</th>
     </tr>
   </thead>
@@ -104,19 +98,16 @@ while ($row = mysqli_fetch_array($query)) {
     $laAt = new DateTime($row['laufstieg']);
     $laAt->add(new DateInterval('PT2H'));
 
+    if ($row['deleted'] != 1) {
+
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
-            <td>{$row['spitzname']}</td>
             <td>{$row['icname']}</td>
             <td>{$row['dienstgrad']}</td>
-            <td>{$btAt->format('d.m.Y')}</td>
-            <td>{$row['telnr']}</td>
-            <td>{$row['iban']}</td>
-            <td>{$row['gehalt']}</td>
-            <td><i class='fa-solid fa-notebook' title='{$row['notiz']}'></i></td>
-            <td><a href='../../assets/components/fb37edit.php?id={$row['id']}' title='Eintrag bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a> <a href='../../assets/components/fb37delete.php?id={$row['id']}' title='Eintrag löschen'><button type='button' class='btn btn-outline-danger'><i class='fa-solid fa-trash-can'></i></button></a></td>
+            <td><a href='../../assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
+    }
 }
 
 ?>

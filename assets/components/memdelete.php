@@ -12,7 +12,7 @@
 include("fb37dbconnect.php");
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
-$result = mysqli_query($dbconnect,"DELETE FROM memberManagement WHERE id=$id") or die ( mysqli_error());
+$result = mysqli_query($dbconnect,"UPDATE memberManagement SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../fachbereiche/37/mitarbeiter.php"); 
 ?>
 

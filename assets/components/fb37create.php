@@ -93,16 +93,13 @@ if ($dbconnect->connect_error) {
     </div>
     </div>
 
-<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
+<div class="container bg-light shadow p-3 mb-5 rounded my-5">
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <!-- <h5 class="modal-title">Modal title</h5> -->
         <h2 class="fw-bold mb-0">Neuen Eintrag erstellen</h2>
-        <a href="../../fachbereiche/37/viewmembers.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
+        <a href="../../fachbereiche/37/mitarbeiter.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
       </div>
 
-      <div class="modal-body p-5 pt-0">
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
           <div class="form-floating mb-3">
@@ -138,10 +135,6 @@ if ($dbconnect->connect_error) {
             <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123">
             <label for="floatingInput">IBAN</label>
           </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="gehalt" placeholder="1/2 Döner">
-            <label for="floatingInput">Gehalt</label>
-          </div>
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
@@ -151,9 +144,6 @@ if ($dbconnect->connect_error) {
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
       </div>
-    </div>
-  </div>
-</div>
 
 <?php include("../../assets/components/footer.php"); ?>
 

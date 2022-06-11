@@ -8,6 +8,13 @@ $id=$_REQUEST['id'];
 $result = mysqli_query($dbconnect, "SELECT * FROM memberManagement WHERE id='".$id."'") or die (mysqli_error($dbconnect));
 $row = mysqli_fetch_assoc($result);
 
+  $oldComment = $row['notiz'];
+  $oldRank = $row['dienstgrad'];
+
+  $beAt = new DateTime($row['beitritt']);
+  $beAt->add(new DateInterval('PT2H'));
+  $beAtf = $beAt->format('d.m.Y H:i');
+
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
     $id=$_REQUEST['id'];
@@ -17,12 +24,22 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $beitritt = $_REQUEST['beitritt'];
     $telnr = $_REQUEST['telnr'];
     $iban = $_REQUEST['iban'];
-    $laufstieg = $_REQUEST['laufstieg'];
-    $gehalt = $_REQUEST['gehalt'];
+    $laufstieg = NULL;
+    $gehalt = NULL;
     $notiz = $_REQUEST['notiz'];
+    $jetzt = date("Y-m-d H:i:s");
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
+    if ($oldComment != $notiz) {
+    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, commentAt) VALUES ('".$id."', '".$notiz."', '".$jetzt."')")
+    or die(mysql_error());
+    $status = "Kommentar erfolgreich gesetzt.";
+    }
+    if ($oldRank != $dienstgrad) {
+    mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."')")
+    or die(mysql_error());
+    }
 }
 
 ?>
@@ -33,7 +50,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eintrag bearbeiten &middot; Straßenmeisterei Neuberg</title>
+    <title>Mitarbeiter bearbeiten &middot; Straßenmeisterei Neuberg</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
@@ -97,17 +114,13 @@ if ($dbconnect->connect_error) {
     </div>
     </div>
 
-<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <!-- <h5 class="modal-title">Modal title</h5> -->
-        <h2 class="fw-bold mb-0">Einen Eintrag bearbeiten</h2>
-        <a href="../../fachbereiche/37/mitarbeiter.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
-      </div>
-
-      <div class="modal-body p-5 pt-0">
-        <form name="form" method="post" action="">
+    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+        <h1 style="text-align:center;">Mitarbeiter bearbeiten</h1>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
+                    <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
           <div class="form-floating mb-3">
@@ -142,10 +155,6 @@ if ($dbconnect->connect_error) {
             <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123" value="<?php echo $row['iban'];?>">
             <label for="floatingInput">IBAN</label>
           </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="gehalt" placeholder="1/2 Döner" value="<?php echo $row['gehalt'];?>">
-            <label for="floatingInput">Gehalt</label>
-          </div>
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
@@ -153,11 +162,78 @@ if ($dbconnect->connect_error) {
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
-        </form>
-      </div>
+                        <br/>
+                        <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
+                    </form>
+                </div>
+                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+                <div class="accordion-item">
+                <h4 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Rangverlauf
+                </button>
+                </h4>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                <?php
+                $log = mysqli_query($dbconnect,"SELECT * FROM `rankLog` WHERE `mitarbeiterid` = '".$id."'");
+
+                $rowamount = $log->num_rows;
+
+                if($rowamount == 0) {
+                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Logs vorhanden.</div>";
+                } else {
+                    while ($eintrag = mysqli_fetch_array($log)) {
+                        $acAt = new DateTime($eintrag['rankAt']);
+                        $acAt->add(new DateInterval('PT2H'));
+                        echo
+                        "
+                        <small>Rang wurde zu <strong>{$eintrag['newRank']}</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
+                        ";
+                    }
+                }
+                ?>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-9">
+                <h4><?= $row['icname'] ?> (<?= $row['spitzname'] ?>)</h4>
+                <p><strong>Eingestellt am:</strong><br/> <?= $beAtf ?></p>
+                <p><strong>Dienstgrad:</strong><br/> <?= $row['dienstgrad'] ?></p>
+                <p><strong>Telefon:</strong><br/> <?= $row['telnr'] ?></p>
+                <p><strong>IBAN:</strong><br/> <?= $row['iban'] ?></p>
+                <div class="my-5"></div>
+                <hr class="my-3">
+                <h5>Kommentare:</h5>
+                <?php
+                $comlog = mysqli_query($dbconnect,"SELECT * FROM `memberComments` WHERE `mitarbeiterid` = '".$id."'");
+
+                $rowamounts = $comlog->num_rows;
+
+                if($rowamounts == 0) {
+                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Kommentare vorhanden.</div>";
+                } else {
+                    while ($et = mysqli_fetch_array($comlog)) {
+                        $comAt = new DateTime($et['commentAt']);
+                        $comAt->add(new DateInterval('PT2H'));
+                        echo
+                        "
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')}</small><br/>
+                        <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
+                        ";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-5">
+                <p><a href="https://wiesberg.net/fachbereiche/37/mitarbeiter.php"><i class="fa-solid fa-arrow-left-long-to-line"></i> Zurück zur Übersicht</a></p>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 <?php include("../../assets/components/footer.php"); ?>
 

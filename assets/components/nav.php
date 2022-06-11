@@ -22,7 +22,7 @@
         <?php
         if (in_array($steamprofile['steamid'], $allowed_steamids)) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/viewmembers.php">Mitarbeiterübersicht</a>
+          <a class="nav-link" href="../../fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht</a>

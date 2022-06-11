@@ -172,7 +172,7 @@ if ($dbconnect->connect_error) {
                         $acAt->add(new DateInterval('PT2H'));
                         echo
                         "
-                        <small>{$eintrag['action']}<br/>{$acAt->format('d.m.Y H:i')}</small><hr>
+                        <small>{$eintrag['action']}<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
                         ";
                     }
                 }
