@@ -27,12 +27,13 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $laufstieg = NULL;
     $gehalt = NULL;
     $notiz = $_REQUEST['notiz'];
+    $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
     if ($oldComment != $notiz) {
-    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, commentAt) VALUES ('".$id."', '".$notiz."', '".$jetzt."')")
+    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."')")
     or die(mysql_error());
     $status = "Kommentar erfolgreich gesetzt.";
     }
@@ -160,6 +161,15 @@ if ($dbconnect->connect_error) {
             <label for="floatingInput">Notizen</label>
             <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"><?php echo $row['notiz'];?></textarea>
           </div>
+          <div class="form-floating mb-3">
+            <select id="floatingInput" class="form-control rounded-3" name="kommentarart" placeholder="Allgemein">
+              <option value="Allgemein" selected>Allgemein</option>
+              <option value="Gehalt">Gehalt</option>
+              <option value="Positiv">Positiv</option>
+              <option value="Negativ">Negativ</option>
+            </select>
+            <label for="floatingInput">Kommentar Art</label>
+          </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
                         <br/>
@@ -218,9 +228,20 @@ if ($dbconnect->connect_error) {
                     while ($et = mysqli_fetch_array($comlog)) {
                         $comAt = new DateTime($et['commentAt']);
                         $comAt->add(new DateInterval('PT2H'));
+
+                        if ($et['kommentarart'] == "Allgemein") {
+                          $commentType = "<span>– Allgemein</span>";
+                        } elseif ($et['kommentarart'] == "Gehalt") {
+                          $commentType = "<span>– <i class='fa-solid fa-badge-dollar'></i> Gehalt</span>";
+                        } elseif ($et['kommentarart'] == "Positiv") {
+                          $commentType = "<span style='color:#09BC8A;'>– <strong>Positiv</strong></span>";
+                        } else {
+                          $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
+                        }
+
                         echo
                         "
-                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')}</small><br/>
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType}</small><br/>
                         <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
                         ";
                     }
