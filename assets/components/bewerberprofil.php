@@ -36,7 +36,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     or die(mysql_error());
     }
     if ($oldAuser != $auser) {
-      $loginsert = "Bearbeiter geändert von <strong>".$oldAuser."</strong> zu <strong>".$auser."</strong>.";
+      $loginsert = "Der Bearbeiter wurde zu <strong>".$auser."</strong> geändert.";
       mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
     or die(mysql_error());
     }
