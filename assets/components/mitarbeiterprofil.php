@@ -159,7 +159,7 @@ if ($dbconnect->connect_error) {
           <hr class="my-4">
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"><?php echo $row['notiz'];?></textarea>
+            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"></textarea>
           </div>
           <div class="form-floating mb-3">
             <select id="floatingInput" class="form-control rounded-3" name="kommentarart" placeholder="Allgemein">
