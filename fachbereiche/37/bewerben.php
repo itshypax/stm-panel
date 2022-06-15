@@ -70,7 +70,7 @@ if(!isset($_SESSION['steamid'])) {
 
 ?>
 
-  <div class="px-4 py-5 text-center" id="meisterei-hero">
+  <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
       <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
     <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
     <div class="col-lg-6 mx-auto">
@@ -87,7 +87,7 @@ if(!isset($_SESSION['steamid'])) {
       ?>
 
 
-      <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+      <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
 
       <input type="text" id="bewerberSuche" onkeyup="applicationSearch()" placeholder="Bewerber suchen...">
 
@@ -176,7 +176,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
     ?>
 
-<div class="container bg-light shadow p-3 mb-5 rounded my-5">
+<div class="container bg-light shadow p-3 mb-5 rounded-3 my-5">
         <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
@@ -204,7 +204,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
 <?php } else { ?>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
 
     <?php
 

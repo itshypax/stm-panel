@@ -60,7 +60,7 @@ if ($dbconnect->connect_error) {
   include '../../assets/components/nav.php';
 ?>
 
-  <div class="px-4 py-5 text-center" id="meisterei-hero">
+  <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
       <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
     <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
     <div class="col-lg-6 mx-auto">
@@ -68,7 +68,7 @@ if ($dbconnect->connect_error) {
     </div>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
         <h1>Wichtige Links</h1>
         <hr class="my-4">
         <ul>
