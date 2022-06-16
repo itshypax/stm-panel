@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weiterleitunhg &middot; Straßenmeisterei Neuberg</title>
     <link rel="icon" type="image/ico" href="../images/favicon-fb37.ico">
-    <meta http-equiv="refresh" content="0;url=https://wiesberg.net/fachbereiche/37/dashboard.php">
-    <link rel="canonical" href="https://wiesberg.net/fachbereiche/37/dashboard.php"/>
+    <meta http-equiv="refresh" content="0;url=https://wiesberg.net/fachbereiche/37/index.php">
+    <link rel="canonical" href="https://wiesberg.net/fachbereiche/37/index.php"/>
 </head>
 <body>
     

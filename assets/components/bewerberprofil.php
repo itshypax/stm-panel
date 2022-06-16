@@ -77,7 +77,7 @@ if(!isset($_SESSION['steamid'])) {
     ?>
 
     <script type="text/javascript">
-    window.location.href = "https://wiesberg.net/fachbereiche/37/dashboard.php";
+    window.location.href = "https://wiesberg.net/fachbereiche/37/index.php";
     </script>
 
 <?php

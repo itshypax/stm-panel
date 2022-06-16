@@ -13,7 +13,7 @@
         include ('../../assets/components/fb37allowedids.php');
         if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
+          <a class="nav-link" href="../../fachbereiche/37/index.php">Dashboard</a>
         </li>
         <?php }
         if (!in_array($steamprofile['steamid'], $ausbilder)) { ?>
