@@ -41,7 +41,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     or die(mysql_error());
     }
     $status = "Bewerbung erfolgreich bearbeitet.";
-    // Wait for 2 seconds then redirect
+    header("Refresh:0");
 }
 
 ?>

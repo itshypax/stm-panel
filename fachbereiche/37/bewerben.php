@@ -15,6 +15,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     mysqli_query($dbconnect,"INSERT INTO applySystem (`steamid`,`name`,`age`,`applytext`,`astatus`,`createdAt`) VALUES ('$steamid','$name','$age','$applytext','$astatus','$createdAt')")
     or die(mysql_error());
     $status = "Bewerbung erfolgreich eingereicht!";
+    header("Refresh:0");
 }
 
 ?>
