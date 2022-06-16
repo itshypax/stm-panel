@@ -41,6 +41,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."')")
     or die(mysql_error());
     }
+    header("Refresh:0");
 }
 
 ?>
