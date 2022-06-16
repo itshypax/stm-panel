@@ -83,7 +83,7 @@ if(!isset($_SESSION['steamid'])) {
 
     <?php
     include ('../../assets/components/fb37allowedids.php');
-    if (in_array($steamprofile['steamid'], $allowed_steamids)) {
+    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) {
       
       $dbquery = mysqli_query($dbconnect, "SELECT * FROM applySystem ORDER BY createdAt DESC")
 		or die (mysqli_error($dbconnect));

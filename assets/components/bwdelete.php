@@ -9,11 +9,19 @@
 <body>
 
 <?php
+require '../steamauth/steamauth.php';
 include("fb37dbconnect.php");
+include ('../steamauth/userInfo.php');
+include("fb37allowedids.php");
+
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
+if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) {
 $result = mysqli_query($dbconnect,"UPDATE applySystem SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
-header("Location: ../../fachbereiche/37/bewerben.php"); 
+header("Location: ../../fachbereiche/37/bewerben.php");
+} else {
+    header("Location: ../../fachbereiche/37/bewerben.php");
+}
 ?>
 
 

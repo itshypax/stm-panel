@@ -87,9 +87,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/steamauth/userInfo.php'); 
     include ('../../assets/components/fb37allowedids.php');
     
-    foreach ($allowed_steamids as $allowedid) {
     // if (strstr($steamprofile['steamid'], $allowedid))
-    if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
+    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) {?>
 
   <?php
 
@@ -108,7 +107,7 @@ if ($dbconnect->connect_error) {
   include '../../assets/components/nav.php';
 ?>
 
-  <div class="px-4 py-5 text-center" id="meisterei-hero">
+  <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
       <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
     <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
     <div class="col-lg-6 mx-auto">
@@ -116,7 +115,7 @@ if ($dbconnect->connect_error) {
     </div>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
         <h1 style="text-align:center;">Bewerbung bearbeiten</h1>
         <hr class="my-4">
         <div class="row">
@@ -228,7 +227,6 @@ if ($dbconnect->connect_error) {
         return false;
     }
 }
-}     
 ?>
 </body>
 </html>

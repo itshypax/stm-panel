@@ -11,19 +11,23 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <?php
         include ('../../assets/components/fb37allowedids.php');
-        if (in_array($steamprofile['steamid'], $allowed_steamids)) { ?>
+        if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/dashboard.php">Dashboard</a>
         </li>
-        <?php } ?>
+        <?php }
+        if (!in_array($steamprofile['steamid'], $ausbilder)) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/bewerben.php">Bewerbungsportal</a>
         </li>
         <?php
-        if (in_array($steamprofile['steamid'], $allowed_steamids)) { ?>
+        }
+        if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
+        <?php } 
+        if (in_array($steamprofile['steamid'], $admin)) {?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht</a>
         </li>

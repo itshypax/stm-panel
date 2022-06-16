@@ -44,8 +44,7 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/steamauth/userInfo.php'); 
     include ('../../assets/components/fb37allowedids.php');
     
-    foreach ($allowed_steamids as $allowedid) {
-    if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
+    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) {?>
 
          <?php
 
@@ -102,7 +101,6 @@ if ($dbconnect->connect_error) {
         return false;
     }
 }
-}     
 ?>
 </body>
 </html>

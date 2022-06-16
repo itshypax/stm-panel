@@ -86,9 +86,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/steamauth/userInfo.php'); 
     include ('../../assets/components/fb37allowedids.php');
     
-    foreach ($allowed_steamids as $allowedid) {
     // if (strstr($steamprofile['steamid'], $allowedid))
-    if (in_array($steamprofile['steamid'], $allowed_steamids)) {?>
+    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) {?>
 
   <?php
 
@@ -107,7 +106,7 @@ if ($dbconnect->connect_error) {
   include '../../assets/components/nav.php';
 ?>
 
-  <div class="px-4 py-5 text-center" id="meisterei-hero">
+  <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
       <img src="/assets/images/tcMPe2F2.png" alt="Straßenmeisterei" height="100px" width="auto">
     <h1 class="display-5 fw-bold">Straßenmeisterei Neuberg</h1>
     <div class="col-lg-6 mx-auto">
@@ -115,7 +114,7 @@ if ($dbconnect->connect_error) {
     </div>
     </div>
 
-    <div class="container bg-light shadow p-3 mb-5 rounded my-5" style="min-height:450px;">
+    <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
         <h1 style="text-align:center;">Mitarbeiter bearbeiten</h1>
         <hr class="my-4">
         <div class="row">
@@ -124,6 +123,7 @@ if ($dbconnect->connect_error) {
                     <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+        <?php if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) { ?>
           <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" value="<?php echo $row['spitzname'];?>" required>
             <label for="floatingInput">Spitzname / OOC Name</label>
@@ -157,6 +157,7 @@ if ($dbconnect->connect_error) {
             <label for="floatingInput">IBAN</label>
           </div>
           <hr class="my-4">
+          <?php } ?>
           <div class="mb-3">
             <label for="floatingInput">Notizen</label>
             <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"></textarea>
@@ -172,8 +173,10 @@ if ($dbconnect->connect_error) {
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
+          <?php if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) { ?>
                         <br/>
                         <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
+          <?php } ?> 
                     </form>
                 </div>
                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
@@ -196,6 +199,7 @@ if ($dbconnect->connect_error) {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['rankAt']);
                         $acAt->add(new DateInterval('PT2H'));
+                        
                         echo
                         "
                         <small>Rang wurde zu <strong>{$eintrag['newRank']}</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
@@ -239,11 +243,20 @@ if ($dbconnect->connect_error) {
                           $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
                         }
 
+                        if (in_array($steamprofile['steamid'], $admin)) {
+
                         echo
                         "
                         <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType}</small><br/>
                         <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
                         ";
+
+                        } else {
+                          echo
+                        "
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType}</small><hr>
+                        ";
+                        }
                     }
                 }
                 ?>
@@ -279,7 +292,6 @@ if ($dbconnect->connect_error) {
         return false;
     }
 }
-}     
 ?>
 </body>
 </html>
