@@ -56,6 +56,21 @@ if ($regusernum != 1) {
 
         $uPermission = $regusernameres['displayRank'];
         $uPermAdmin = $regusernameres['admin'];
+        if ($uPermission == "Admin") {
+            $uPermLevel = 4;
+        }
+        elseif ($uPermission == "Verwaltung") {
+            $uPermLevel = 3;
+        }
+        elseif ($uPermission == "Personaler") {
+            $uPermLevel = 2;
+        }
+        elseif ($uPermission == "Ausbilder") {
+            $uPermLevel = 1;
+        }
+        else {
+            $uPermLevel = 0;
+        }
         
         if ($regusernameres['displayRank'] == "Admin") {
             $urnkBadge = "<span class='badge text-bg-danger'>Admin</span>";

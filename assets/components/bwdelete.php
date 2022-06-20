@@ -16,7 +16,8 @@ include("fb37allowedids.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
-if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) {
+// Mindestens benötigte Berechtigung: Personaler
+if ($uPermLevel >= 2) {
 $result = mysqli_query($dbconnect,"UPDATE applySystem SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../fachbereiche/37/bewerben.php");
 } else {

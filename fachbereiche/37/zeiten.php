@@ -49,8 +49,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/components/fb37allowedids.php');
     include '../../assets/components/registerpaneluser.php';
     
-    // if (strstr($steamprofile['steamid'], $allowedid))
-    if (in_array($steamprofile['steamid'], $admin)) {?>
+    // Mindestens benötigte Berechtigung: Admin
+    if ($uPermLevel == 4) {?>
 
   <?php
 

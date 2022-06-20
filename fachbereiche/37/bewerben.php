@@ -86,8 +86,8 @@ if(!isset($_SESSION['steamid'])) {
     </div>
 
     <?php
-    include ('../../assets/components/fb37allowedids.php');
-    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) {
+    // Mindestens benötigte Berechtigung: Personaler
+    if ($uPermLevel >= 2) {
       
       $dbquery = mysqli_query($dbconnect, "SELECT * FROM applySystem ORDER BY createdAt DESC")
 		or die (mysqli_error($dbconnect));

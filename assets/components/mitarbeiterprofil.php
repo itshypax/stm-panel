@@ -88,8 +88,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('../../assets/components/fb37allowedids.php');
     include '../../assets/components/registerpaneluser.php';
     
-    // if (strstr($steamprofile['steamid'], $allowedid))
-    if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) {?>
+    // Mindestens benötigte Berechtigung: Ausbilder
+    if ($uPermLevel >= 1) {?>
 
   <?php
 
@@ -125,7 +125,8 @@ if ($dbconnect->connect_error) {
                     <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
-        <?php if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) { ?>
+        <?php // Mindestens benötigte Berechtigung: Personaler
+              if ($uPermLevel >= 2) { ?>
           <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" value="<?php echo $row['spitzname'];?>" required>
             <label for="floatingInput">Spitzname / OOC Name</label>
@@ -175,7 +176,8 @@ if ($dbconnect->connect_error) {
           </div>
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
-          <?php if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler)) { ?>
+          <?php // Mindestens benötigte Berechtigung: Personaler
+                if ($uPermLevel >= 2) { ?>
                         <br/>
                         <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
           <?php } ?> 
@@ -245,7 +247,8 @@ if ($dbconnect->connect_error) {
                           $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
                         }
 
-                        if (in_array($steamprofile['steamid'], $admin)) {
+                        // Mindestens benötigte Berechtigung: Admin
+                        if ($uPermLevel == 4) {
 
                         echo
                         "

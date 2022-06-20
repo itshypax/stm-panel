@@ -17,7 +17,8 @@ include("fb37allowedids.php");
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
 $mid=$_REQUEST['mid'];
-if (in_array($steamprofile['steamid'], $admin)) {
+// Mindestens benötigte Berechtigung: Admin
+if ($uPermLevel == 4) {
 $result = mysqli_query($dbconnect,"DELETE FROM memberComments WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../assets/components/mitarbeiterprofil.php?id=".$mid);
 } else {

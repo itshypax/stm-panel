@@ -10,23 +10,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <?php
-        if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
+        // Mindestens benötigte Berechtigung: Ausbilder
+        if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/index.php">Dashboard</a>
         </li>
         <?php }
-        if (!in_array($steamprofile['steamid'], $ausbilder)) { ?>
+        // Wenn die Berechtigung NICHT Ausbilder ist ...
+        if ($userPermlevel != 1) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/bewerben.php">Bewerbungsportal</a>
         </li>
         <?php
         }
-        if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
+        // Mindestens benötigte Berechtigung: Ausbilder
+        if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <?php } 
-        if (in_array($steamprofile['steamid'], $admin)) {?>
+        // Mindestens benötigte Berechtigung: Admin
+        if ($uPermLevel == 4) {?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
         </li>
