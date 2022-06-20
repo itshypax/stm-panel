@@ -64,7 +64,7 @@ if(!isset($_SESSION['steamid'])) {
     include '../../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Ausbilder
-    if ($uPermLevel >= 4) {?>
+    if ($uPermLevel >= 4 AND $uPermLevel > $row['permLevel']) {?>
 
   <?php
 

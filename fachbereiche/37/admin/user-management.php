@@ -57,11 +57,10 @@ if ($dbconnect->connect_error) {
 	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
 }
 
-$query1 = mysqli_query($dbconnect, "SELECT * FROM panelUsers WHERE permLevel >= 0 AND permLevel < 4")
+$query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
 		or die (mysqli_error($dbconnect));
 
-$query2 = mysqli_query($dbconnect, "SELECT * FROM panelUsers WHERE permLevel >= 4")
-		or die (mysqli_error($dbconnect));
+    $nrorows = $query->num_rows;
 
   $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
   $num_currentOn = mysqli_num_rows($currentOn);
@@ -95,30 +94,46 @@ $query2 = mysqli_query($dbconnect, "SELECT * FROM panelUsers WHERE permLevel >= 
 
   <?php
 
-while ($row = mysqli_fetch_array($query1)) {
+  while ($row = mysqli_fetch_array($query)) {
 
-    $reAt = new DateTime($row['regAt']);
-    $reAt->add(new DateInterval('PT2H'));
+    $crDat = new DateTime($row['regAt']);
+  $crDat->add(new DateInterval('PT2H'));
+  $crDatf = $crDat->format('d.m.Y H:i');
 
-    if ($row['permLevel'] == 0) {
-        $permText = "0 - Gast";
-    } elseif ($row['permLevel'] == 1) {
+    if ($row['permLevel'] == 1) {
         $permText = "1 - Ausbilder";
     } elseif ($row['permLevel'] == 2) {
         $permText = "2 - Personaler";
     } elseif ($row['permLevel'] == 3) {
         $permText = "3 - Verwaltung";
+    } elseif ($row['permLevel'] == 4) {
+        $permText = "4 - Admin";
+    } else {
+        $permText = "0 - Gast";
     }
 
+    if ($row['permLevel'] >= $uPermLevel) {
+
+      echo
+		"<tr>
+		    <th scope=''row'>{$row['id']}</th>
+            <td>{$row['rpname']}</td>
+            <td>{$permText}</td>
+            <td>{$crDatf}</td>
+            <td></td>
+    	</tr>";
+
+    } else {
 
 	echo
 		"<tr>
-		    <th scope='row'>{$row['id']}</th>
+		    <th scope=''row'>{$row['id']}</th>
             <td>{$row['rpname']}</td>
             <td>{$permText}</td>
-            <td>{$reAt}</td>
-            <td><a href='/user-edit.php?id={$row['id']}' title='Benutzer bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
+            <td>{$crDatf}</td>
+            <td><a href='user-edit.php?id={$row['id']}' title='Benutzer bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
+  }
 }
 
 ?>
@@ -131,7 +146,6 @@ while ($row = mysqli_fetch_array($query1)) {
 <?php include("../../../assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-<!-- <script src="../../assets/js/tablesearch.js"></script> -->
 
  <?php
     return true;

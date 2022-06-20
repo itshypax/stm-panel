@@ -13,26 +13,29 @@
         // Mindestens benötigte Berechtigung: Ausbilder
         if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/index.php">Dashboard</a>
+          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/index.php">Dashboard</a>
         </li>
         <?php }
         // Wenn die Berechtigung NICHT Ausbilder ist ...
         if ($userPermlevel != 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/bewerben.php">Bewerbungsportal</a>
+          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/bewerben.php">Bewerbungsportal</a>
         </li>
         <?php
         }
         // Mindestens benötigte Berechtigung: Ausbilder
         if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
+          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <?php } 
         // Mindestens benötigte Berechtigung: Admin
         if ($uPermLevel >= 4) {?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
+          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/admin/user-management.php">Panel Benutzer <span class="badge text-bg-danger">ADMIN</span></a>
         </li>
         <?php } ?>
         <!-- <li class="nav-item dropdown">
