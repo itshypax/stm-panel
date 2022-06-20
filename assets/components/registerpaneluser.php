@@ -25,7 +25,7 @@ if(isset($_POST['newu']) && $_POST['newu']==1){
 
 if ($regusernum != 1) {
         $reguserdatetime = date("Y-m-d H:i:s");
-        mysqli_query($reguserdb,"INSERT INTO panelUsers (`steamid`, `regAt` , `displayRank`, `admin`) VALUES ('".$currentUserSteamID."', '".$reguserdatetime."', 'Gast', 0)");
+        mysqli_query($reguserdb,"INSERT INTO panelUsers (`steamid`, `regAt` , `permLevel`) VALUES ('".$currentUserSteamID."', '".$reguserdatetime."', 0)");
         header("Refresh:0");
     } else {
         if($regusernameres['rpname'] == NULL) { 
