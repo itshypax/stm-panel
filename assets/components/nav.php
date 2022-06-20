@@ -30,7 +30,7 @@
         </li>
         <?php } 
         // Mindestens benötigte Berechtigung: Admin
-        if ($uPermLevel == 4) {?>
+        if ($uPermLevel >= 4) {?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
         </li>

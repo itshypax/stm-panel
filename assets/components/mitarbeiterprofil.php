@@ -247,7 +247,7 @@ if ($dbconnect->connect_error) {
                         }
 
                         // Mindestens benötigte Berechtigung: Admin
-                        if ($uPermLevel == 4) {
+                        if ($uPermLevel >= 4) {
 
                         echo
                         "

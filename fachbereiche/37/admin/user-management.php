@@ -1,24 +1,19 @@
-<?php
-$page = $_SERVER['PHP_SELF'];
-$sec = "45";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeiten &middot; Straßenmeisterei Neuberg</title>
+    <title>Users &middot; Straßenmeisterei Neuberg</title>
     <!-- Metas -->
-    <?php include('../../assets/components/fb37meta.php'); ?>
+    <?php include('../../../assets/components/fb37meta.php'); ?>
     <!-- Metas end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../assets/css/own.css">
-    <link rel="stylesheet" href="../../assets/css/fb37.css">
-    <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
-    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
+    <link href="../../../assets/fonts/fontawesome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/own.css">
+    <link rel="stylesheet" href="../../../assets/css/fb37.css">
+    <link rel="icon" type="image/ico" href="../../../assets/images/favicon-fb37.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -27,7 +22,7 @@ $sec = "45";
 
    <?php
 
-require '../../assets/steamauth/steamauth.php';
+require '../../../assets/steamauth/steamauth.php';
 
 ?>
 
@@ -45,15 +40,16 @@ if(!isset($_SESSION['steamid'])) {
 
 }  else {
 
-    include ('../../assets/steamauth/userInfo.php'); 
-    include '../../assets/components/registerpaneluser.php';
+    include ('../../../assets/steamauth/userInfo.php'); 
+    include '../../../assets/components/fb37dbconnect.php';
+    include '../../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Admin
-    if ($uPermLevel >= 4) {?>
+    if ($uPermLevel >= 4){?>
 
   <?php
 
-  include("../../assets/components/fb37dbconnect.php");
+  include("../../../assets/components/fb37dbconnect.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
@@ -61,16 +57,17 @@ if ($dbconnect->connect_error) {
 	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
 }
 
-$query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
+$query1 = mysqli_query($dbconnect, "SELECT * FROM panelUsers WHERE permLevel >= 0 AND permLevel < 4")
 		or die (mysqli_error($dbconnect));
 
-		$nrorows = $query->num_rows;
+$query2 = mysqli_query($dbconnect, "SELECT * FROM panelUsers WHERE permLevel >= 4")
+		or die (mysqli_error($dbconnect));
 
   $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
   $num_currentOn = mysqli_num_rows($currentOn);
  
 
-  include '../../assets/components/nav.php';
+  include '../../../assets/components/nav.php';
 ?>
 
   <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
@@ -83,70 +80,44 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
     <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
 
-    <?php 
 
-    		if (empty($nrorows)) {
-	echo "<div class='alert alert-danger text-center' role='danger'><p>Es gibt noch keine Einträge!</p></div>";
-} else {
-  echo "<div class='alert alert-primary text-center' role='info'><p>Damit Nutzer in dieser Liste auftauchen <u>müssen</u> sie den Tag <strong>[ST]</strong> vor ihrem Namen haben!</p></div>";
-}
-
-?>
-
-<input type="text" id="zeitenSuche" onkeyup="timeSearch()" placeholder="Mitarbeiter suchen...">
-
-<table class="table" id="time-management">
+<table class="table" id="pusers-table">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Spielzeit</th>
-      <th scope="col">Server</th>
-      <th scope="col">Erstellt am</th>
+      <th scope="col">Rang</th>
+      <th scope="col">Reg. Datum</th>
+      <th scope="col">Aktionen</th>
     </tr>
   </thead>
   <tbody>
 
   <?php
 
-while ($row = mysqli_fetch_array($query)) {
+while ($row = mysqli_fetch_array($query1)) {
 
-    $playtimeH = round($row['playtime'] / 60, 2);
+    $reAt = new DateTime($row['regAt']);
+    $reAt->add(new DateInterval('PT2H'));
 
-    if ($row['online'] == 1) {
-        $onlineSt = "Online";
-    } else {
-        $onlineSt = "Offline";
+    if ($row['permLevel'] == 0) {
+        $permText = "0 - Gast";
+    } elseif ($row['permLevel'] == 1) {
+        $permText = "1 - Ausbilder";
+    } elseif ($row['permLevel'] == 2) {
+        $permText = "2 - Personaler";
+    } elseif ($row['permLevel'] == 3) {
+        $permText = "3 - Verwaltung";
     }
 
-    if ($row['server'] == "") {
-        $serverSt = "-";
-    } else {
-        $serverSt = $row['server'];
-    }
-
-    $crAt = new DateTime($row['createdAt']);
-    $crAt->add(new DateInterval('PT2H'));
-    $upAt = new DateTime($row['updatedAt']);
-    $upAt->add(new DateInterval('PT2H'));
-
-    if ($onlineSt == "Online") {
-      $OnlineBdg = 'Online';
-      $spanClass = "text-bg-success";
-      $lastOn = "Gerade online!";
-    } else {
-      $OnlineBdg = 'Offline';
-      $spanClass = "text-bg-danger";
-      $lastOn = "Zuletzt online: {$upAt->format('d.m.Y H:i')}";
-    }
 
 	echo
 		"<tr>
-		        <th scope='row'>{$row['id']}</th>
-            <td>{$row['name']} <span class='badge {$spanClass}' title='{$lastOn}'>{$OnlineBdg}</span></td>
-            <td>{$playtimeH} Std. ({$row['playtime']} Min.)</td>
-            <td>{$serverSt}</td>
-            <td>{$crAt->format('d.m.Y H:i')}</td>
+		    <th scope='row'>{$row['id']}</th>
+            <td>{$row['rpname']}</td>
+            <td>{$permText}</td>
+            <td>{$reAt}</td>
+            <td><a href='/user-edit.php?id={$row['id']}' title='Benutzer bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
 }
 
@@ -154,12 +125,13 @@ while ($row = mysqli_fetch_array($query)) {
 
 </tbody>
 </table>
+
 </div>
 
-<?php include("../../assets/components/footer.php"); ?>
+<?php include("../../../assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-<script src="../../assets/js/tablesearch.js"></script>
+<!-- <script src="../../assets/js/tablesearch.js"></script> -->
 
  <?php
     return true;
