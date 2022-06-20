@@ -10,7 +10,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <?php
-        include ('../../assets/components/fb37allowedids.php');
         if (in_array($steamprofile['steamid'], $admin) OR in_array($steamprofile['steamid'], $verwalter) OR in_array($steamprofile['steamid'], $personaler) OR in_array($steamprofile['steamid'], $ausbilder)) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../../fachbereiche/37/index.php">Dashboard</a>
@@ -29,7 +28,7 @@
         <?php } 
         if (in_array($steamprofile['steamid'], $admin)) {?>
         <li class="nav-item">
-          <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht</a>
+          <a class="nav-link" href="../../fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
         </li>
         <?php } ?>
         <!-- <li class="nav-item dropdown">
@@ -52,7 +51,7 @@
             <img src="<?= $steamprofile['avatarmedium']?>" alt="Profilbild" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-            <li class="dropdown-item-text"><strong><?= $steamprofile['personaname'] ?></strong></li>
+            <li class="dropdown-item-text"><strong><?= $regusernameres['rpname'] ?></strong><br/><?= $urnkBadge ?></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="?logout">Abmelden</a></li>
           </ul>

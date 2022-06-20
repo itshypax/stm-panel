@@ -69,7 +69,10 @@ if(!isset($_SESSION['steamid'])) {
 
   <?php
 
-  include ('../../assets/steamauth/userInfo.php'); 
+  include ('../../assets/steamauth/userInfo.php');
+  include ('../../assets/components/fb37allowedids.php');
+  include '../../assets/components/registerpaneluser.php';
+  
   include ('../../assets/components/nav.php');
 
 ?>
