@@ -85,7 +85,6 @@ if(!isset($_SESSION['steamid'])) {
 }  else {
 
     include ('../../assets/steamauth/userInfo.php'); 
-    include ('../../assets/components/fb37allowedids.php');
     include '../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Personaler
@@ -162,7 +161,7 @@ if ($dbconnect->connect_error) {
                 $rowamount = $log->num_rows;
 
                 if($rowamount == 0) {
-                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Logs vorhanden.</div>";
+                    echo "<div class='alert alert-primary my-4 pb-3' role='alert'>Es sind keine Logs vorhanden.</div>";
                 } else {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['actionAt']);

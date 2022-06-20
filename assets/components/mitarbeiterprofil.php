@@ -197,7 +197,7 @@ if ($dbconnect->connect_error) {
                 $rowamount = $log->num_rows;
 
                 if($rowamount == 0) {
-                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Logs vorhanden.</div>";
+                    echo "<div class='alert alert-primary my-4 pb-3' role='alert'>Es sind keine Logs vorhanden.</div>";
                 } else {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['rankAt']);
@@ -230,7 +230,7 @@ if ($dbconnect->connect_error) {
                 $rowamounts = $comlog->num_rows;
 
                 if($rowamounts == 0) {
-                    echo "<div class='alert alert-primary my-4' role='alert'>Es sind keine Kommentare vorhanden.</div>";
+                    echo "<div class='alert alert-primary my-4 pb-3' role='alert'>Es sind keine Kommentare vorhanden.</div>";
                 } else {
                     while ($et = mysqli_fetch_array($comlog)) {
                         $comAt = new DateTime($et['commentAt']);
