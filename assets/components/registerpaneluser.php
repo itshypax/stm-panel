@@ -54,32 +54,16 @@ if ($regusernum != 1) {
 <?php
         }
 
-        $uPermission = $regusernameres['displayRank'];
-        $uPermAdmin = $regusernameres['admin'];
+        $uPermLevel = $regusernameres['permLevel'];
         $uUsedName = $regusernameres['rpname'];
-        if ($uPermission == "Admin") {
-            $uPermLevel = 4;
-        }
-        elseif ($uPermission == "Verwaltung") {
-            $uPermLevel = 3;
-        }
-        elseif ($uPermission == "Personaler") {
-            $uPermLevel = 2;
-        }
-        elseif ($uPermission == "Ausbilder") {
-            $uPermLevel = 1;
-        }
-        else {
-            $uPermLevel = 0;
-        }
         
-        if ($regusernameres['displayRank'] == "Admin") {
+        if ($uPermLevel == 4) {
             $urnkBadge = "<span class='badge text-bg-danger'>Admin</span>";
-        } elseif ($regusernameres['displayRank'] == "Verwaltung") {
+        } elseif ($uPermLevel == 3) {
             $urnkBadge = "<span class='badge text-bg-warning'>Verwaltung</span>";
-        } elseif ($regusernameres['displayRank'] == "Personaler") {
+        } elseif ($uPermLevel == 2) {
             $urnkBadge = "<span class='badge text-bg-info'>Personaler</span>";
-        } elseif ($regusernameres['displayRank'] == "Ausbilder") {
+        } elseif ($uPermLevel == 1) {
             $urnkBadge = "<span class='badge text-bg-success'>Ausbilder</span>";
         } else {
             $urnkBadge = "<span class='badge text-bg-secondary'>Gast</span>";
