@@ -46,7 +46,6 @@ if(!isset($_SESSION['steamid'])) {
 }  else {
 
     include ('../../assets/steamauth/userInfo.php'); 
-    include ('../../assets/components/fb37allowedids.php');
     include '../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Admin

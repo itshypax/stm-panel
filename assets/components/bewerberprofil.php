@@ -135,10 +135,7 @@ if ($dbconnect->connect_error) {
                             </select>
                             <label for="floatingInput">Status</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input id="floatingInput" class="form-control rounded-3" type="text" name="auser" placeholder="TheLegend27" value="<?php echo $row['auser'];?>" required>
-                            <label for="floatingInput">Sachbearbeiter</label>
-                        </div>
+                        <input name="auser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <hr class="my-4">
                         <div class="form-floating mb-3">
                             <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['acomment'];?></textarea>

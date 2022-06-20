@@ -53,13 +53,9 @@ if(!isset($_SESSION['steamid'])) {
 
     ?>
 
-    <div class="db-container">
-            <div class="db-box shadow rounded">
-                <?php
-                    loginbutton(); //login button
-                ?>
-            </div>
-    </div>
+    <script type="text/javascript">
+    window.location.href = "https://wiesberg.net/fachbereiche/37/index.php";
+    </script>
 
 <?php
 
@@ -70,7 +66,6 @@ if(!isset($_SESSION['steamid'])) {
   <?php
 
   include ('../../assets/steamauth/userInfo.php');
-  include ('../../assets/components/fb37allowedids.php');
   include '../../assets/components/registerpaneluser.php';
   
   include ('../../assets/components/nav.php');
@@ -189,7 +184,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid2" value="<?= $steamprofile['steamid'] ?>" />
           <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="name" placeholder="TheLegend27" required>
+            <input id="floatingInput" class="form-control rounded-3" type="text" name="name" placeholder="TheLegend27" value="<?php echo $uUsedName;?>" required>
             <label for="floatingInput">Vor- und Zuname (IC)</label>
           </div>
           <div class="form-floating mb-3">
@@ -225,7 +220,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
   <thead>
     <tr class="text-center">
       <th scope="col" colspan='4'>Status</th>
-      <th scope="col">Sachbearbeiter</th>
+      <th scope="col">Letzter Bearbeiter</th>
     </tr>
   </thead>
   <tbody>

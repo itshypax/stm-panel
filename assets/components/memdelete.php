@@ -12,7 +12,7 @@
 require '../steamauth/steamauth.php';
 include("fb37dbconnect.php");
 include ('../steamauth/userInfo.php');
-include("fb37allowedids.php");
+include("registerpaneluser.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];

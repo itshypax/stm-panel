@@ -42,7 +42,6 @@ if(!isset($_SESSION['steamid'])) {
 }  else {
 
     include ('../../assets/steamauth/userInfo.php'); 
-    include ('../../assets/components/fb37allowedids.php');
     include '../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Ausbilder
@@ -90,14 +89,9 @@ if ($dbconnect->connect_error) {
     } else {
         ?>
 
-        <div class="db-container">
-            <div class="error-box shadow rounded">
-                <h1 style="text-transform:uppercase;font-weight:bold;text-shadow: 0 .5rem 1rem rgba(0,0,0,.15);">FEHLER</h1>
-                <p style="text-shadow: 0 .5rem 1rem rgba(0,0,0,.15);">Es sieht so aus als wärst du für diese Seite noch nicht freigeschaltet!</p>
-                <br/><br/>
-                <form action='' method='get'><button name='logout' type='submit'>Zurück zum Login</button></form>
-            </div>
-        </div>
+        <script type="text/javascript">
+        window.location.href = "https://wiesberg.net/fachbereiche/37/bewerben.php";
+        </script>
 
         <?php
         return false;

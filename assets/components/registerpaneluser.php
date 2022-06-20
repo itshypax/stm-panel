@@ -14,7 +14,7 @@ $reguserquery1 = mysqli_query($reguserdb,"SELECT * FROM panelUsers WHERE `steami
 $regusernum = mysqli_num_rows($reguserquery1);
 $regusernameres = mysqli_fetch_array($reguserquery1);
 
-if(isset($_POST['new']) && $_POST['new']==1){
+if(isset($_POST['newu']) && $_POST['newu']==1){
     $uid=$_REQUEST['id'];
     $urpname =$_REQUEST['rpname'];
     mysqli_query($reguserdb,"UPDATE panelUsers SET rpname='".$urpname."' WHERE id='".$uid."'")
@@ -39,7 +39,7 @@ if ($regusernum != 1) {
                         </div>
                         <div class="modal-body">
                             <form name="form" method="post" action="">
-                                <input type="hidden" name="new" value="1" />
+                                <input type="hidden" name="newu" value="1" />
                                 <input name="id" type="hidden" value="<?php echo $regusernameres['id'];?>" />
                                 <div class="form-floating mb-3">
                                     <input id="floatingInput" class="form-control rounded-3" type="text" name="rpname" placeholder="TheLegend27" required>
@@ -56,6 +56,7 @@ if ($regusernum != 1) {
 
         $uPermission = $regusernameres['displayRank'];
         $uPermAdmin = $regusernameres['admin'];
+        $uUsedName = $regusernameres['rpname'];
         if ($uPermission == "Admin") {
             $uPermLevel = 4;
         }
