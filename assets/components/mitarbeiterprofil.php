@@ -29,16 +29,17 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $notiz = $_REQUEST['notiz'];
     $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
+    $changingUserName = $_REQUEST['changinguser'];
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
     if ($oldComment != $notiz) {
-    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."')")
+    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     $status = "Kommentar erfolgreich gesetzt.";
     }
     if ($oldRank != $dienstgrad) {
-    mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."')")
+    mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt, changedBy) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     }
     header("Refresh:0");
@@ -53,7 +54,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitarbeiter bearbeiten &middot; Straßenmeisterei Neuberg</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/own.css">
@@ -124,6 +125,7 @@ if ($dbconnect->connect_error) {
                     <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+        <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
         <?php // Mindestens benötigte Berechtigung: Personaler
               if ($uPermLevel >= 2) { ?>
           <div class="form-floating mb-3">
@@ -202,10 +204,16 @@ if ($dbconnect->connect_error) {
                     while ($eintrag = mysqli_fetch_array($log)) {
                         $acAt = new DateTime($eintrag['rankAt']);
                         $acAt->add(new DateInterval('PT2H'));
+
+                        if ($eintrag['changedBy'] != NULL) {
+                          $changeUser = $eintrag['changedBy'];
+                        } else {
+                          $changeUser = "<i>Unbekannt</i>";
+                        }
                         
                         echo
                         "
-                        <small>Rang wurde zu <strong>{$eintrag['newRank']}</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
+                        <small>Rang wurde von {$changeUser} zu <strong>{$eintrag['newRank']}</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
                         ";
                     }
                 }
@@ -246,12 +254,18 @@ if ($dbconnect->connect_error) {
                           $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
                         }
 
+                        if ($et['commentUser'] != NULL) {
+                          $commentUser = "<span>– von {$et['commentUser']}</span>";
+                        } else {
+                          $commentUser = "<span>– von <i>Unbekannt</i></span>";
+                        }
+
                         // Mindestens benötigte Berechtigung: Admin
                         if ($uPermLevel >= 4) {
 
                         echo
                         "
-                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType}</small><br/>
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser}</small><br/>
                         <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
                         ";
 

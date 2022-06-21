@@ -22,21 +22,22 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $astatus =$_REQUEST['astatus'];
     $acomment = $_REQUEST['acomment'];
     $auser = $_REQUEST['auser'];
+    $changingUserName = $_REQUEST['changinguser'];
     mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."' WHERE id='".$id."'")
     or die(mysql_error());
     $logentryAt = date("Y-m-d H:i:s");
     if ($oldAstatus != $astatus) {
-      $loginsert = "Status geändert von <strong>".$oldAstatus."</strong> zu <strong>".$astatus."</strong>.";
+      $loginsert = "Der Status wurde durch ".$changingUserName." von <strong>".$oldAstatus."</strong> zu <strong>".$astatus."</strong> geändert.";
       mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
     or die(mysql_error());
     }
     if ($oldAcomment != $acomment) {
-      $loginsert = "Die Bemerkung wurde zu <strong>".$acomment."</strong> geändert.";
+      $loginsert = "Die Bemerkung wurde durch ".$changingUserName." geändert.";
       mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
     or die(mysql_error());
     }
     if ($oldAuser != $auser) {
-      $loginsert = "Der Bearbeiter wurde zu <strong>".$auser."</strong> geändert.";
+      $loginsert = "Der Bearbeiter wurde von ".$oldAuser." zu <strong>".$auser."</strong> geändert.";
       mysqli_query($dbconnect,"INSERT INTO BewerbungsLog (`bewerbungsid`,`action`,`actionAt`) VALUES ('$id','$loginsert','$logentryAt')")
     or die(mysql_error());
     }
@@ -53,7 +54,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbung bearbeiten &middot; Straßenmeisterei Neuberg</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/own.css">
@@ -124,6 +125,7 @@ if ($dbconnect->connect_error) {
                     <form name="form" method="post" action="">
                         <input type="hidden" name="new" value="1" />
                         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+                        <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <div class="form-floating mb-3">
                             <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen">
                                 <option value="Ungesehen" <?php if($row['astatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
