@@ -84,6 +84,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">SteamID</th>
       <th scope="col">Name</th>
       <th scope="col">Rang</th>
       <th scope="col">Reg. Datum</th>
@@ -117,6 +118,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
       echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
+            <td>{$row['steamid']}</td>
             <td>{$row['rpname']}</td>
             <td>{$permText}</td>
             <td>{$crDatf}</td>
@@ -128,6 +130,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
+            <td>{$row['steamid']}</td>
             <td>{$row['rpname']}</td>
             <td>{$permText}</td>
             <td>{$crDatf}</td>
