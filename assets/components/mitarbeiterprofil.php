@@ -33,7 +33,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
-    if ($oldComment != $notiz) {
+    if ($oldComment != $notiz AND strlen($notiz) > 0) {
     mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     $status = "Kommentar erfolgreich gesetzt.";
