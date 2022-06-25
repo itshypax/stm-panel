@@ -1,4 +1,4 @@
-MYSQL_HOST=web-snake01.native-webspace.com
-MYSQL_USER=hypaxnat_meisterbernd
-MYSQL_PASSWORD=k_Ng([rZi*}.
-MYSQL_DATABASE=hypaxnat_stmdb
+MYSQL_HOST='web-snake01.native-webspace.com'
+MYSQL_USER='hypaxnat_meisterbernd'
+MYSQL_PASSWORD='k_Ng([rZi*}.'
+MYSQL_DATABASE='hypaxnat_stmdb'
