@@ -1,5 +1,5 @@
 <div class="container">
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
         <img src="https://wiesberg.net/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
