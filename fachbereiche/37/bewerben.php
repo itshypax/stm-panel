@@ -39,7 +39,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
+    <script src="../../assets/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
