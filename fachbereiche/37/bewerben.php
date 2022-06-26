@@ -39,6 +39,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 </head>
 <body>
 
@@ -202,6 +203,12 @@ while ($rows = mysqli_fetch_array($dbquery)) {
           <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
+
+        <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                CKEDITOR.replace( 'applytext' );
+            </script>
 </div>
 
 <?php } else { ?>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container sticky-top" style="background-color: #fff;">
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
