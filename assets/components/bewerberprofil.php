@@ -169,7 +169,23 @@ if ($dbconnect->connect_error) {
                                 <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
                             </div>
                             <div class="col-8">
-                                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+                            </div>
+                        </div>
+                    </form>
+
+                    <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                CKEDITOR.replace( 'bwantwort' );
+            </script>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-5">
+                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
                 <div class="accordion-item">
                 <h4 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -208,8 +224,6 @@ if ($dbconnect->connect_error) {
                 CKEDITOR.replace( 'bwantwort' );
             </script>
                 </div>
-            </div>
-            </div>
             </div>
         </div>
         <div class="row">
