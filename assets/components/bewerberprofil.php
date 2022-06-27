@@ -63,6 +63,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../assets/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -136,27 +137,28 @@ if ($dbconnect->connect_error) {
                 <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
             </div>
         </div>
+        <hr class="my-5">
         <div class="row">
             <div class="col">
-                <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
+                <div class="container p-3 rounded-3 my-2">
                     <form name="form" method="post" action="">
                         <input type="hidden" name="new" value="1" />
                         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
                         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <div class="form-floating mb-3">
                             <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen">
-                                <option value="Ungesehen" <?php if($row['astatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
-                                <option value="Bearbeitung" <?php if($row['astatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
-                                <option value="Einladung" <?php if($row['astatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
-                                <option value="Abgelehnt" <?php if($row['astatus']=="Abgelehnt") echo 'selected="selected"'; ?>>Abgelehnt</option>
-                                <option value="Angenommen" <?php if($row['astatus']=="Angenommen") echo 'selected="selected"'; ?>>Angenommen</option>
+                                <option value="Ungesehen" <?php if($row['bwstatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
+                                <option value="Bearbeitung" <?php if($row['bwstatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
+                                <option value="Einladung" <?php if($row['bwstatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
+                                <option value="Abgelehnt" <?php if($row['bwstatus']=="Abgelehnt") echo 'selected="selected"'; ?>>Abgelehnt</option>
+                                <option value="Angenommen" <?php if($row['bwstatus']=="Angenommen") echo 'selected="selected"'; ?>>Angenommen</option>
                             </select>
                             <label for="floatingInput">Status</label>
                         </div>
                         <input name="auser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <hr class="my-4">
                         <div class="form-floating mb-3">
-                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['acomment'];?></textarea>
+                            <textarea id="floatingInput" class="form-control rounded-3" name="bwantwort" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['bwantwort'];?></textarea>
                             <label for="floatingInput">Bemerkung</label>
                         </div>
                         <div class="row">
@@ -199,6 +201,12 @@ if ($dbconnect->connect_error) {
                             </div>
                         </div>
                     </form>
+
+                    <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                CKEDITOR.replace( 'bwantwort' );
+            </script>
                 </div>
             </div>
             </div>
