@@ -174,9 +174,9 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
     <?php 
 
-    $counter = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']}");
-    $bwnr = $dbconnect->query("SELECT * FROM applySystem WHERE steamid = {$steamprofile['steamid']} ORDER BY createdAt DESC LIMIT 1");
-    $delcon = $dbconnect->query("SELECT deleted FROM applySystem WHERE steamid = {$steamprofile['steamid']} AND deleted = 1");
+    $counter = $dbconnect->query("SELECT * FROM applicationsV2 WHERE steamid = {$steamprofile['steamid']}");
+    $bwnr = $dbconnect->query("SELECT * FROM applicationsV2 WHERE steamid = {$steamprofile['steamid']} ORDER BY createdAt DESC LIMIT 1");
+    $delcon = $dbconnect->query("SELECT deleted FROM applicationsV2 WHERE steamid = {$steamprofile['steamid']} AND deleted = 1");
     $del = mysqli_fetch_array($delcon);
 
     if ($counter->num_rows == 0 || $counter->num_rows == $delcon->num_rows) {
