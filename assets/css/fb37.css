@@ -58,3 +58,7 @@ body {
 #apply-management tr {
   vertical-align: middle;
 }
+
+.no-resize {
+  resize: none;
+}

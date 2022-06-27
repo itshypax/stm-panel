@@ -6,13 +6,17 @@ $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
-    $steamid = $_REQUEST['steamid2'];
-    $name = $_REQUEST['name'];
-    $age = $_REQUEST['age'];
-    $applytext = $_REQUEST['applytext'];
-    $astatus = 'Ungesehen';
+    $steamid = $_REQUEST['steamid'];
+    $panelid = $_REQUEST['panelid'];
+    $rlname = $_REQUEST['rlname'];
+    $rlage = $_REQUEST['rlage'];
+    $forumname = $_REQUEST['forumname'];
+    $email = $_REQUEST['email'];
+    $anmerkungen = $_REQUEST['anmerkungen'];
+    $bewerbungstext = $_REQUEST['bewerbungstext'];
+    $bwstatus = 'Ungesehen';
     $createdAt = date("Y-m-d H:i:s");
-    mysqli_query($dbconnect,"INSERT INTO applySystem (`steamid`,`name`,`age`,`applytext`,`astatus`,`createdAt`) VALUES ('$steamid','$name','$age','$applytext','$astatus','$createdAt')")
+    mysqli_query($dbconnect,"INSERT INTO applicationsV2 (`steamid`,`panelid`,`rlname`,`rlage`,`forumname`,`email`,`anmerkungen`,`bewerbungstext`,`bwstatus`,`createdAt`) VALUES ('$steamid','$panelid','$rlname','$rlage','$forumname','$email','$anmerkungen','$bewerbungstext','$bwstatus','$createdAt')")
     or die(mysql_error());
     $status = "Bewerbung erfolgreich eingereicht!";
     header("Refresh:0");
@@ -151,7 +155,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['name']}</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
-            <td><a href='../../assets/components/bwreopen.php?id={$rows['id']}' title='Bewerbung wiederherstellen'><button type='button' class='btn btn-outline-success'><i class='fa-solid fa-repeat'></i></button></a></td>
+            <td></td>
     	</tr>";
 
 }
@@ -183,31 +187,63 @@ while ($rows = mysqli_fetch_array($dbquery)) {
         <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
-        <input type="hidden" name="steamid2" value="<?= $steamprofile['steamid'] ?>" />
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="name" placeholder="TheLegend27" value="<?php echo $uUsedName;?>" required>
-            <label for="floatingInput">Vor- und Zuname (IC)</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="age" placeholder="0800 666 666" aria-describedby="contactHelpBlock" required>
-            <label for="floatingInput">Kontaktmöglichkeiten</label>
-            <div id="contactHelpBlock" class="form-text">
-            Bestenfalls gibst du den Link zu deinem Foren-Profil und deine Ingame Telefonnummer an.
+        <input type="hidden" name="steamid" value="<?= $steamprofile['steamid'] ?>" />
+        <input type="hidden" name="panelid" value="<?= $uPanelID ?>" />
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input id="floatingInput" class="form-control rounded-3" type="text" name="rlname" placeholder="TheLegend27" required>
+                    <label for="floatingInput">(Reallife) Vorname</label>
+                </div>
             </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input id="floatingInput" class="form-control rounded-3" type="text" name="rlage" placeholder="TheLegend27" required>
+                    <label for="floatingInput">(Reallife) Alter</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input id="floatingInput" class="form-control rounded-3" type="text" name="forumname" placeholder="TheLegend27" required>
+                    <label for="floatingInput">Forum Benutzername</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input id="floatingInput" class="form-control rounded-3" type="text" name="email" placeholder="TheLegend27" required>
+                    <label for="floatingInput">E-Mail-Adresse</label>
+                </div>
+            </div>
+        </div>
+          <div class="mb-3">
+            <label for="floatingInput" class="form-label">Anmerkungen</label>
+            <textarea id="floatingInput" class="form-control rounded-3 no-resize" type="text" name="anmerkungen" placeholder="Gibt es sonst etwas was wir wissen sollten?" style="height:75px;"></textarea>
           </div>
           <hr class="my-4">
           <div class="mb-3">
-            <label for="floatingInput">Schriftliche Bewerbung</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="applytext" placeholder="Kurzer, aber ausführlicher Vorstellungstext zu dir und deiner Person" style="height:250px;"></textarea>
+            <label for="floatingInput">Bewerbungsschreiben</label>
+            <textarea id="floatingInput" class="form-control rounded-3" name="bewerbungstext" placeholder="Kurzer, aber ausführlicher Vorstellungstext zu dir und deiner Person" style="height:250px;">
+                <strong><small>Straßenmeisterei Neuberg | An der Bundesstraße 1 | Neuberg</small><br/><br>
+
+                z.Hd. Verwaltung & Personaldirektion<br/>
+                Straßenmeisterei Neuberg<br/>
+                An der Bundesstraße 1<br/>
+                Neuberg</strong>
+            </textarea>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
-          <small class="text-muted"><?php echo $status; ?></small>
+          <div class="row">
+            <div class="col">
+                <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
+                <small class="text-muted"><?php echo $status; ?></small>
+            </div>
+            <div class="col-8"></div>
+          </div>
         </form>
 
-        <script>
+         <script>
                 // Replace the <textarea id="editor1"> with a CKEditor 4
                 // instance, using default configuration.
-                CKEDITOR.replace( 'applytext' );
+                CKEDITOR.replace( 'bewerbungstext' );
             </script>
 </div>
 

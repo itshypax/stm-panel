@@ -56,6 +56,7 @@ if ($regusernum != 1) {
 
         $uPermLevel = $regusernameres['permLevel'];
         $uUsedName = $regusernameres['rpname'];
+        $uPanelID = $regusernameres['id'];
         
         if ($uPermLevel >= 4) {
             $urnkBadge = "<span class='badge text-bg-danger'>Admin</span>";
