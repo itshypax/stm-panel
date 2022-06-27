@@ -130,7 +130,7 @@ if ($dbconnect->connect_error) {
                 $stname = $stcontent['response']['players'][0]['personaname'];
                 ?>
                 <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
-                <h4><strong>Bewerber:</strong> <?= $row['rlname'] . " | " . $row['rlname'] . " | " . $row['forumname'] . " | " . $row['email'] ?></h4>
+                <h4><strong>Bewerber:</strong> <?= $row['rlname'] . " (" . $row['rlage'] . ") | Forum: " . $row['forumname'] . " | E-Mail: " . $row['email'] ?></h4>
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
                 <p style="white-space:pre-line;"><strong>Anmerkungen:</strong><br/> <?= $row['anmerkungen'] ?></p>
