@@ -302,7 +302,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td class='text-center fs-5'>{$row['bwbearbeiter']}</td>
     	</tr>
       <tr>
-            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$bwawtext}</td>
+            <td colspan='6'><strong>Kommentar</strong><br/><br/> {$bwawtext}</td>
     	</tr>";
 }
 ?>

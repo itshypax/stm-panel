@@ -134,7 +134,7 @@ if ($dbconnect->connect_error) {
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
                 <p style="white-space:pre-line;"><strong>Anmerkungen:</strong><br/> <?= $row['anmerkungen'] ?></p>
-                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['bewerbungstext'] ?></p>
+                <p><strong>Bewerbung:</strong><br/> <?= $row['bewerbungstext'] ?></p>
             </div>
         </div>
         <hr class="my-5">
