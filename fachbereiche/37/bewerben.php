@@ -290,13 +290,19 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     $spanClass = "text-bg-dark";
   }
 
+   if ($row['bwantwort'] == NULL) {
+    $bwawtext = "Es wurde noch kein Kommentar hinterlegt.";
+   } else {
+    $bwawtext = $row['bwantwort'];
+   }
+
 	echo
 		"<tr>
             <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['bwstatus']}</span></td>
             <td class='text-center fs-5'>{$row['bwbearbeiter']}</td>
     	</tr>
       <tr>
-            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$row['bwantwort']}</td>
+            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$bwawtext}</td>
     	</tr>";
 }
 ?>
