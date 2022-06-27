@@ -195,6 +195,7 @@ if ($dbconnect->connect_error) {
                 ?>
                 </div>
                 </div>
+            </div>
                             </div>
                             <div class="col-8 text-end">
                                 <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
