@@ -62,3 +62,8 @@ body {
 .no-resize {
   resize: none;
 }
+
+p {
+  margin-bottom: -1em;
+  margin-top: 0em;
+}
