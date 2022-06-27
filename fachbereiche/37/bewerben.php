@@ -263,7 +263,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
   <thead>
     <tr class="text-center">
       <th scope="col" colspan='4'>Status</th>
-      <th scope="col">Letzter Bearbeiter</th>
+      <th scope="col">Personalsachbearbeiter</th>
     </tr>
   </thead>
   <tbody>
@@ -278,13 +278,13 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     $edAtf = $edAt->format('d.m.Y H:i');
   }
 
-  if ($row['astatus'] == "Bearbeitung") {
+  if ($row['bwstatus'] == "Bearbeitung") {
     $spanClass = "text-bg-warning";
-  } elseif ($row['astatus'] == "Abgelehnt") {
+  } elseif ($row['bwstatus'] == "Abgelehnt") {
     $spanClass = "text-bg-danger";
-  } elseif ($row['astatus'] == "Angenommen") {
+  } elseif ($row['bwstatus'] == "Angenommen") {
     $spanClass = "text-bg-success";
-  } elseif ($row['astatus'] == "Einladung") {
+  } elseif ($row['bwstatus'] == "Einladung") {
     $spanClass = "text-bg-info";
   } else {
     $spanClass = "text-bg-dark";
@@ -292,11 +292,11 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
 	echo
 		"<tr>
-            <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['astatus']}</span></td>
-            <td class='text-center fs-5'>{$row['auser']}</td>
+            <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['bwstatus']}</span></td>
+            <td class='text-center fs-5'>{$row['bwbearbeiter']}</td>
     	</tr>
       <tr>
-            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$row['acomment']}</td>
+            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$row['bwantwort']}</td>
     	</tr>";
 }
 ?>
