@@ -5,25 +5,25 @@ include("fb37dbconnect.php");
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
 $id=$_REQUEST['id'];
-$result = mysqli_query($dbconnect, "SELECT * FROM applySystem WHERE id='".$id."'") or die (mysqli_error($dbconnect));
+$result = mysqli_query($dbconnect, "SELECT * FROM applicationsV2 WHERE id='".$id."'") or die (mysqli_error($dbconnect));
 $row = mysqli_fetch_assoc($result);
 
   $crDat = new DateTime($row['createdAt']);
   $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
-  $oldAstatus = $row['astatus'];
-  $oldAcomment = $row['acomment'];
-  $oldAuser = $row['auser'];
+  $oldAstatus = $row['bwstatus'];
+  $oldAcomment = $row['bwantwort'];
+  $oldAuser = $row['bwbearbeiter'];
 
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
     $id=$_REQUEST['id'];
-    $astatus =$_REQUEST['astatus'];
-    $acomment = $_REQUEST['acomment'];
-    $auser = $_REQUEST['auser'];
+    $astatus =$_REQUEST['bwstatus'];
+    $acomment = $_REQUEST['bwantwort'];
+    $auser = $_REQUEST['bwbearbeiter'];
     $changingUserName = $_REQUEST['changinguser'];
-    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."' WHERE id='".$id."'")
+    mysqli_query($dbconnect,"UPDATE applicationsV2 SET bwstatus='".$astatus."', bwantwort='".$acomment."', bwbearbeiter='".$auser."' WHERE id='".$id."'")
     or die(mysql_error());
     $logentryAt = date("Y-m-d H:i:s");
     if ($oldAstatus != $astatus) {
@@ -130,11 +130,11 @@ if ($dbconnect->connect_error) {
                 $stname = $stcontent['response']['players'][0]['personaname'];
                 ?>
                 <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
-                <h4><strong>Bewerber:</strong> <?= $row['name'] ?></h4>
+                <h4><strong>Bewerber:</strong> <?= $row['rlname'] . " | " . $row['rlname'] . " | " . $row['forumname'] . " | " . $row['email'] ?></h4>
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
-                <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
-                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
+                <p style="white-space:pre-line;"><strong>Anmerkungen:</strong><br/> <?= $row['anmerkungen'] ?></p>
+                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['bewerbungstext'] ?></p>
             </div>
         </div>
         <hr class="my-5">
