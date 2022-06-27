@@ -121,6 +121,23 @@ if ($dbconnect->connect_error) {
         <hr class="my-4">
         <div class="row">
             <div class="col">
+                <?php
+                require '../steamauth/SteamConfig.php';
+                $stprofile = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$row['steamid']);
+                $stcontent = json_decode($stprofile, true);
+                $stavatar = $stcontent['response']['players'][0]['avatarfull'];
+                $stname = $stcontent['response']['players'][0]['personaname'];
+                ?>
+                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
+                <h4><strong>Bewerber:</strong> <?= $row['name'] ?></h4>
+                <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
+                <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
+                <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
+                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
                     <form name="form" method="post" action="">
                         <input type="hidden" name="new" value="1" />
@@ -179,21 +196,6 @@ if ($dbconnect->connect_error) {
                 </div>
             </div>
             </div>
-            </div>
-            <div class="col-9">
-                <?php
-                require '../steamauth/SteamConfig.php';
-                $stprofile = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$row['steamid']);
-                $stcontent = json_decode($stprofile, true);
-                $stavatar = $stcontent['response']['players'][0]['avatarfull'];
-                $stname = $stcontent['response']['players'][0]['personaname'];
-                ?>
-                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
-                <h4><strong>Bewerber:</strong> <?= $row['name'] ?></h4>
-                <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
-                <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
-                <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
-                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
             </div>
         </div>
         <div class="row">
