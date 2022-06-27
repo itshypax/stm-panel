@@ -124,6 +124,7 @@ if ($dbconnect->connect_error) {
             </div>
         </div>
     </div>
+</div>
 
 <?php include("../../../assets/components/footer.php"); ?>
 
