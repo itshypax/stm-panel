@@ -163,7 +163,7 @@ if ($dbconnect->connect_error) {
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
+                                <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
                                 <small class="text-muted"><?php echo $status; ?></small>
                                 <br/>
                             </div>

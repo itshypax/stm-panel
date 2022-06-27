@@ -235,7 +235,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
           </div>
           <div class="row">
             <div class="col">
-                <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
+                <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung absenden" /></p>
                 <small class="text-muted"><?php echo $status; ?></small>
             </div>
             <div class="col-8"></div>

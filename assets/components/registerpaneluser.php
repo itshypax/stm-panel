@@ -45,7 +45,7 @@ if ($regusernum != 1) {
                                     <input id="floatingInput" class="form-control rounded-3" type="text" name="rpname" placeholder="TheLegend27" required>
                                     <label for="floatingInput">Vor- und Zuname</label>
                                 </div>
-                                <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Speichern" /></p>
+                                <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Speichern" /></p>
                             </form>
                         </div>
                     </div>

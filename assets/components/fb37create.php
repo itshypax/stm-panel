@@ -134,7 +134,7 @@ if ($dbconnect->connect_error) {
             <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123">
             <label for="floatingInput">IBAN</label>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag erstellen" /></p>
+          <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag erstellen" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
         </form>
       </div>

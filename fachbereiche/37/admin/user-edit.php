@@ -113,7 +113,7 @@ if ($dbconnect->connect_error) {
             </select>
             <label for="floatingInput">Rang</label>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="User bearbeiten" /></p>
+          <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="User bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
                     </form>
                 </div>

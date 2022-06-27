@@ -121,7 +121,7 @@ while ($row = mysqli_fetch_array($query)) {
 </tbody>
 </table>
 <hr class="my-4">
-<a href="../../assets/components/fb37create.php"><button class="w-100 mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Neuen Eintrag erstellen</button></a>
+<a href="../../assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Neuen Eintrag erstellen</button></a>
 </div>
 
 <?php include("../../assets/components/footer.php"); ?>

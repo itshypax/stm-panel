@@ -175,7 +175,7 @@ if ($dbconnect->connect_error) {
             </select>
             <label for="floatingInput">Kommentar Art</label>
           </div>
-          <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
+          <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
           <?php // Mindestens benötigte Berechtigung: Personaler
                 if ($uPermLevel >= 2) { ?>
