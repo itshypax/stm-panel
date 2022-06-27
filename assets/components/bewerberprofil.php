@@ -181,7 +181,6 @@ if ($dbconnect->connect_error) {
                 </div>
             </div>
             </div>
-            </div>
         </div>
         <div class="row">
             <div class="col mt-5">
@@ -232,6 +231,7 @@ if ($dbconnect->connect_error) {
             </div>
         </div>
     </div>
+                </div>
 
 <?php include("../../assets/components/footer.php"); ?>
 
