@@ -155,7 +155,7 @@ if ($dbconnect->connect_error) {
                             </select>
                             <label for="floatingInput">Status</label>
                         </div>
-                        <input name="auser" type="hidden" value="<?php echo $uUsedName;?>" />
+                        <input name="bwbearbeiter" type="hidden" value="<?php echo $uUsedName;?>" />
                         <hr class="my-4">
                         <div class="mb-3">
                             <label for="floatingInput">Antwort / Kommentar</label>
