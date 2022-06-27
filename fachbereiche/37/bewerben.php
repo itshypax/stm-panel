@@ -89,7 +89,7 @@ if(!isset($_SESSION['steamid'])) {
     // Mindestens benötigte Berechtigung: Personaler
     if ($uPermLevel >= 2) {
       
-      $dbquery = mysqli_query($dbconnect, "SELECT * FROM applySystem ORDER BY createdAt DESC")
+      $dbquery = mysqli_query($dbconnect, "SELECT * FROM applicationsV2 ORDER BY createdAt DESC")
 		or die (mysqli_error($dbconnect));
       ?>
 
@@ -142,7 +142,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 		"<tr>
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
-            <td>{$rows['name']}</td>
+            <td>{$rows['rlname']}</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
             <td><a href='../../assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
@@ -153,7 +153,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 		"<tr class='fst-italic'>
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
-            <td>{$rows['name']}</td>
+            <td>{$rows['rlname']}</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
             <td></td>
     	</tr>";
