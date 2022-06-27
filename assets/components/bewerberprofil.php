@@ -129,7 +129,7 @@ if ($dbconnect->connect_error) {
                 $stavatar = $stcontent['response']['players'][0]['avatarfull'];
                 $stname = $stcontent['response']['players'][0]['personaname'];
                 ?>
-                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
+                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle mb-3">
                 <h4><strong>Bewerber:</strong> <?= $row['rlname'] . " (" . $row['rlage'] . ") | Forum: " . $row['forumname'] . " | E-Mail: " . $row['email'] ?></h4>
                 <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
                 <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
@@ -146,7 +146,7 @@ if ($dbconnect->connect_error) {
                         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
                         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <div class="form-floating mb-3">
-                            <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen">
+                            <select id="floatingInput" class="form-control rounded-3" name="bwstatus" placeholder="Ungesehen">
                                 <option value="Ungesehen" <?php if($row['bwstatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
                                 <option value="Bearbeitung" <?php if($row['bwstatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
                                 <option value="Einladung" <?php if($row['bwstatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
