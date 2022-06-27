@@ -166,9 +166,6 @@ if ($dbconnect->connect_error) {
                                 <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
                                 <small class="text-muted"><?php echo $status; ?></small>
                                 <br/>
-                                <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
-                            </div>
-                            <div class="col-8">
                                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
                 <div class="accordion-item">
                 <h4 class="accordion-header" id="flush-headingOne">
@@ -198,6 +195,9 @@ if ($dbconnect->connect_error) {
                 ?>
                 </div>
                 </div>
+                            </div>
+                            <div class="col-8 text-end">
+                                <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
                             </div>
                         </div>
                     </form>
