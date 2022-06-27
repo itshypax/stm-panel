@@ -180,7 +180,6 @@ if ($dbconnect->connect_error) {
             </script>
                 </div>
             </div>
-            </div>
         <div class="row">
             <div class="col mt-5">
                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
