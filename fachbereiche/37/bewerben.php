@@ -114,23 +114,23 @@ if(!isset($_SESSION['steamid'])) {
 
 while ($rows = mysqli_fetch_array($dbquery)) {
 
-    if ($rows['acomment'] == NULL) {
+    if ($rows['bwantwort'] == NULL) {
     $aCTitle = "Keine Bemerkung";
   } else {
-    $aCTitle = $rows['acomment'];
+    $aCTitle = $rows['bwantwort'];
   }
 
   $crDat = new DateTime($rows['createdAt']);
   $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
-  if ($rows['astatus'] == "Bearbeitung") {
+  if ($rows['bwstatus'] == "Bearbeitung") {
     $spanCl = "text-bg-warning";
-  } elseif ($rows['astatus'] == "Abgelehnt") {
+  } elseif ($rows['bwstatus'] == "Abgelehnt") {
     $spanCl = "text-bg-danger";
-  } elseif ($rows['astatus'] == "Angenommen") {
+  } elseif ($rows['bwstatus'] == "Angenommen") {
     $spanCl = "text-bg-success";
-  } elseif ($rows['astatus'] == "Einladung") {
+  } elseif ($rows['bwstatus'] == "Einladung") {
     $spanCl = "text-bg-info";
   } else {
     $spanCl = "text-bg-dark";
@@ -143,7 +143,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['rlname']}</td>
-            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
+            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td><a href='../../assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
 
@@ -154,7 +154,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['rlname']}</td>
-            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
+            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td></td>
     	</tr>";
 
