@@ -157,9 +157,9 @@ if ($dbconnect->connect_error) {
                         </div>
                         <input name="auser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <hr class="my-4">
-                        <div class="form-floating mb-3">
-                            <textarea id="floatingInput" class="form-control rounded-3" name="bwantwort" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['bwantwort'];?></textarea>
-                            <label for="floatingInput">Bemerkung</label>
+                        <div class="mb-3">
+                            <label for="floatingInput">Antwort / Kommentar</label>
+                            <textarea id="floatingInput" class="form-control rounded-3" name="bwantwort" style="height:300px;"><?php echo $row['bwantwort'];?></textarea>
                         </div>
                         <div class="row">
                             <div class="col">
