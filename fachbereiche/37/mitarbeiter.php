@@ -1,3 +1,7 @@
+<?php 
+ini_set('session.cookie_lifetime', '604800'); // 7 Tage
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

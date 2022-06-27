@@ -1,6 +1,8 @@
 <?php
 $page = $_SERVER['PHP_SELF'];
 $sec = "45";
+
+ini_set('session.cookie_lifetime', '604800'); // 7 Tage
 ?>
 
 <!DOCTYPE html>
