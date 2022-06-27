@@ -106,10 +106,10 @@ if ($dbconnect->connect_error) {
           </div>
           <div class="form-floating mb-3">
             <select id="floatingInput" class="form-control rounded-3" name="permlevel" placeholder="Oberstabsgeneral 17">
-                <option value="3" <?php if($row['permlevel']==3) echo 'selected="selected"'; ?>>3 - Verwaltung</option>
-                <option value="2" <?php if($row['permlevel']==2) echo 'selected="selected"'; ?>>2 - Personaler</option>
-                <option value="1" <?php if($row['permlevel']==1) echo 'selected="selected"'; ?>>1 - Ausbilder</option>
-                <option value="0" <?php if($row['permlevel']==0) echo 'selected="selected"'; ?>>0 - Gast</option>
+                <option value="3" <?php if($row['permLevel']==3) echo 'selected="selected"'; ?>>3 - Verwaltung</option>
+                <option value="2" <?php if($row['permLevel']==2) echo 'selected="selected"'; ?>>2 - Personaler</option>
+                <option value="1" <?php if($row['permLevel']==1) echo 'selected="selected"'; ?>>1 - Ausbilder</option>
+                <option value="0" <?php if($row['permLevel']==0) echo 'selected="selected"'; ?>>0 - Gast</option>
             </select>
             <label for="floatingInput">Rang</label>
           </div>
