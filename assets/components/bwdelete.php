@@ -18,7 +18,7 @@ $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
 // Mindestens benötigte Berechtigung: Personaler
 if ($uPermLevel >= 2) {
-$result = mysqli_query($dbconnect,"UPDATE applySystem SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
+$result = mysqli_query($dbconnect,"UPDATE applicationsV2 SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../fachbereiche/37/bewerben.php");
 } else {
     header("Location: ../../fachbereiche/37/bewerben.php");
