@@ -5,25 +5,25 @@ include("fb37dbconnect.php");
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
 $id=$_REQUEST['id'];
-$result = mysqli_query($dbconnect, "SELECT * FROM applySystem WHERE id='".$id."'") or die (mysqli_error($dbconnect));
+$result = mysqli_query($dbconnect, "SELECT * FROM applicationsV2 WHERE id='".$id."'") or die (mysqli_error($dbconnect));
 $row = mysqli_fetch_assoc($result);
 
   $crDat = new DateTime($row['createdAt']);
   $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
-  $oldAstatus = $row['astatus'];
-  $oldAcomment = $row['acomment'];
-  $oldAuser = $row['auser'];
+  $oldAstatus = $row['bwstatus'];
+  $oldAcomment = $row['bwantwort'];
+  $oldAuser = $row['bwbearbeiter'];
 
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
     $id=$_REQUEST['id'];
-    $astatus =$_REQUEST['astatus'];
-    $acomment = $_REQUEST['acomment'];
-    $auser = $_REQUEST['auser'];
+    $astatus =$_REQUEST['bwstatus'];
+    $acomment = $_REQUEST['bwantwort'];
+    $auser = $_REQUEST['bwbearbeiter'];
     $changingUserName = $_REQUEST['changinguser'];
-    mysqli_query($dbconnect,"UPDATE applySystem SET astatus='".$astatus."', acomment='".$acomment."', auser='".$auser."' WHERE id='".$id."'")
+    mysqli_query($dbconnect,"UPDATE applicationsV2 SET bwstatus='".$astatus."', bwantwort='".$acomment."', bwbearbeiter='".$auser."' WHERE id='".$id."'")
     or die(mysql_error());
     $logentryAt = date("Y-m-d H:i:s");
     if ($oldAstatus != $astatus) {
@@ -63,6 +63,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../assets/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -121,34 +122,54 @@ if ($dbconnect->connect_error) {
         <hr class="my-4">
         <div class="row">
             <div class="col">
-                <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
+                <?php
+                require '../steamauth/SteamConfig.php';
+                $stprofile = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$row['steamid']);
+                $stcontent = json_decode($stprofile, true);
+                $stavatar = $stcontent['response']['players'][0]['avatarfull'];
+                $stname = $stcontent['response']['players'][0]['personaname'];
+                ?>
+                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
+                <h4><strong>Bewerber:</strong> <?= $row['rlname'] . " (" . $row['rlage'] . ") | Forum: " . $row['forumname'] . " | E-Mail: " . $row['email'] ?></h4>
+                <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
+                <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
+                <p style="white-space:pre-line;"><strong>Anmerkungen:</strong><br/> <?= $row['anmerkungen'] ?></p>
+                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['bewerbungstext'] ?></p>
+            </div>
+        </div>
+        <hr class="my-5">
+        <div class="row">
+            <div class="col">
+                <div class="container p-3 rounded-3 my-2">
                     <form name="form" method="post" action="">
                         <input type="hidden" name="new" value="1" />
                         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
                         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <div class="form-floating mb-3">
                             <select id="floatingInput" class="form-control rounded-3" name="astatus" placeholder="Ungesehen">
-                                <option value="Ungesehen" <?php if($row['astatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
-                                <option value="Bearbeitung" <?php if($row['astatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
-                                <option value="Einladung" <?php if($row['astatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
-                                <option value="Abgelehnt" <?php if($row['astatus']=="Abgelehnt") echo 'selected="selected"'; ?>>Abgelehnt</option>
-                                <option value="Angenommen" <?php if($row['astatus']=="Angenommen") echo 'selected="selected"'; ?>>Angenommen</option>
+                                <option value="Ungesehen" <?php if($row['bwstatus']=="Ungesehen") echo 'selected="selected"'; ?>>Ungesehen</option>
+                                <option value="Bearbeitung" <?php if($row['bwstatus']=="Bearbeitung") echo 'selected="selected"'; ?>>Bearbeitung</option>
+                                <option value="Einladung" <?php if($row['bwstatus']=="Einladung") echo 'selected="selected"'; ?>>Einladung</option>
+                                <option value="Abgelehnt" <?php if($row['bwstatus']=="Abgelehnt") echo 'selected="selected"'; ?>>Abgelehnt</option>
+                                <option value="Angenommen" <?php if($row['bwstatus']=="Angenommen") echo 'selected="selected"'; ?>>Angenommen</option>
                             </select>
                             <label for="floatingInput">Status</label>
                         </div>
                         <input name="auser" type="hidden" value="<?php echo $uUsedName;?>" />
                         <hr class="my-4">
-                        <div class="form-floating mb-3">
-                            <textarea id="floatingInput" class="form-control rounded-3" name="acomment" placeholder="Einladung/Ablehnung/Bearbeitungstext" style="height:300px;"><?php echo $row['acomment'];?></textarea>
-                            <label for="floatingInput">Bemerkung</label>
+                        <div class="mb-3">
+                            <label for="floatingInput">Antwort / Kommentar</label>
+                            <textarea id="floatingInput" class="form-control rounded-3" name="bwantwort" style="height:300px;"><?php echo $row['bwantwort'];?></textarea>
                         </div>
-                        <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
-                        <small class="text-muted"><?php echo $status; ?></small>
-                        <br/>
-                        <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
-                    </form>
-                </div>
-                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+                        <div class="row">
+                            <div class="col">
+                                <p><input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bewerbung bearbeiten" /></p>
+                                <small class="text-muted"><?php echo $status; ?></small>
+                                <br/>
+                                <p><a href="../../assets/components/bwdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Eintrag löschen</a></p>
+                            </div>
+                            <div class="col-8">
+                                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
                 <div class="accordion-item">
                 <h4 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -177,23 +198,18 @@ if ($dbconnect->connect_error) {
                 ?>
                 </div>
                 </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                CKEDITOR.replace( 'bwantwort' );
+            </script>
+                </div>
             </div>
             </div>
-            </div>
-            <div class="col-9">
-                <?php
-                require '../steamauth/SteamConfig.php';
-                $stprofile = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$row['steamid']);
-                $stcontent = json_decode($stprofile, true);
-                $stavatar = $stcontent['response']['players'][0]['avatarfull'];
-                $stname = $stcontent['response']['players'][0]['personaname'];
-                ?>
-                <img src="<?= $stavatar ?>" alt="Steam-Avatar" class="rounded-circle my-2">
-                <h4><strong>Bewerber:</strong> <?= $row['name'] ?></h4>
-                <p><strong>Steam-Profil:</strong><br/> <a href="https://steamcommunity.com/profiles/<?= $row['steamid'] ?>"><i class="fa-brands fa-steam"></i> <?= $stname ?></a></p>
-                <p><strong>Eingereicht am:</strong><br/> <?= $crDatf ?></p>
-                <p><strong>Kontakt:</strong><br/> <?= $row['age'] ?></p>
-                <p style="white-space:pre-line;"><strong>Bewerbung:</strong><br/> <?= $row['applytext'] ?></p>
             </div>
         </div>
         <div class="row">

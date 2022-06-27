@@ -114,23 +114,23 @@ if(!isset($_SESSION['steamid'])) {
 
 while ($rows = mysqli_fetch_array($dbquery)) {
 
-    if ($rows['acomment'] == NULL) {
+    if ($rows['bwantwort'] == NULL) {
     $aCTitle = "Keine Bemerkung";
   } else {
-    $aCTitle = $rows['acomment'];
+    $aCTitle = $rows['bwantwort'];
   }
 
   $crDat = new DateTime($rows['createdAt']);
   $crDat->add(new DateInterval('PT2H'));
   $crDatf = $crDat->format('d.m.Y H:i');
 
-  if ($rows['astatus'] == "Bearbeitung") {
+  if ($rows['bwstatus'] == "Bearbeitung") {
     $spanCl = "text-bg-warning";
-  } elseif ($rows['astatus'] == "Abgelehnt") {
+  } elseif ($rows['bwstatus'] == "Abgelehnt") {
     $spanCl = "text-bg-danger";
-  } elseif ($rows['astatus'] == "Angenommen") {
+  } elseif ($rows['bwstatus'] == "Angenommen") {
     $spanCl = "text-bg-success";
-  } elseif ($rows['astatus'] == "Einladung") {
+  } elseif ($rows['bwstatus'] == "Einladung") {
     $spanCl = "text-bg-info";
   } else {
     $spanCl = "text-bg-dark";
@@ -143,7 +143,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['rlname']}</td>
-            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
+            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td><a href='../../assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
 
@@ -154,7 +154,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['rlname']}</td>
-            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['astatus']}</span></td>
+            <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td></td>
     	</tr>";
 
@@ -263,7 +263,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
   <thead>
     <tr class="text-center">
       <th scope="col" colspan='4'>Status</th>
-      <th scope="col">Letzter Bearbeiter</th>
+      <th scope="col">Personalsachbearbeiter</th>
     </tr>
   </thead>
   <tbody>
@@ -278,25 +278,31 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     $edAtf = $edAt->format('d.m.Y H:i');
   }
 
-  if ($row['astatus'] == "Bearbeitung") {
+  if ($row['bwstatus'] == "Bearbeitung") {
     $spanClass = "text-bg-warning";
-  } elseif ($row['astatus'] == "Abgelehnt") {
+  } elseif ($row['bwstatus'] == "Abgelehnt") {
     $spanClass = "text-bg-danger";
-  } elseif ($row['astatus'] == "Angenommen") {
+  } elseif ($row['bwstatus'] == "Angenommen") {
     $spanClass = "text-bg-success";
-  } elseif ($row['astatus'] == "Einladung") {
+  } elseif ($row['bwstatus'] == "Einladung") {
     $spanClass = "text-bg-info";
   } else {
     $spanClass = "text-bg-dark";
   }
 
+   if ($row['bwantwort'] == NULL) {
+    $bwawtext = "Es wurde noch kein Kommentar hinterlegt.";
+   } else {
+    $bwawtext = $row['bwantwort'];
+   }
+
 	echo
 		"<tr>
-            <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['astatus']}</span></td>
-            <td class='text-center fs-5'>{$row['auser']}</td>
+            <td colspan='4' class='text-center fs-5'><span class='badge {$spanClass}' title='Status zuletzt gesetzt: {$edAtf}'>{$row['bwstatus']}</span></td>
+            <td class='text-center fs-5'>{$row['bwbearbeiter']}</td>
     	</tr>
       <tr>
-            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$row['acomment']}</td>
+            <td colspan='6' style='white-space:pre-line' ><strong>Kommentar</strong><br/><br/> {$bwawtext}</td>
     	</tr>";
 }
 ?>
