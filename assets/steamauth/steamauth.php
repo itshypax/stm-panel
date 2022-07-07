@@ -2,6 +2,12 @@
 ob_start();
 session_start();
 
+// server should keep session data for AT LEAST 14 days
+ini_set('session.gc_maxlifetime', 1209600);
+
+// each client should remember their session id for EXACTLY 14 days
+session_set_cookie_params(1209600);
+
 function logoutbutton() {
 	echo "<form action='' method='get'><button name='logout' type='submit'>Logout</button></form>"; //logout button
 }
