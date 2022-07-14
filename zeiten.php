@@ -97,7 +97,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
 <input type="text" id="zeitenSuche" onkeyup="timeSearch()" placeholder="Mitarbeiter suchen...">
 
-<table class="table" id="time-management">
+<table class="table table-bordered" id="time-management">
   <thead>
     <tr>
       <th scope="col">ID</th>

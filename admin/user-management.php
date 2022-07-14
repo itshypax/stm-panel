@@ -80,7 +80,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
     <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
 
 
-<table class="table" id="pusers-table">
+<table class="table table-bordered" id="pusers-table">
   <thead>
     <tr>
       <th scope="col">ID</th>
