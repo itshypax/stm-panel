@@ -141,7 +141,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 		"<tr>
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
-            <td>{$rows['rlname']}</td>
+            <td>{$rows['rlname']} ({$rows['forumname']})</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td><a href='/assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
