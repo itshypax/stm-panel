@@ -95,7 +95,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
 
 ?>
 
-<input type="text" id="zeitenSuche" onkeyup="timeSearch()" placeholder="Mitarbeiter suchen...">
+<input type="text" class="my-3" id="zeitenSuche" onkeyup="timeSearch()" placeholder="Mitarbeiter suchen...">
 
 <table class="table table-bordered table-striped table-hover" id="time-management">
   <thead>
