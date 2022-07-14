@@ -2,9 +2,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-        <img src="https://strassenmeisterei-neuberg.de/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
-        Wiesberg
-    </a>
+        <img src="https://strassenmeisterei-neuberg.de/assets/images/tcMPe2F2.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

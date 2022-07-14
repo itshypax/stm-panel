@@ -14,7 +14,7 @@
 <body>
     <?php
 
-require '/assets/steamauth/steamauth.php';
+require 'assets/steamauth/steamauth.php';
 
 ?>
 
@@ -25,7 +25,7 @@ if(!isset($_SESSION['steamid'])) {
 
 }  else {
 
-    include ('/assets/steamauth/userInfo.php'); //To access the $steamprofile array
+    include ('assets/steamauth/userInfo.php'); //To access the $steamprofile array
     //Protected content
 
     logoutbutton(); //Logout Button

@@ -12,7 +12,7 @@ $sec = "45";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeiten &middot; Straßenmeisterei Neuberg</title>
     <!-- Metas -->
-    <?php include('/assets/components/fb37meta.php'); ?>
+    <?php include('assets/components/fb37meta.php'); ?>
     <!-- Metas end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -29,7 +29,7 @@ $sec = "45";
 
    <?php
 
-require '/assets/steamauth/steamauth.php';
+require 'assets/steamauth/steamauth.php';
 
 ?>
 
@@ -47,15 +47,15 @@ if(!isset($_SESSION['steamid'])) {
 
 }  else {
 
-    include ('/assets/steamauth/userInfo.php'); 
-    include '/assets/components/registerpaneluser.php';
+    include ('assets/steamauth/userInfo.php'); 
+    include 'assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Admin
     if ($uPermLevel >= 4) {?>
 
   <?php
 
-  include("/assets/components/fb37dbconnect.php");
+  include("assets/components/fb37dbconnect.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
@@ -72,7 +72,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM UserPlaytimes")
   $num_currentOn = mysqli_num_rows($currentOn);
  
 
-  include '/assets/components/nav.php';
+  include 'assets/components/nav.php';
 ?>
 
   <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
@@ -159,7 +159,7 @@ while ($row = mysqli_fetch_array($query)) {
 <a href="resettime.php"><button type="button" class="btn btn-danger"><i class="fa-solid fa-bug"></i> Status fixen</button></a>
 </div>
 
-<?php include("/assets/components/footer.php"); ?>
+<?php include("assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 <script src="/assets/js/tablesearch.js"></script>
