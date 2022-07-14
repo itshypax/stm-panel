@@ -96,7 +96,7 @@ if ($dbconnect->connect_error) {
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <!-- <h5 class="modal-title">Modal title</h5> -->
         <h2 class="fw-bold mb-0">Neuen Eintrag erstellen</h2>
-        <a href="../../fachbereiche/37/mitarbeiter.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
+        <a href="../../mitarbeiter.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
       </div>
 
         <form name="form" method="post" action="">

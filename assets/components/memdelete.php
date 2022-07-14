@@ -19,9 +19,9 @@ $id=$_REQUEST['id'];
 // Mindestens benötigte Berechtigung: Personaler
 if ($uPermLevel >= 2) {
 $result = mysqli_query($dbconnect,"UPDATE memberManagement SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
-header("Location: ../../fachbereiche/37/mitarbeiter.php"); 
+header("Location: ../../mitarbeiter.php"); 
 } else {
-    header("Location: ../../fachbereiche/37/mitarbeiter.php"); 
+    header("Location: ../../mitarbeiter.php"); 
 }
 ?>
 
