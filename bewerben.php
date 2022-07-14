@@ -1,6 +1,6 @@
 <?php
 
-include("/assets/components/fb37dbconnect.php");
+include("assets/components/fb37dbconnect.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
