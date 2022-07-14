@@ -56,7 +56,7 @@ if ($dbconnect->connect_error) {
 	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
 }
 
-$queryy = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
+$query = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 		or die (mysqli_error($dbconnect));
 
 		$nrorows = $queryy->num_rows;
@@ -93,15 +93,15 @@ $queryy = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 
   <?php
 
-while ($row = mysqli_fetch_array($queryy)) {
+while ($row = mysqli_fetch_array($query)) {
 
     $rgAt = new DateTime($row['carRegDate']);
     $rgAt->add(new DateInterval('PT2H'));
-    if ($row['carWartDate'] != NULL) {
-    $waAt = new DateTime($row['carWartDate']);
-    $waAt->add(new DateInterval('PT2H'));
-    } else {
+    if ($row['carWartDate'] == NULL) {
         $waAt = "<em>Noch nicht gewartet</em>";
+    } else {
+        $waAt = new DateTime($row['carWartDate']);
+        $waAt->add(new DateInterval('PT2H'));
     }
 
     if ($row['carType'] == "bmwx5") {
@@ -143,7 +143,6 @@ while ($row = mysqli_fetch_array($queryy)) {
 <?php include("assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-<script src="/assets/js/tablesearch.js"></script>
 
  <?php
     return true;
