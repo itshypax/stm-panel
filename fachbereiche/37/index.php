@@ -86,7 +86,7 @@ if ($dbconnect->connect_error) {
                 <a href="https://docs.google.com/spreadsheets/d/1__-olXRjSnqEPJc4PAy6Is33YGeODX1rzs7upK_2uxA/edit#gid=0"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-tower-broadcast"></i> Einsatzkoordination</button></a>
             </div>
         </div>
-        <div class="row mt-3 mx-auto">
+        <div class="row mt-5 mx-auto">
             <div class="col text-end">
                 <a href="https://docs.google.com/document/d/16hvXf7KRhOcJUWDcBLXsAthDNOvRfrh8s83BhzYUSus/edit"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-section"></i> Dienstverordnung</button></a>
             </div>
@@ -94,7 +94,7 @@ if ($dbconnect->connect_error) {
                 <a href="https://docs.google.com/spreadsheets/d/1MvyoCA-J1HpzAGn1V8wy0DiODL5BB-Y4mBUUsfJH20c/edit#gid=0"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-car-side-bolt"></i> Fahrzeugwartung</button></a>
             </div>
         </div>
-        <div class="row mt-3 mx-auto">
+        <div class="row mt-5 mx-auto">
             <div class="col text-center">
                 <a href="https://discord.gg/hUMYjKUvRW"><button type="button" class="btn btn-primary btn-lg"><i class="fa-brands fa-discord"></i> Discord</button></a>
             </div>
