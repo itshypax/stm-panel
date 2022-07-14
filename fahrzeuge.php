@@ -136,8 +136,8 @@ while ($row = mysqli_fetch_array($query)) {
 
 </tbody>
 </table>
-<?php if ($uPermLevel >= $perm_level_manager) { ?><hr class="my-4">
-<a href="/assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Fahrzeug eintragen</button></a><?php } ?>
+<hr class="my-4">
+<a href="/assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Fahrzeug eintragen</button></a>
 </div>
 
 <?php include("assets/components/footer.php"); ?>
