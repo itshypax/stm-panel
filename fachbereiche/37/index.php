@@ -10,6 +10,7 @@
     <!-- Metas end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/own.css">
     <link rel="stylesheet" href="../../assets/css/fb37.css">
     <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
@@ -74,7 +75,7 @@ if ($dbconnect->connect_error) {
     <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
         <h1>Wichtige Links</h1>
         <hr class="my-4">
-        <div class="row">
+        <div class="row mx-5">
             <div class="col text-start">
                 <a href="https://docs.google.com/spreadsheets/d/1528O36-sMU8Y23unSzT2P0txCbueWtpZ81JDfSHulSw/edit"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-sitemap"></i> Infoboard</button></a>
             </div>
@@ -85,7 +86,7 @@ if ($dbconnect->connect_error) {
                 <a href="https://docs.google.com/spreadsheets/d/1__-olXRjSnqEPJc4PAy6Is33YGeODX1rzs7upK_2uxA/edit#gid=0"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-tower-broadcast"></i> Einsatzkoordination</button></a>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 mx-5">
             <div class="col text-start">
                 <a href="https://docs.google.com/document/d/16hvXf7KRhOcJUWDcBLXsAthDNOvRfrh8s83BhzYUSus/edit"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-section"></i> Dienstverordnung</button></a>
             </div>
@@ -93,9 +94,9 @@ if ($dbconnect->connect_error) {
                 <a href="https://docs.google.com/spreadsheets/d/1MvyoCA-J1HpzAGn1V8wy0DiODL5BB-Y4mBUUsfJH20c/edit#gid=0"><button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-car-side-bolt"></i> Fahrzeugwartung</button></a>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 mx-5">
             <div class="col text-center">
-                <a href="https://discord.gg/hUMYjKUvRW"><button type="button" class="btn btn-danger btn-lg"><i class="fa-brands fa-discord"></i> Discord</button></a>
+                <a href="https://discord.gg/hUMYjKUvRW"><button type="button" class="btn btn-primary btn-lg"><i class="fa-brands fa-discord"></i> Discord</button></a>
             </div>
         </div>
     </div>
