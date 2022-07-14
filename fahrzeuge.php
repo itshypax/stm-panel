@@ -81,12 +81,12 @@ $query = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 <table class="table table-bordered" id="car-table">
   <thead>
     <tr>
-      <th scope="col"></th>
+      <th scope="col">Fahrzeug</th>
       <th scope="col">Fahrzeug-Typ</th>
       <th scope="col">Nummernschild</th>
       <th scope="col">Angelegt am</th>
       <th scope="col">Zuletzt gewartet</th>
-      <?php if ($perm_extra_fahrzeugwart == 1){ ?><th scope="col">Aktionen</th><?php } ?>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -117,6 +117,7 @@ while ($row = mysqli_fetch_array($query)) {
         $carImage = "<img src='https://strassenmeisterei-neuberg.de/assets/images/vwt5.png' alt='VW T5' height='24px' width=auto>";
         $carTypeName = "VW T5";
     }
+
     if ($row['deleted'] != 1) {
 
         if ($perm_extra_fahrzeugwart == 1){
@@ -137,6 +138,7 @@ while ($row = mysqli_fetch_array($query)) {
             <td>{$row['carPlate']}</td>
             <td>{$rgAt}</td>
             <td>{$waAt}</td>
+            <td></td>
     	</tr>";
         }
     }
@@ -146,7 +148,7 @@ while ($row = mysqli_fetch_array($query)) {
 
 </tbody>
 </table>
-<?php if ($uPermLevel >= $perm_level_admin){ ?><hr class="my-4">
+<?php if ($uPermLevel >= $perm_level_manager) { ?><hr class="my-4">
 <a href="/assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Fahrzeug eintragen</button></a><?php } ?>
 </div>
 
