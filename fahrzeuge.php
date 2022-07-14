@@ -56,10 +56,10 @@ if ($dbconnect->connect_error) {
 	die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
 }
 
-$query = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
+$queryy = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 		or die (mysqli_error($dbconnect));
 
-		$nrorows = $query->num_rows;
+		$nrorows = $queryy->num_rows;
 
   $currentOn = mysqli_query($dbconnect,"SELECT * FROM UserPlaytimes WHERE `online` = '1'");
   $num_currentOn = mysqli_num_rows($currentOn);
@@ -93,7 +93,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 
   <?php
 
-while ($row = mysqli_fetch_array($query)) {
+while ($row = mysqli_fetch_array($queryy)) {
 
     $rgAt = new DateTime($row['carRegDate']);
     $rgAt->add(new DateInterval('PT2H'));
