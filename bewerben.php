@@ -152,7 +152,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 		"<tr class='fst-italic'>
             <td>{$crDatf}</td>
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
-            <td>{$rows['rlname']}</td>
+            <td>{$rows['rlname']} ({$rows['forumname']})</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
             <td></td>
     	</tr>";
