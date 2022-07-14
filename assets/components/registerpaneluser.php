@@ -65,6 +65,12 @@ if ($regusernum != 1) {
         $perm_level_hr = 3;
         $perm_level_instructor = 2;
         $perm_level_user = 1;
+
+        if ($regusernameres['fahrzeugwart'] == 1) {
+            $perm_extra_fahrzeugwart = 1;
+        } else {
+            $perm_extra_fahrzeugwart = 0;
+        }
         
         if ($uPermLevel >= $perm_level_admin) {
             $urnkBadge = "<span class='badge text-bg-danger'>Admin</span>";
