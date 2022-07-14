@@ -78,7 +78,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 
     <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
 
-    <input type="text" class="my-3" id="mitgliederSuche" onkeyup="memberSearch()" placeholder="Mitglied suchen...">
+    <input type="text" class="mt-3 mb-5" id="mitgliederSuche" onkeyup="memberSearch()" placeholder="Mitglied suchen...">
 
 <table class="table table-bordered table-striped table-hover" id="member-table">
   <thead>
