@@ -9,10 +9,10 @@
 <body>
 
 <?php
-require '../../assets/steamauth/steamauth.php';
-include("../../assets/components/fb37dbconnect.php");
-include ('../../assets/steamauth/userInfo.php');
-include("../../assets/components/registerpaneluser.php");
+require '/assets/steamauth/steamauth.php';
+include("/assets/components/fb37dbconnect.php");
+include ('/assets/steamauth/userInfo.php');
+include("/assets/components/registerpaneluser.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 // Mindestens benötigte Berechtigung: Admin

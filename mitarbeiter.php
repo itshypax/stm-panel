@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitgliederübersicht &middot; Straßenmeisterei Neuberg</title>
     <!-- Metas -->
-    <?php include('../../assets/components/fb37meta.php'); ?>
+    <?php include('/assets/components/fb37meta.php'); ?>
     <!-- Metas end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link href="../../assets/fonts/fontawesome/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/own.css">
-    <link rel="stylesheet" href="../../assets/css/fb37.css">
-    <link rel="icon" type="image/ico" href="../../assets/images/favicon-fb37.ico">
+    <link href="/assets/fonts/fontawesome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/own.css">
+    <link rel="stylesheet" href="/assets/css/fb37.css">
+    <link rel="icon" type="image/ico" href="/assets/images/favicon-fb37.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 
    <?php
 
-require '../../assets/steamauth/steamauth.php';
+require '/assets/steamauth/steamauth.php';
 
 ?>
 
@@ -40,15 +40,15 @@ if(!isset($_SESSION['steamid'])) {
 
 }  else {
 
-    include ('../../assets/steamauth/userInfo.php'); 
-    include '../../assets/components/registerpaneluser.php';
+    include ('/assets/steamauth/userInfo.php'); 
+    include '/assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Ausbilder
     if ($uPermLevel >= 1){?>
 
   <?php
 
-  include("../../assets/components/fb37dbconnect.php");
+  include("/assets/components/fb37dbconnect.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 
@@ -65,7 +65,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
   $num_currentOn = mysqli_num_rows($currentOn);
  
 
-  include '../../assets/components/nav.php';
+  include '/assets/components/nav.php';
 ?>
 
   <div class="px-4 py-5 text-center container rounded-3" id="meisterei-hero">
@@ -107,7 +107,7 @@ while ($row = mysqli_fetch_array($query)) {
 		    <th scope=''row'>{$row['id']}</th>
             <td>{$row['icname']}</td>
             <td>{$row['dienstgrad']}</td>
-            <td><a href='../../assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
+            <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
     }
 }
@@ -117,13 +117,13 @@ while ($row = mysqli_fetch_array($query)) {
 </tbody>
 </table>
 <hr class="my-4">
-<a href="../../assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Neuen Eintrag erstellen</button></a>
+<a href="/assets/components/fb37create.php"><button class="mb-2 btn btn-lg rounded-3 btn-success"><i class="fa-solid fa-plus"></i> Neuen Eintrag erstellen</button></a>
 </div>
 
-<?php include("../../assets/components/footer.php"); ?>
+<?php include("/assets/components/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-<script src="../../assets/js/tablesearch.js"></script>
+<script src="/assets/js/tablesearch.js"></script>
 
  <?php
     return true;
