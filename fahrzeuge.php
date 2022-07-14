@@ -81,12 +81,12 @@ $query = mysqli_query($dbconnect, "SELECT * FROM fahrzeugListe")
 <table class="table table-bordered" id="car-table">
   <thead>
     <tr>
-      <th scope="col">Fahrzeug</th>
+      <th scope="col"></th>
       <th scope="col">Fahrzeug-Typ</th>
       <th scope="col">Nummernschild</th>
       <th scope="col">Angelegt am</th>
       <th scope="col">Zuletzt gewartet</th>
-      <th scope="col"></th>
+      <?php if ($perm_extra_fahrzeugwart == 1){ ?><th scope="col">Aktionen</th><?php } ?>
     </tr>
   </thead>
   <tbody>
@@ -120,7 +120,6 @@ while ($row = mysqli_fetch_array($query)) {
 
     if ($row['deleted'] != 1) {
 
-        if ($perm_extra_fahrzeugwart == 1){
 	echo
 		"<tr>
 		    <th scope='row'>{$carImage}</th>
@@ -130,17 +129,6 @@ while ($row = mysqli_fetch_array($query)) {
             <td>{$waAt}</td>
             <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
-        } else {
-            echo
-		"<tr>
-		    <th scope='row'>{$carImage}</th>
-            <td>{$carTypeName}</td>
-            <td>{$row['carPlate']}</td>
-            <td>{$rgAt}</td>
-            <td>{$waAt}</td>
-            <td></td>
-    	</tr>";
-        }
     }
 }
 
