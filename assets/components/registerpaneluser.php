@@ -1,6 +1,8 @@
 <?php
+$sitebasepath = $_SERVER['DOCUMENT_ROOT'];
 
-include("../../assets/components/fb37dbconnect.php");
+
+include("$sitebasepath/assets/components/fb37dbconnect.php");
 
 $reguserdb=mysqli_connect($hostname,$username,$password,$dbname);
 
