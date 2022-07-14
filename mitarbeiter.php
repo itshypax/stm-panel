@@ -80,7 +80,7 @@ $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement")
 
     <input type="text" id="mitgliederSuche" onkeyup="memberSearch()" placeholder="Mitglied suchen...">
 
-<table class="table table-bordered" id="member-table">
+<table class="table table-bordered table-striped table-hover" id="member-table">
   <thead>
     <tr>
       <th scope="col">ID</th>

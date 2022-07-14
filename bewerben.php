@@ -98,11 +98,10 @@ if(!isset($_SESSION['steamid'])) {
 
       <input type="text" id="bewerberSuche" onkeyup="applicationSearch()" placeholder="Bewerber suchen...">
 
-<table class="table table-bordered" id="apply-management">
+<table class="table table-bordered table-striped table-hover" id="apply-management">
   <thead>
     <tr>
-      <th scope="col">Datum</th>
-      <th scope="col"></th>
+      <th scope="col" colspan="2">Datum</th>
       <th scope="col">Name</th>
       <th scope="col">Status</th>
       <th scope="col">Aktionen</th>
@@ -263,7 +262,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
   <thead>
     <tr class="text-center">
       <th scope="col" colspan='4'>Status</th>
-      <th scope="col">Personalsachbearbeiter</th>
+      <th scope="col">Sachbearbeiter</th>
     </tr>
   </thead>
   <tbody>
