@@ -102,13 +102,15 @@ $query = mysqli_query($dbconnect, "SELECT * FROM panelUsers")
   $crDatf = $crDat->format('d.m.Y H:i');
 
     if ($row['permLevel'] == 1) {
-        $permText = "1 - Ausbilder";
+        $permText = "1 - Mitarbeiter";
     } elseif ($row['permLevel'] == 2) {
-        $permText = "2 - Personaler";
+        $permText = "2 - Ausbilder";
     } elseif ($row['permLevel'] == 3) {
-        $permText = "3 - Verwaltung";
+        $permText = "3 - Personaler";
     } elseif ($row['permLevel'] == 4) {
-        $permText = "4 - Admin";
+        $permText = "4 - Verwaltung";
+    } elseif ($row['permLevel'] == 5) {
+        $permText = "5 - Admin";
     } else {
         $permText = "0 - Gast";
     }
