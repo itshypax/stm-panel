@@ -1,5 +1,5 @@
 <div class="container sticky-top" style="background-color: #fff;">
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg"  style="background-color: #fff;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
         <img src="https://strassenmeisterei-neuberg.de/assets/images/tcMPe2F2.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center"></a>
