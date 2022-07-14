@@ -51,7 +51,7 @@ if(!isset($_SESSION['steamid'])) {
     include 'assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Admin
-    if ($uPermLevel >= 4) {?>
+    if ($uPermLevel >= $perm_level_admin) {?>
 
   <?php
 

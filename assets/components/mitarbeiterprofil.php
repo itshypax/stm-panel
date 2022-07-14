@@ -89,7 +89,7 @@ if(!isset($_SESSION['steamid'])) {
     include '../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Ausbilder
-    if ($uPermLevel >= 1) {?>
+    if ($uPermLevel >= $perm_level_instructor) {?>
 
   <?php
 
@@ -127,7 +127,7 @@ if ($dbconnect->connect_error) {
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
         <?php // Mindestens benötigte Berechtigung: Personaler
-              if ($uPermLevel >= 2) { ?>
+              if ($uPermLevel >= $perm_level_hr) { ?>
           <div class="form-floating mb-3">
             <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" value="<?php echo $row['spitzname'];?>" required>
             <label for="floatingInput">Spitzname / OOC Name</label>
@@ -178,7 +178,7 @@ if ($dbconnect->connect_error) {
           <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
           <small class="text-muted"><?php echo $status; ?></small>
           <?php // Mindestens benötigte Berechtigung: Personaler
-                if ($uPermLevel >= 2) { ?>
+                if ($uPermLevel >= $perm_level_hr) { ?>
                         <br/>
                         <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
           <?php } ?> 
@@ -261,7 +261,7 @@ if ($dbconnect->connect_error) {
                         }
 
                         // Mindestens benötigte Berechtigung: Admin
-                        if ($uPermLevel >= 4) {
+                        if ($uPermLevel >= $perm_level_admin) {
 
                         echo
                         "

@@ -87,7 +87,7 @@ if(!isset($_SESSION['steamid'])) {
 
     <?php
     // Mindestens benötigte Berechtigung: Personaler
-    if ($uPermLevel >= 2) {
+    if ($uPermLevel >= $perm_level_hr) {
       
       $dbquery = mysqli_query($dbconnect, "SELECT * FROM applicationsV2 ORDER BY createdAt DESC")
 		or die (mysqli_error($dbconnect));

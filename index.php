@@ -45,8 +45,8 @@ if(!isset($_SESSION['steamid'])) {
     include ('assets/steamauth/userInfo.php'); 
     include 'assets/components/registerpaneluser.php';
     
-    // Mindestens benötigte Berechtigung: Ausbilder
-    if ($uPermLevel >= 1) {?>
+    // Mindestens benötigte Berechtigung: Mitarbeiter
+    if ($uPermLevel >= $perm_level_user) {?>
 
          <?php
 

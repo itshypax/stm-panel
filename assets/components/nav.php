@@ -10,31 +10,31 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <?php
         // Mindestens benötigte Berechtigung: Ausbilder
-        if ($uPermLevel >= 1) { ?>
+        if ($uPermLevel >= $perm_level_user) { ?>
         <li class="nav-item">
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/index.php">Dashboard</a>
         </li>
         <?php }
         // Wenn die Berechtigung NICHT Ausbilder ist ...
-        if ($userPermlevel != 1) { ?>
+        if ($userPermlevel != $perm_level_user OR $userPermlevel != $perm_level_instructor) { ?>
         <li class="nav-item">
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/bewerben.php">Bewerbungsportal</a>
         </li>
         <?php
         }
         // Mindestens benötigte Berechtigung: Ausbilder
-        if ($uPermLevel >= 1) { ?>
+        if ($uPermLevel >= $perm_level_instructor) { ?>
         <li class="nav-item">
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <?php } 
         // Mindestens benötigte Berechtigung: Admin
-        if ($uPermLevel >= 4) {?>
+        if ($uPermLevel >= $perm_level_admin) {?>
         <li class="nav-item">
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/admin/user-management.php">Panel Benutzer <span class="badge text-bg-danger">ADMIN</span></a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/admin/user-management.php">Panel Benutzer</a>
         </li>
         <?php } ?>
         <!-- <li class="nav-item dropdown">

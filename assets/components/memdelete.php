@@ -17,7 +17,7 @@ include("registerpaneluser.php");
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
 // Mindestens benötigte Berechtigung: Personaler
-if ($uPermLevel >= 2) {
+if ($uPermLevel >= $perm_level_hr) {
 $result = mysqli_query($dbconnect,"UPDATE memberManagement SET deleted = 1 WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../mitarbeiter.php"); 
 } else {

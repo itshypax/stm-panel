@@ -59,15 +59,23 @@ if ($regusernum != 1) {
         $uPermLevel = $regusernameres['permLevel'];
         $uUsedName = $regusernameres['rpname'];
         $uPanelID = $regusernameres['id'];
+
+        $perm_level_admin = 5;
+        $perm_level_manager = 4;
+        $perm_level_hr = 3;
+        $perm_level_instructor = 2;
+        $perm_level_user = 1;
         
-        if ($uPermLevel >= 4) {
+        if ($uPermLevel >= $perm_level_admin) {
             $urnkBadge = "<span class='badge text-bg-danger'>Admin</span>";
-        } elseif ($uPermLevel == 3) {
+        } elseif ($uPermLevel == $perm_level_manager) {
             $urnkBadge = "<span class='badge text-bg-warning'>Verwaltung</span>";
-        } elseif ($uPermLevel == 2) {
+        } elseif ($uPermLevel == $perm_level_hr) {
             $urnkBadge = "<span class='badge text-bg-info'>Personaler</span>";
-        } elseif ($uPermLevel == 1) {
+        } elseif ($uPermLevel == $perm_level_instructor) {
             $urnkBadge = "<span class='badge text-bg-success'>Ausbilder</span>";
+        } elseif ($uPermLevel == $perm_level_user) {
+            $urnkBadge = "<span class='badge text-bg-secondary'>Mitarbeiter</span>";
         } else {
             $urnkBadge = "<span class='badge text-bg-secondary'>Gast</span>";
         }

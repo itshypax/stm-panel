@@ -18,7 +18,7 @@ $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 $id=$_REQUEST['id'];
 $mid=$_REQUEST['mid'];
 // Mindestens benötigte Berechtigung: Admin
-if ($uPermLevel >= 4) {
+if ($uPermLevel >= $perm_level_manager) {
 $result = mysqli_query($dbconnect,"DELETE FROM memberComments WHERE id='".$id."'") or die ( mysqli_error());
 header("Location: ../../assets/components/mitarbeiterprofil.php?id=".$mid);
 } else {

@@ -90,7 +90,7 @@ if(!isset($_SESSION['steamid'])) {
     include '../../assets/components/registerpaneluser.php';
     
     // Mindestens benötigte Berechtigung: Personaler
-    if ($uPermLevel >= 2) {?>
+    if ($uPermLevel >= $perm_level_hr) {?>
 
   <?php
 
