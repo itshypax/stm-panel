@@ -3,7 +3,7 @@
     <p class="col-md-4 mb-0 text-muted">© <?php echo date("Y"); ?> <a href="https://hypax.wtf">Hypax</a>, made for RealLifeRPG</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <img src="https://wiesberg.net/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64px" width="auto"><use xlink:href="#bootstrap"></use></svg>
+      <img src="https://strassenmeisterei-neuberg.de/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64px" width="auto"><use xlink:href="#bootstrap"></use></svg>
     </a>
 
     <!-- <ul class="nav col-md-4 justify-content-end">

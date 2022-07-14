@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-        <img src="https://wiesberg.net/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
+        <img src="https://strassenmeisterei-neuberg.de/assets/images/WiesbergBlack.png" alt="Wiesberg" height="64" width="auto" class="d-inline-block align-text-center">
         Wiesberg
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,29 +14,29 @@
         // Mindestens benötigte Berechtigung: Ausbilder
         if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/index.php">Dashboard</a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/index.php">Dashboard</a>
         </li>
         <?php }
         // Wenn die Berechtigung NICHT Ausbilder ist ...
         if ($userPermlevel != 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/bewerben.php">Bewerbungsportal</a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/bewerben.php">Bewerbungsportal</a>
         </li>
         <?php
         }
         // Mindestens benötigte Berechtigung: Ausbilder
         if ($uPermLevel >= 1) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/mitarbeiter.php">Mitarbeiterübersicht</a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <?php } 
         // Mindestens benötigte Berechtigung: Admin
         if ($uPermLevel >= 4) {?>
         <li class="nav-item">
-          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://wiesberg.net/fachbereiche/37/admin/user-management.php">Panel Benutzer <span class="badge text-bg-danger">ADMIN</span></a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/admin/user-management.php">Panel Benutzer <span class="badge text-bg-danger">ADMIN</span></a>
         </li>
         <?php } ?>
         <!-- <li class="nav-item dropdown">

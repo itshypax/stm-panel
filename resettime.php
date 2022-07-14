@@ -18,9 +18,9 @@ $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
 // Mindestens benötigte Berechtigung: Admin
 if ($uPermLevel >= 4) {
 $result = mysqli_query($dbconnect,"UPDATE UserPlaytimes SET online = '0', server = NULL") or die ( mysqli_error());
-header("Location: https://wiesberg.net/fachbereiche/37/zeiten.php"); 
+header("Location: https://strassenmeisterei-neuberg.de/zeiten.php"); 
 } else {
-    header("Location: https://wiesberg.net/fachbereiche/37/index.php"); 
+    header("Location: https://strassenmeisterei-neuberg.de/index.php"); 
 }
 ?>
 

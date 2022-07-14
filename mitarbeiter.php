@@ -32,7 +32,7 @@ if(!isset($_SESSION['steamid'])) {
     ?>
 
     <script type="text/javascript">
-    window.location.href = "https://wiesberg.net/fachbereiche/37/index.php";
+    window.location.href = "https://strassenmeisterei-neuberg.de/index.php";
     </script>
 
 

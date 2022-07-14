@@ -111,7 +111,7 @@ if ($dbconnect->connect_error) {
         ?>
 
         <script type="text/javascript">
-        window.location.href = "https://wiesberg.net/fachbereiche/37/bewerben.php";
+        window.location.href = "https://strassenmeisterei-neuberg.de/bewerben.php";
         </script>
 
         <?php

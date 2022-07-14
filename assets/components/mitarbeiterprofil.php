@@ -78,7 +78,7 @@ if(!isset($_SESSION['steamid'])) {
     ?>
 
     <script type="text/javascript">
-    window.location.href = "https://wiesberg.net/fachbereiche/37/index.php";
+    window.location.href = "https://strassenmeisterei-neuberg.de/index.php";
     </script>
 
 <?php
@@ -282,7 +282,7 @@ if ($dbconnect->connect_error) {
         </div>
         <div class="row">
             <div class="col mt-5">
-                <p><a href="https://wiesberg.net/fachbereiche/37/mitarbeiter.php"><i class="fa-solid fa-arrow-left-long-to-line"></i> Zurück zur Übersicht</a></p>
+                <p><a href="https://strassenmeisterei-neuberg.de/mitarbeiter.php"><i class="fa-solid fa-arrow-left-long-to-line"></i> Zurück zur Übersicht</a></p>
             </div>
         </div>
     </div>
