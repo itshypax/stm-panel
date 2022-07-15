@@ -99,6 +99,23 @@ if ($dbconnect->connect_error) {
                 <a href="https://discord.gg/hUMYjKUvRW"><button type="button" class="btn btn-primary btn-lg"><i class="fa-brands fa-discord"></i> Discord</button></a>
             </div>
         </div>
+        <?php if ($uPermLevel >= $perm_level_admin) { ?>
+        <div class="row mt-5 mx-auto">
+            <div class="col"></div>
+            <div class="col">
+                <div id="drop_file_zone" ondrop="upload_file(event)" ondragover="return false">
+                    <div id="drag_upload_file">
+                        <p>Drop file here</p>
+                        <p>or</p>
+                        <p><input type="button" value="Select File" onclick="file_explorer();" /></p>
+                        <input type="file" id="selectfile" />
+                    </div>
+                </div>
+                <script src="/assets/js/uploader.js"></script>
+            </div>
+            <div class="col"></div>
+        </div>
+        <?php } ?>
     </div>
 
     <?php include("assets/components/footer.php"); ?>

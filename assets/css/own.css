@@ -7,3 +7,25 @@
 #unfinished-alert {
   --bs-alert-margin-bottom: 0;
 }
+
+#drop_file_zone {
+  background-color: #eee;
+  border: #999 5px dashed;
+  width: 290px;
+  height: 200px;
+  padding: 8px;
+  font-size: 18px;
+}
+
+#drag_upload_file {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#drag_upload_file p {
+  text-align: center;
+}
+
+#drag_upload_file #selectfile {
+  display: none;
+}
