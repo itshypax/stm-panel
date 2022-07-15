@@ -142,6 +142,7 @@ if ($dbconnect->connect_error) {
                 <option value="Vorstand" <?php if($row['dienstgrad']=="Vorstand") echo 'selected="selected"'; ?>>Vorstand</option>
                 <option value="Straßenmeister" <?php if($row['dienstgrad']=="Straßenmeister") echo 'selected="selected"'; ?>>Straßenmeister</option>
                 <option value="Kolonnenführer" <?php if($row['dienstgrad']=="Kolonnenführer") echo 'selected="selected"'; ?>>Kolonnenführer</option>
+                <option value="Verkehrswärter" <?php if($row['dienstgrad']=="Verkehrswärter") echo 'selected="selected"'; ?>>Verkehrswärter</option>
                 <option value="Straßenwärter" <?php if($row['dienstgrad']=="Straßenwärter") echo 'selected="selected"'; ?>>Straßenwärter</option>
                 <option value="Auszubildender" <?php if($row['dienstgrad']=="Auszubildender") echo 'selected="selected"'; ?>>Auszubildender</option>
                 <option value="Praktikant" <?php if($row['dienstgrad']=="Praktikant") echo 'selected="selected"'; ?>>Praktikant</option>

@@ -100,12 +100,20 @@ while ($row = mysqli_fetch_array($query)) {
     $laAt = new DateTime($row['laufstieg']);
     $laAt->add(new DateInterval('PT2H'));
 
+    if ($row['dienstgrad'] == "Geschäftsführer" OR $row['dienstgrad'] == "Vorstand") {
+      $iconBefore = "<i style='color:gold;' class='fas fa-crown' title='Firmenleitung'></i> ";
+    } if ($row['dienstgrad'] == "Verkehrswärter") {
+      $iconBefore = "<i style='color:#df691a;' class='fa-solid fa-shield-plus' title='Teilzeit-Mitarbeiter'></i> ";
+    } else {
+      $iconBefore = "";
+    }
+
     if ($row['deleted'] != 1) {
 
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
-            <td>{$row['icname']}</td>
+            <td>{$iconBefore}{$row['icname']}</td>
             <td>{$row['dienstgrad']}</td>
             <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";

@@ -116,6 +116,7 @@ if ($dbconnect->connect_error) {
                 <option value="Vorstand">Vorstand</option>
                 <option value="Straßenmeister">Straßenmeister</option>
                 <option value="Kolonnenführer">Kolonnenführer</option>
+                <option value="Verkehrswärter">Verkehrswärter</option>
                 <option value="Straßenwärter">Straßenwärter</option>
                 <option value="Auszubildender">Auszubildender</option>
                 <option value="Praktikant">Praktikant</option>
