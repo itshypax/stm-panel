@@ -111,6 +111,7 @@ if ($dbconnect->connect_error) {
                         <input type="file" id="selectfile" />
                     </div>
                 </div>
+                <div class="img-content"></div>
                 <script src="/assets/js/uploader.js"></script>
             </div>
             <div class="col"></div>

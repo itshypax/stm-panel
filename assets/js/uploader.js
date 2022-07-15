@@ -19,6 +19,18 @@ function ajax_file_upload(file_obj) {
     form_data.append("file", file_obj);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "uploader-ajax.php", true);
+    xhttp.onload = function (event) {
+      oOutput = document.querySelector(".img-content");
+      if (xhttp.status == 200) {
+        oOutput.innerHTML =
+          "<a href='" + this.responseText + "'>'" + this.responseText + "'</a>";
+      } else {
+        oOutput.innerHTML =
+          "Error " +
+          xhttp.status +
+          " occurred when trying to upload your file.";
+      }
+    };
 
     xhttp.send(form_data);
   }
