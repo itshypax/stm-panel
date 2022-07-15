@@ -102,7 +102,7 @@ if ($dbconnect->connect_error) {
         <?php if ($uPermLevel >= $perm_level_admin) { ?>
         <div class="row mt-5 mx-auto">
             <div class="col"></div>
-            <div class="col">
+            <div class="col-6">
                 <div class="mx-auto" id="drop_file_zone" ondrop="upload_file(event)" ondragover="return false">
                     <div class="mx-auto" id="drag_upload_file">
                         <p>Drop file here</p>
@@ -111,7 +111,7 @@ if ($dbconnect->connect_error) {
                         <input type="file" id="selectfile" />
                     </div>
                 </div>
-                <div class="img-content"></div>
+                <div class="img-content text-center mt-3"></div>
                 <script src="/assets/js/uploader.js"></script>
             </div>
             <div class="col"></div>

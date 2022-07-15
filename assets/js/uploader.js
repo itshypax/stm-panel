@@ -23,7 +23,7 @@ function ajax_file_upload(file_obj) {
       oOutput = document.querySelector(".img-content");
       if (xhttp.status == 200) {
         oOutput.innerHTML =
-          "<a href='" + this.responseText + "'>'" + this.responseText + "'</a>";
+          "<a href='" + this.responseText + "'>" + this.responseText + "</a>";
       } else {
         oOutput.innerHTML =
           "Error " +
