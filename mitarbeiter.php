@@ -100,9 +100,11 @@ while ($row = mysqli_fetch_array($query)) {
     $laAt = new DateTime($row['laufstieg']);
     $laAt->add(new DateInterval('PT2H'));
 
-    if ($row['dienstgrad'] == "Geschäftsführer" OR $row['dienstgrad'] == "Vorstand") {
+    if ($row['dienstgrad'] == "Geschäftsführer") {
       $iconBefore = "<i style='color:gold;' class='fas fa-crown' title='Firmenleitung'></i> ";
-    } if ($row['dienstgrad'] == "Verkehrswärter") {
+    } elseif ($row['dienstgrad'] == "Vorstand") {
+      $iconBefore = "<i style='color:gold;' class='fas fa-crown' title='Firmenleitung'></i> ";
+    } elseif ($row['dienstgrad'] == "Verkehrswärter") {
       $iconBefore = "<i style='color:#df691a;' class='fa-solid fa-shield-plus' title='Teilzeit-Mitarbeiter'></i> ";
     } else {
       $iconBefore = "";
