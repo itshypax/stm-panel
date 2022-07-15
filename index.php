@@ -104,7 +104,7 @@ if ($dbconnect->connect_error) {
             <div class="col"></div>
             <div class="col">
                 <div id="drop_file_zone" ondrop="upload_file(event)" ondragover="return false">
-                    <div id="drag_upload_file">
+                    <div class="mx-auto" id="drag_upload_file">
                         <p>Drop file here</p>
                         <p>or</p>
                         <p><input type="button" value="Select File" onclick="file_explorer();" /></p>
