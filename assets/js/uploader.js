@@ -18,7 +18,7 @@ function ajax_file_upload(file_obj) {
     var form_data = new FormData();
     form_data.append("file", file_obj);
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../../uploader-ajax.php", true);
+    xhttp.open("POST", "uploader-ajax.php", true);
 
     xhttp.send(form_data);
   }
