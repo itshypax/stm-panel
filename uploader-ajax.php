@@ -15,4 +15,5 @@ $filename = time().'_'.$_FILES['file']['name'];
 move_uploaded_file($_FILES['file']['tmp_name'], 'fileupload/'.$filename);
   
 echo 'fileupload/'.$filename;
+sleep(2);
 die;
