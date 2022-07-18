@@ -37,7 +37,7 @@ if(!isset($_SESSION['steamid'])) {
                 ?>
             </div>
 
-            <div class="footer-content rounded">
+            <div class="footer-content rounded" style="height:1.5rem;overflow:hidden;">
                 <div style="display:flex;vertical-align:middle;justify-content:center;">
                     <p>© <?php echo date("Y"); ?> hypax, Straßenmeisterei Panel made for <a href="https://realliferpg.de/" target="_blank">RealLifeRPG</a></p>
                 </div>
