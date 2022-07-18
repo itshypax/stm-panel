@@ -36,6 +36,10 @@ if(!isset($_SESSION['steamid'])) {
                     loginbutton(); //login button
                 ?>
             </div>
+
+            <div class="footer-content rounded">
+                <p>© <?php echo date("Y"); ?> hypax, Straßenmeisterei Panel made for <a href="https://realliferpg.de/" target="_blank">RealLifeRPG</a></p>
+            </div>
     </div>
 
 <?php
