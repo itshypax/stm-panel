@@ -183,11 +183,37 @@ while ($rows = mysqli_fetch_array($dbquery)) {
     ?>
 
 <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5">
-        <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
+        <h4 class="fw-bold mb-4">Bei der Straßenmeisterei <span class="custom-hd-ul-b">bewerben</span></h4>
         <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid" value="<?= $steamprofile['steamid'] ?>" />
         <input type="hidden" name="panelid" value="<?= $uPanelID ?>" />
+        <div class="row">
+          <div class="col">
+            <p class="lead mb-2">Generelle <span class="custom-hd-ul">Formalia</span></p>
+            <ul>
+              <li>Eine ordentliche postalische Anschrift, insofern keine Wohnung vorhanden ist kann auch "Wohnungslos" angegeben werden.</li>
+              <li>Kontaktmöglichkeiten (i.d.R. reicht die Angabe der Telefonnumer aus).</li>
+              <li>Eine kreative, überzeugende Bewerbung. Wir sind für alles offen - alle Texte die uns überzeugen haben eine gute Chance bei uns aufgenommen zu werden.</li>
+            </ul>
+
+            <p>Interessenten sollten ebenfalls unsere <a href="https://docs.google.com/document/d/16hvXf7KRhOcJUWDcBLXsAthDNOvRfrh8s83BhzYUSus/edit">Dienstverordnung</a> gelesen, verstanden und akzeptiert haben.</p>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" required>
+              <label class="form-check-label" for="flexSwitchCheckDefault">Ich bestötige die Dienstverordnung gelesen zu haben.</label>
+            </div>
+          </div>
+          <div class="col">
+            <p class="lead mb-2"><span class="custom-hd-ul">Voraussetzungen</span> für die Bewerbung</p>
+            <ul>
+              <li>Ein Führungszeugnis ohne die Eintragung schwerer Verbrechen (dies beinhaltet jegliche Verbrechen mit körperlicher Verletzung, schweren Diebstahl/Raub, etc.).</li>
+              <li>Die Vollendung des 18. Lebensjahres. <small>(im RP)</small></li>
+              <li>Teamfähigkeit, Zuverlässigkeit und Verantwortungsbewusstsein.</li>
+              <li>Bestehendes Interesse an der persönlichen und innerbetrieblichen Fortbildung.</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-3">
         <div class="row">
             <div class="col">
                 <div class="form-floating mb-3">

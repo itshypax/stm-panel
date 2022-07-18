@@ -59,6 +59,13 @@ body {
   vertical-align: middle;
 }
 
-.no-resize {
-  resize: none;
+.custom-hd-ul {
+  border-bottom: 2px solid #ec7c26;
+  color: #ec7c26;
+}
+
+.custom-hd-ul-b {
+  border-bottom: 2px solid #ec7c26;
+  color: #ec7c26;
+  font-weight: bold;
 }
