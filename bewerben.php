@@ -184,7 +184,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
 <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5">
         <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
-        <form class="needs-validation" name="form" method="post" action="" novalidate>
+        <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid" value="<?= $steamprofile['steamid'] ?>" />
         <input type="hidden" name="panelid" value="<?= $uPanelID ?>" />
@@ -198,7 +198,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             </ul>
 
             <p>Interessenten sollten ebenfalls unsere <a href="https://docs.google.com/document/d/16hvXf7KRhOcJUWDcBLXsAthDNOvRfrh8s83BhzYUSus/edit">Dienstverordnung</a> gelesen, verstanden und akzeptiert haben.</p>
-            <div class="form-check form-switch has-validation">
+            <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" required>
               <label class="form-check-label" for="flexSwitchCheckDefault">Ich bestötige die Dienstverordnung gelesen zu haben.</label>
             </div>
