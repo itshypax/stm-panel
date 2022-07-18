@@ -198,7 +198,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
             </ul>
 
             <p>Interessenten sollten ebenfalls unsere <a href="https://docs.google.com/document/d/16hvXf7KRhOcJUWDcBLXsAthDNOvRfrh8s83BhzYUSus/edit">Dienstverordnung</a> gelesen, verstanden und akzeptiert haben.</p>
-            <div class="form-check form-switch">
+            <div class="form-check form-switch has-validation">
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" required>
               <label class="form-check-label" for="flexSwitchCheckDefault">Ich bestötige die Dienstverordnung gelesen zu haben.</label>
             </div>
