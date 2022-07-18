@@ -184,7 +184,7 @@ while ($rows = mysqli_fetch_array($dbquery)) {
 
 <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5">
         <h4 class="fw-bold mb-4">Bei der Straßenmeisterei bewerben</h4>
-        <form name="form" method="post" action="">
+        <form class="needs-validation" name="form" method="post" action="" novalidate>
         <input type="hidden" name="new" value="1" />
         <input type="hidden" name="steamid" value="<?= $steamprofile['steamid'] ?>" />
         <input type="hidden" name="panelid" value="<?= $uPanelID ?>" />
