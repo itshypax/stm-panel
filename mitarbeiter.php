@@ -105,7 +105,12 @@ while ($row = mysqli_fetch_array($query)) {
 
     $tdq_row = mysqli_fetch_array($tdq);
 
-    $rlEntry = new DateTime($tdq_row['rankAt']);
+    $tdnorows = $tdq->num_rows;
+    if ($tdnorows != 1){
+        $rlEntry = $btAt;
+    } else {
+        $rlEntry = new DateTime($tdq_row['rankAt']);
+    }
     $jetzt = date("Y-m-d H:i:s");
 
     $rankDiff = $rlEntry->diff($jetzt);
