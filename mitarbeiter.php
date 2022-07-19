@@ -109,6 +109,7 @@ while ($row = mysqli_fetch_array($query)) {
     $jetzt = date("Y-m-d H:i:s");
 
     $rankDiff = $rlEntry->diff($jetzt);
+    $rankDiffD = $rankDiff->d;
 
     if ($row['dienstgrad'] == "Geschäftsführer") {
       $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
@@ -122,7 +123,7 @@ while ($row = mysqli_fetch_array($query)) {
     } // Straßenmeister
     elseif ($row['dienstgrad'] == "Straßenmeister") {
       $iconBefore = "";
-      $missingTime = 90 - $rankDiff->d;
+      $missingTime = 90 - $rankDiffD;
     if ($row['dienstgrad'] == "Straßenmeister" AND $rankDiff->d < 90) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($row['dienstgrad'] == "Straßenmeister" AND $rankDiff->d == 90) {
@@ -132,7 +133,7 @@ while ($row = mysqli_fetch_array($query)) {
     } } // Kolonnenführer
     elseif ($row['dienstgrad'] == "Kolonnenführer") {
       $iconBefore = "";
-      $missingTime = 60 - $rankDiff->d;
+      $missingTime = 60 - $rankDiffD;
     if ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d < 60) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d == 60) {
@@ -142,7 +143,7 @@ while ($row = mysqli_fetch_array($query)) {
     } } // Straßenwärter
     elseif ($row['dienstgrad'] == "Straßenwärter") {
       $iconBefore = "";
-      $missingTime = 30 - $rankDiff->d;
+      $missingTime = 30 - $rankDiffD;
     if ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d < 30) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d == 30) {
@@ -152,7 +153,7 @@ while ($row = mysqli_fetch_array($query)) {
     } } // Auszubildender
     elseif ($row['dienstgrad'] == "Auszubildender") {
       $iconBefore = "";
-      $missingTime = 7 - $rankDiff->d;
+      $missingTime = 7 - $rankDiffD;
     if ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d < 7) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d == 7) {
