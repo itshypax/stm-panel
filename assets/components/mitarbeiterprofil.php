@@ -24,13 +24,18 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $beitritt = $_REQUEST['beitritt'];
     $telnr = $_REQUEST['telnr'];
     $iban = $_REQUEST['iban'];
-    $laufstieg = NULL;
+    $laufstieg = $_REQUEST['laufstieg'];
     $gehalt = NULL;
     $notiz = $_REQUEST['notiz'];
     $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
     $changingUserName = $_REQUEST['changinguser'];
-    mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
+    if ($oldRank != $dienstgrad) {
+      $aufTime = $jetzt;
+    } else {
+      $aufTime = $laufstieg;
+    }
+    mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$aufTime."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
     if ($oldComment != $notiz AND strlen($notiz) > 0) {
@@ -126,6 +131,11 @@ if ($dbconnect->connect_error) {
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
+        <?php if ($row['laufstieg'] == NULL) { ?>
+        <input name="laufstieg" type="hidden" value="'<?php echo $row['beitritt'];?>'" />
+        <?php } else { ?>
+          <input name="laufstieg" type="hidden" value="'<?php echo $row['laufstieg'];?>'" />
+        <?php } ?>
         <?php // Mindestens benötigte Berechtigung: Personaler
               if ($uPermLevel >= $perm_level_hr) { ?>
           <div class="form-floating mb-3">
