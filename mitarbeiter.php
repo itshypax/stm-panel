@@ -118,10 +118,10 @@ while ($row = mysqli_fetch_array($query)) {
     $rankDiffD = $rankDiff->format("%r%a");
 
     if ($row['dienstgrad'] == "Geschäftsführer") {
-      $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
+      $iconBefore = "";
       $rankTimeBadge = "<span class='badge bg-dark' title='Kein Aufstieg möglich.'>";
     } elseif ($row['dienstgrad'] == "Vorstand") {
-      $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
+      $iconBefore = "";
       $rankTimeBadge = "<span class='badge bg-dark' title='Kein Aufstieg möglich.'>";
     } elseif ($row['dienstgrad'] == "Verkehrswärter") {
       $iconBefore = "<i style='color:#df691a;' class='fa-solid fa-shield-plus' title='Teilzeit-Mitarbeiter'></i> ";
