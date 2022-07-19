@@ -159,7 +159,7 @@ while ($row = mysqli_fetch_array($query)) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($rankDiff->d >= 9) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
-    } elseif ($rankDiff->d >= 7 AND $rankDiff->d < 9) {
+    } else{
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } } // Alles andere
     else {
