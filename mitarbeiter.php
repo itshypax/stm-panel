@@ -137,7 +137,7 @@ while ($row = mysqli_fetch_array($query)) {
       $missingTime = 60 - $rankDiffD;
     if ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d < 60) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
-    } elseif ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d == 60) {
+    } elseif ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d >= 60 && $rankDiff->d < 62) {
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } elseif ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d >= 62) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
@@ -147,7 +147,7 @@ while ($row = mysqli_fetch_array($query)) {
       $missingTime = 30 - $rankDiffD;
     if ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d < 30) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
-    } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d == 30) {
+    } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d >= 30 && $rankDiff->d < 32) {
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d >= 32) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
@@ -157,7 +157,7 @@ while ($row = mysqli_fetch_array($query)) {
       $missingTime = 7 - $rankDiffD;
     if ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d < 7) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
-    } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d == 7) {
+    } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d >= 7 && $rankDiff->d < 9) {
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d >= 9) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
