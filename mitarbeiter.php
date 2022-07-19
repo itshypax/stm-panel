@@ -115,7 +115,7 @@ while ($row = mysqli_fetch_array($query)) {
     $jetzt = new DateTime("now");
 
     $rankDiff = $rlEntry->diff($jetzt);
-    $rankDiffD = $rankDiff->d;
+    $rankDiffD = $rankDiff->format("%r%a");
 
     if ($row['dienstgrad'] == "Geschäftsführer") {
       $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
@@ -155,9 +155,9 @@ while ($row = mysqli_fetch_array($query)) {
     elseif ($row['dienstgrad'] == "Auszubildender") {
       $iconBefore = "";
       $missingTime = 7 - $rankDiffD;
-    if ($rankDiff->d < 7) {
+    if ($rankDiffD < 7) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
-    } elseif ($rankDiff->d >= 9) {
+    } elseif ($rankDiffD >= 9) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
     } else{
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
