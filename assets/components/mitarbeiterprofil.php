@@ -131,7 +131,7 @@ if ($dbconnect->connect_error) {
         <input type="hidden" name="new" value="1" />
         <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
         <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
-        <input name="laufstieg" type="hidden" value="<?php echo $row['laufstieg'];?>" />
+        <input name="laufstieg" type="hidden" value="'<?php echo $row['laufstieg'];?>'" />
         <?php // Mindestens benötigte Berechtigung: Personaler
               if ($uPermLevel >= $perm_level_hr) { ?>
           <div class="form-floating mb-3">
