@@ -106,8 +106,9 @@ while ($row = mysqli_fetch_array($query)) {
     $tdq_row = mysqli_fetch_array($tdq);
 
     $tdnorows = $tdq->num_rows;
+    
     if ($tdnorows != 1){
-        $rlEntry = $btAt;
+        $rlEntry = new DateTime($row['beitritt']);
     } else {
         $rlEntry = new DateTime($tdq_row['rankAt']);
     }
