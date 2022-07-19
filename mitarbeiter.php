@@ -137,7 +137,26 @@ while ($row = mysqli_fetch_array($query)) {
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } elseif ($row['dienstgrad'] == "Kolonnenführer" AND $rankDiff->d >= 62) {
       $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde überschritten.'>";
-    } } else {
+    } } // Straßenwärter
+    elseif ($row['dienstgrad'] == "Straßenwärter") {
+      $iconBefore = "";
+    if ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d < 30) {
+      $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht.'>";
+    } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d == 30) {
+      $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
+    } elseif ($row['dienstgrad'] == "Straßenwärter" AND $rankDiff->d >= 32) {
+      $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde überschritten.'>";
+    } } // Auszubildender
+    elseif ($row['dienstgrad'] == "Auszubildender") {
+      $iconBefore = "";
+    if ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d < 7) {
+      $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht.'>";
+    } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d == 7) {
+      $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
+    } elseif ($row['dienstgrad'] == "Auszubildender" AND $rankDiff->d >= 9) {
+      $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde überschritten.'>";
+    } } // Alles andere
+    else {
       $iconBefore = "";
       $rankTimeBadge = "<span>";
     }
