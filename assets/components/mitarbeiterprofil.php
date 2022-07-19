@@ -41,6 +41,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     if ($oldRank != $dienstgrad) {
     mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt, changedBy) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
+    sleep(2);
     mysqli_query($dbconnect,"UPDATE memberManagement SET laufstieg='".$jetzt."' WHERE id='".$id."'")
     or die(mysql_error());
     }
