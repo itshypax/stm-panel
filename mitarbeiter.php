@@ -111,6 +111,7 @@ while ($row = mysqli_fetch_array($query)) {
       $rankTimeBadge = "<span class='badge bg-secondary' title='Ein Aufstieg vom Rang Verkehrswärter ist nicht möglich.'>";
     } else {
       $iconBefore = "";
+      $rankTimeBadge = "<span>";
     }
 
     if ($row['deleted'] != 1) {
