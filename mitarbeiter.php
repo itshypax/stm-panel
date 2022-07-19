@@ -130,13 +130,8 @@ while ($row = mysqli_fetch_array($query)) {
     elseif ($row['dienstgrad'] == "Straßenmeister") {
       $iconBefore = "";
       $missingTime = 90 - $rankDiffD;
-    if ($row['dienstgrad'] == "Straßenmeister" AND $rankDiff->d < 90) {
-      $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
-    } elseif ($row['dienstgrad'] == "Straßenmeister" AND $rankDiff->d == 90) {
-      $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
-    } elseif ($row['dienstgrad'] == "Straßenmeister" AND $rankDiff->d >= 92) {
-      $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um 2 oder mehr Tage überschritten.'>";
-    } } // Kolonnenführer
+      $rankTimeBadge = "<span class='badge bg-secondary' title='Kein Aufstieg möglich.'>"; 
+    } // Kolonnenführer
     elseif ($row['dienstgrad'] == "Kolonnenführer") {
       $iconBefore = "";
       $missingTime = 60 - $rankDiffD;
