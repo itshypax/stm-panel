@@ -112,13 +112,13 @@ while ($row = mysqli_fetch_array($query)) {
 
     if ($row['dienstgrad'] == "Geschäftsführer") {
       $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
-      $rankTimeBadge = "<span class='badge bg-secondary' title='Ein Aufstieg vom Rang Geschäftsführer ist nicht möglich.'>";
+      $rankTimeBadge = "<span class='badge bg-dark' title='Kein Aufstieg möglich.'>";
     } elseif ($row['dienstgrad'] == "Vorstand") {
       $iconBefore = "<i style='color:#df691a;' class='fas fa-crown' title='Firmenleitung'></i> ";
-      $rankTimeBadge = "<span class='badge bg-secondary' title='Ein Aufstieg vom Rang Vorstand ist nicht möglich.'>";
+      $rankTimeBadge = "<span class='badge bg-dark' title='Kein Aufstieg möglich.'>";
     } elseif ($row['dienstgrad'] == "Verkehrswärter") {
       $iconBefore = "<i style='color:#df691a;' class='fa-solid fa-shield-plus' title='Teilzeit-Mitarbeiter'></i> ";
-      $rankTimeBadge = "<span class='badge bg-secondary' title='Ein Aufstieg vom Rang Verkehrswärter ist nicht möglich.'>";
+      $rankTimeBadge = "<span class='badge bg-secondary' title='Kein Aufstieg möglich.'>";
     } // Straßenmeister
     elseif ($row['dienstgrad'] == "Straßenmeister") {
       $iconBefore = "";
