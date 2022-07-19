@@ -100,11 +100,6 @@ while ($row = mysqli_fetch_array($query)) {
     $laAt = new DateTime($row['laufstieg']);
     $laAt->add(new DateInterval('PT2H'));
 
-    $tdq = mysqli_query($dbconnect, "SELECT * FROM rankLog WHERE `mitarbeiterid` = '{$row['id']}' ORDER BY `rankAt` DESC LIMIT 1")
-		or die (mysqli_error($dbconnect));
-
-    $tdq_row = mysqli_fetch_array($tdq);
-
     $rlEntry = new DateTime($tdq_row['rankAt']);
     $rlEntry->add(new DateInterval('PT2H'));
     $jetzt = date("Y-m-d H:i:s");
