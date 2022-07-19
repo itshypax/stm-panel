@@ -155,11 +155,10 @@ while ($row = mysqli_fetch_array($query)) {
     elseif ($row['dienstgrad'] == "Auszubildender") {
       $iconBefore = "";
       $missingTime = 7 - $rankDiffD;
-      $plusTime = $rankDiffD * -1;
     if ($rankDiffD < 7) {
       $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: ".$missingTime.")'>";
     } elseif ($rankDiffD >= 9) {
-      $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um ".$plusTime." überschritten.'>";
+      $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um ".$rankDiffD." überschritten.'>";
     } else{
       $rankTimeBadge = "<span class='badge bg-success' title='Die Mindestzeit wurde erreicht.'>";
     } } // Alles andere
