@@ -29,12 +29,12 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $notiz = $_REQUEST['notiz'];
     $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
-    if ($oldRank != $dienstgrad) {
-      $aufTime = date("Y-m-d H:i:s");
-    } else {
-        $aufTime = $_REQUEST['laufstieg'];
-      }
     $changingUserName = $_REQUEST['changinguser'];
+    if ($oldRank != $dienstgrad) {
+      $aufTime = $jetzt;
+    } else {
+      $aufTime = $laufstieg;
+    }
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."', laufstieg='".$aufTime."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
