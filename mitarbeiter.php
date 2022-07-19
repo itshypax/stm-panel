@@ -129,8 +129,7 @@ while ($row = mysqli_fetch_array($query)) {
     } // Straßenmeister
     elseif ($row['dienstgrad'] == "Straßenmeister") {
       $iconBefore = "";
-      $missingTime = 90 - $rankDiffD;
-      $rankTimeBadge = "<span class='badge bg-secondary' title='Kein Aufstieg möglich.'>"; 
+      $rankTimeBadge = "<span class='badge bg-dark' title='Kein Aufstieg möglich.'>"; 
     } // Kolonnenführer
     elseif ($row['dienstgrad'] == "Kolonnenführer") {
       $iconBefore = "";
