@@ -329,9 +329,9 @@ if ($dbconnect->connect_error) {
                         } elseif ($et['kommentarart'] == "Positiv") {
                           $commentType = "<span style='color:#09BC8A;'>– <strong>Positiv</strong></span>";
                         } elseif ($et['kommentarart'] == "Negativ") {
-                          $commentType = "<span style='color:#df2935;'>– <strong>Positiv</strong></span>";
+                          $commentType = "<span style='color:#df2935;'>– <strong>Negativ</strong></span>";
                         } elseif ($et['kommentarart'] == "Urlaub") {
-                          $commentType = "<span style='color:#001b2e;'>– <strong>Positiv</strong></span>";
+                          $commentType = "<span style='color:#001b2e;'>– <strong>Urlaub</strong></span>";
                         } else {
                           $commentType = "";
                         }
@@ -347,7 +347,7 @@ if ($dbconnect->connect_error) {
 
                         echo
                         "
-                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser} – <a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'>Kommentar löschen</small><hr>
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser} – <a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'>Kommentar löschen</a></small><hr>
                         ";
 
                         } else {
