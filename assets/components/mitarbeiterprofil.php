@@ -126,7 +126,7 @@ if ($dbconnect->connect_error) {
         <hr class="my-4">
         <div class="row">
           <div class="col-9"></div>
-          <div class="col custom-action-buttons text-end">
+          <div class="col text-end">
             <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
           </div>
         </div>
@@ -328,8 +328,12 @@ if ($dbconnect->connect_error) {
                           $commentType = "<span>– <i class='fa-solid fa-badge-dollar'></i> Gehalt</span>";
                         } elseif ($et['kommentarart'] == "Positiv") {
                           $commentType = "<span style='color:#09BC8A;'>– <strong>Positiv</strong></span>";
+                        } elseif ($et['kommentarart'] == "Negativ") {
+                          $commentType = "<span style='color:#df2935;'>– <strong>Negativ</strong></span>";
+                        } elseif ($et['kommentarart'] == "Urlaub") {
+                          $commentType = "<span style='color:#001b2e;'>– <strong>Urlaub</strong></span>";
                         } else {
-                          $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
+                          $commentType = "";
                         }
 
                         if ($et['commentUser'] != NULL) {
@@ -343,8 +347,7 @@ if ($dbconnect->connect_error) {
 
                         echo
                         "
-                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser}</small><br/>
-                        <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser} – <a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'>Kommentar löschen</a></small><hr>
                         ";
 
                         } else {
