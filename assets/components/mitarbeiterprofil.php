@@ -126,7 +126,7 @@ if ($dbconnect->connect_error) {
         <hr class="my-4">
         <div class="row">
           <div class="col-9"></div>
-          <div class="col custom-action-buttons text-end">
+          <div class="col text-end">
             <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
           </div>
         </div>
@@ -323,13 +323,17 @@ if ($dbconnect->connect_error) {
                         $comAt->add(new DateInterval('PT2H'));
 
                         if ($et['kommentarart'] == "Allgemein") {
-                          $commentType = "<span>– Allgemein</span>";
+                          $commentType = "";
                         } elseif ($et['kommentarart'] == "Gehalt") {
-                          $commentType = "<span>– <i class='fa-solid fa-badge-dollar'></i> Gehalt</span>";
+                          $commentType = ".c-type-mon";
                         } elseif ($et['kommentarart'] == "Positiv") {
-                          $commentType = "<span style='color:#09BC8A;'>– <strong>Positiv</strong></span>";
+                          $commentType = ".c-type-pos";
+                        } elseif ($et['kommentarart'] == "Negativ") {
+                          $commentType = ".c-type-neg";
+                        } elseif ($et['kommentarart'] == "Urlaub") {
+                          $commentType = ".c-type-url";
                         } else {
-                          $commentType = "<span style='color:#E54B4B;'>– <strong>Negativ</strong></span>";
+                          $commentType = "";
                         }
 
                         if ($et['commentUser'] != NULL) {
@@ -343,8 +347,8 @@ if ($dbconnect->connect_error) {
 
                         echo
                         "
-                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentType} {$commentUser}</small><br/>
-                        <small><a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'><i class='fa-solid fa-trash-can'></i></a></small><hr>
+                        <div class='c-type {$commentType} w-100' style='overflow:hidden;'>
+                        <small style='white-space:pre-line;'>{$et['kommentartext']}<br/>– {$comAt->format('d.m.Y H:i')} {$commentUser} – <a href='../../assets/components/comdelete.php?id={$et['id']}&mid={$row['id']}' class='link-danger'>Notiz löschen</a></small><hr></div>
                         ";
 
                         } else {

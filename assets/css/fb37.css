@@ -79,3 +79,48 @@ body {
   color: #ec7c26;
   font-weight: bold;
 }
+
+.c-type {
+  margin: 2px;
+  padding: 2px;
+}
+
+div.c-type-mon {
+  color: #000;
+  background-color: #fdca40;
+}
+
+div.c-type-mon:hover {
+  color: #000;
+  background-color: #fdc221;
+}
+
+div.c-type-pos {
+  color: #fff;
+  background-color: #3f6c51;
+}
+
+div.c-type-pos:hover {
+  color: #fff;
+  background-color: #355a44;
+}
+
+div.c-type-neg {
+  color: #fff;
+  background-color: #df2935;
+}
+
+div.c-type-neg:hover {
+  color: #fff;
+  background-color: #c31d28;
+}
+
+div.c-type-url {
+  color: #fff;
+  background-color: #001b2e;
+}
+
+div.c-type-url:hover {
+  color: #fff;
+  background-color: #001829;
+}
