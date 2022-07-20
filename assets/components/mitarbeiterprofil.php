@@ -120,6 +120,12 @@ if ($dbconnect->connect_error) {
         <h1 style="text-align:center;">Mitarbeiter bearbeiten</h1>
         <hr class="my-4">
         <div class="row">
+          <div class="col-9"></div>
+          <div class="col custom-action-buttons">
+            <i class="fa-solid fa-notebook"></i>   <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
                     <form name="form" method="post" action="">
@@ -225,11 +231,38 @@ if ($dbconnect->connect_error) {
             </div>
             </div>
             <div class="col-9">
-                <h4><?= $row['icname'] ?> (<?= $row['spitzname'] ?>)</h4>
-                <p><strong>Eingestellt am:</strong><br/> <?= $beAtf ?></p>
-                <p><strong>Dienstgrad:</strong><br/> <?= $row['dienstgrad'] ?></p>
-                <p><strong>Telefon:</strong><br/> <?= $row['telnr'] ?></p>
-                <p><strong>IBAN:</strong><br/> <?= $row['iban'] ?></p>
+              <form>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="icname" class="form-label">Vor- und Zuname</label>
+                    <input type="text" class="form-control" id="icname" value="<?= $row['icname'] ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="oocname" class="form-label">Spitzname (OOC)</label>
+                    <input type="text" class="form-control" id="oocname" value="<?= $row['spitzname'] ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="einstelldatum" class="form-label">Einstelldatum</label>
+                    <input type="date" class="form-control" id="einstelldatum" value="<?= $beAtf ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="dienstgradd" class="form-label">Dienstgrad</label>
+                    <input type="text" class="form-control" id="dienstgradd" value="<?= $row['dienstgrad'] ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="telnro" class="form-label">Telefonnummer</label>
+                    <input type="text" class="form-control" id="telnro" value="<?= $row['telnr'] ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="ibann" class="form-label">IBAN</label>
+                    <input type="text" class="form-control" id="ibann" value="<?= $row['iban'] ?>" readonly>
+                  </div>
+                </div>
+              </form>
                 <div class="my-5"></div>
                 <hr class="my-3">
                 <h5>Kommentare:</h5>
