@@ -26,22 +26,27 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $iban = $_REQUEST['iban'];
     $laufstieg = NULL;
     $gehalt = NULL;
-    $notiz = $_REQUEST['notiz'];
-    $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
     $changingUserName = $_REQUEST['changinguser'];
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
-    if ($notiz != NULL AND strlen($notiz) > 0) {
-    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
-    or die(mysql_error());
-    $status = "Kommentar erfolgreich gesetzt.";
-    }
     if ($oldRank != $dienstgrad) {
     mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt, changedBy) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     }
+    header("Refresh:0");
+}
+
+if(isset($_POST['new']) && $_POST['new']==2){
+    $id=$_REQUEST['id'];
+    $notiz = $_REQUEST['notiz'];
+    $kommentarart = $_REQUEST['kommentarart'];
+    $jetzt = date("Y-m-d H:i:s");
+    $changingUserName = $_REQUEST['changinguser'];
+    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
+    or die(mysql_error());
+    $status = "Kommentar erfolgreich gesetzt.";
     header("Refresh:0");
 }
 
@@ -200,7 +205,7 @@ if ($dbconnect->connect_error) {
                 </div>
                 <div class="modal-body">
                   <form name="form" method="post" action="">
-                    <input type="hidden" name="new" value="1" />
+                    <input type="hidden" name="new" value="2" />
                     <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
                     <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                     <div class="mb-3">
