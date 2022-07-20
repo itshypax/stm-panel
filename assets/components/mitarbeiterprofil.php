@@ -338,8 +338,8 @@ if ($dbconnect->connect_error) {
                           $commentUser = "<span>– von <i>Unbekannt</i></span>";
                         }
 
-                        // Mindestens benötigte Berechtigung: Admin
-                        if ($uPermLevel >= $perm_level_admin) {
+                        // Mindestens benötigte Berechtigung: Verwaltung
+                        if ($uPermLevel >= $perm_level_manager) {
 
                         echo
                         "
