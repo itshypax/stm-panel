@@ -121,8 +121,8 @@ if ($dbconnect->connect_error) {
         <hr class="my-4">
         <div class="row">
           <div class="col-9"></div>
-          <div class="col custom-action-buttons">
-            <i class="fa-solid fa-notebook"></i>   <i class="fa-solid fa-pen-to-square"></i>
+          <div class="col custom-action-buttons text-end">
+            <span style="margin-right:12px;"><a href="#"><i class="fa-solid fa-notebook"></i></a></span> <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
           </div>
         </div>
         <div class="row">
