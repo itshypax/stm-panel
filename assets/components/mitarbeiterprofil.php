@@ -33,7 +33,7 @@ if(isset($_POST['new']) && $_POST['new']==1){
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
-    if ($oldComment != $notiz AND strlen($notiz) > 0) {
+    if ($notiz != NULL AND strlen($notiz) > 0) {
     mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     $status = "Kommentar erfolgreich gesetzt.";
@@ -122,7 +122,7 @@ if ($dbconnect->connect_error) {
         <div class="row">
           <div class="col-9"></div>
           <div class="col custom-action-buttons text-end">
-            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-notebook"></i></button></span> <a href="#"><i class="fa-solid fa-pen-to-square" title="Mitarbeiterprofil bearbeiten"></i></a>
+            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pen-to-square"></i></button>
           </div>
         </div>
           <!-- MODAL BEGIN -->
@@ -172,7 +172,37 @@ if ($dbconnect->connect_error) {
                       <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123" value="<?php echo $row['iban'];?>">
                       <label for="floatingInput">IBAN</label>
                     </div>
-                    <hr class="my-4">
+                  </div>
+                  <div class="modal-footer">
+                    <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bearbeiten" /></p>
+                    <small class="text-muted"><?php echo $status; ?></small>
+          <?php // Mindestens benötigte Berechtigung: Personaler
+                if ($uPermLevel >= $perm_level_hr) { ?>
+                        <br/>
+                        <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
+          <?php } ?> 
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- MODAL END -->
+
+          <!-- MODAL BEGIN -->
+
+          <div class="modal fade" id="userNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userNoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userNoteModalLabel">Notiz hinzufügen</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form name="form" method="post" action="">
+                    <input type="hidden" name="new" value="1" />
+                    <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+                    <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
                     <div class="mb-3">
                       <label for="floatingInput">Notizen</label>
                       <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"></textarea>
@@ -185,17 +215,12 @@ if ($dbconnect->connect_error) {
                         <option value="Negativ">Negativ</option>
                         <option value="Urlaub">Urlaub</option>
                       </select>
-                      <label for="floatingInput">Kommentar Art</label>
+                      <label for="floatingInput">Art</label>
                     </div>
                   </div>
                   <div class="modal-footer">
-          <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
-          <small class="text-muted"><?php echo $status; ?></small>
-          <?php // Mindestens benötigte Berechtigung: Personaler
-                if ($uPermLevel >= $perm_level_hr) { ?>
-                        <br/>
-                        <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
-          <?php } ?> 
+                    <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Hinzufügen" /></p>
+                    <small class="text-muted"><?php echo $status; ?></small>
                     </form>
                   </div>
                 </div>
