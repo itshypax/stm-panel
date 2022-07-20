@@ -329,7 +329,7 @@ if ($dbconnect->connect_error) {
                         if ($et['kommentarart'] == "Allgemein") {
                           $commentType = "<span>– Allgemein</span>";
                         } elseif ($et['kommentarart'] == "Gehalt") {
-                          $commentType = "<span>– <i class='fa-solid fa-badge-dollar'></i> Gehalt</span>";
+                          $commentType = "<span>– <i class='fa-solid fa-wallet'></i> Gehaltszahlung</span>";
                         } elseif ($et['kommentarart'] == "Positiv") {
                           $commentType = "<span style='color:#09BC8A;'>– <strong>Positiv</strong></span>";
                         } elseif ($et['kommentarart'] == "Negativ") {
