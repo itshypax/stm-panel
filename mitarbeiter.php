@@ -174,7 +174,7 @@ while ($row = mysqli_fetch_array($query)) {
 		    <th scope=''row'>{$row['id']}</th>
             <td>{$iconBefore}{$row['icname']}</td>
             <td>{$rankTimeBadge}{$row['dienstgrad']}</span></td>
-            <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}' title='Mitarbeiter bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
+            <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-circle-info'></i> Profil öffnen</button></a></td>
     	</tr>";
     }
 }
