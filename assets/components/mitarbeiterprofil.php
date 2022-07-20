@@ -239,7 +239,7 @@ if ($dbconnect->connect_error) {
           <!-- MODAL END -->
         <div class="row">
             <div class="col">
-                <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+                <div class="accordion accordion-flush mt-4 shadow" id="accordionFlushExample">
                 <div class="accordion-item">
                 <h4 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
