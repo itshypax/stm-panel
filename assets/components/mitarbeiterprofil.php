@@ -58,7 +58,7 @@ if(isset($_POST['new']) && $_POST['new']==2){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitarbeiter bearbeiten &middot; Straßenmeisterei Neuberg</title>
+    <title>Mitarbeiter-Profil &middot; Straßenmeisterei Neuberg</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="../fonts/fontawesome/css/all.css" rel="stylesheet">
@@ -122,7 +122,7 @@ if ($dbconnect->connect_error) {
     </div>
 
     <div class="container bg-light shadow p-3 mb-5 rounded-3 my-5" style="min-height:450px;">
-        <h1 style="text-align:center;">Mitarbeiter bearbeiten</h1>
+        <h1 style="text-align:center;">Mitarbeiter-Profil</h1>
         <hr class="my-4">
         <div class="row">
           <div class="col-9"></div>
