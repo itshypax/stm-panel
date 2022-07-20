@@ -289,7 +289,7 @@ if ($dbconnect->connect_error) {
                 <div class="row">
                   <div class="col mb-3">
                     <label for="einstelldatum" class="form-label">Einstelldatum</label>
-                    <input type="date" class="form-control" id="einstelldatum" value="<?= $beAtf ?>" readonly>
+                    <input type="text" class="form-control" id="einstelldatum" value="<?= $beAtf ?>" readonly>
                   </div>
                   <div class="col mb-3">
                     <label for="dienstgradd" class="form-label">Dienstgrad</label>
