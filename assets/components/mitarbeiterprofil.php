@@ -127,7 +127,11 @@ if ($dbconnect->connect_error) {
         <div class="row">
           <div class="col-9"></div>
           <div class="col text-end">
-            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
+            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span>
+            <?php // Mindestens Personaler
+            if ($uPermLevel >= $perm_level_hr) { ?> 
+            <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
+            <?php } ?>
           </div>
         </div>
           <!-- MODAL BEGIN -->
