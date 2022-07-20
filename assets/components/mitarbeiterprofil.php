@@ -13,7 +13,7 @@ $row = mysqli_fetch_assoc($result);
 
   $beAt = new DateTime($row['beitritt']);
   $beAt->add(new DateInterval('PT2H'));
-  $beAtf = $beAt->format('d.m.Y H:i');
+  $beAtf = $beAt->format('d.m.Y');
 
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
