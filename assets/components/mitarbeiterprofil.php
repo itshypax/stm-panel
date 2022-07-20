@@ -13,7 +13,7 @@ $row = mysqli_fetch_assoc($result);
 
   $beAt = new DateTime($row['beitritt']);
   $beAt->add(new DateInterval('PT2H'));
-  $beAtf = $beAt->format('d.m.Y H:i');
+  $beAtf = $beAt->format('d.m.Y');
 
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
@@ -26,22 +26,27 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $iban = $_REQUEST['iban'];
     $laufstieg = NULL;
     $gehalt = NULL;
-    $notiz = $_REQUEST['notiz'];
-    $kommentarart = $_REQUEST['kommentarart'];
     $jetzt = date("Y-m-d H:i:s");
     $changingUserName = $_REQUEST['changinguser'];
     mysqli_query($dbconnect,"UPDATE memberManagement SET spitzname='".$spitzname."', icname='".$icname."', dienstgrad='".$dienstgrad."', beitritt='".$beitritt."', telnr='".$telnr."', iban='".$iban."', laufstieg='".$laufstieg."', gehalt='".$gehalt."', notiz='".$notiz."' WHERE id='".$id."'")
     or die(mysql_error());
     $status = "Eintrag erfolgreich bearbeitet.";
-    if ($oldComment != $notiz AND strlen($notiz) > 0) {
-    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
-    or die(mysql_error());
-    $status = "Kommentar erfolgreich gesetzt.";
-    }
     if ($oldRank != $dienstgrad) {
     mysqli_query($dbconnect,"INSERT INTO rankLog (mitarbeiterid, newRank, rankAt, changedBy) VALUES ('".$id."', '".$dienstgrad."', '".$jetzt."', '".$changingUserName."')")
     or die(mysql_error());
     }
+    header("Refresh:0");
+}
+
+if(isset($_POST['new']) && $_POST['new']==2){
+    $id=$_REQUEST['id'];
+    $notiz = $_REQUEST['notiz'];
+    $kommentarart = $_REQUEST['kommentarart'];
+    $jetzt = date("Y-m-d H:i:s");
+    $changingUserName = $_REQUEST['changinguser'];
+    mysqli_query($dbconnect,"INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('".$id."', '".$notiz."', '".$kommentarart."', '".$jetzt."', '".$changingUserName."')")
+    or die(mysql_error());
+    $status = "Kommentar erfolgreich gesetzt.";
     header("Refresh:0");
 }
 
@@ -120,71 +125,116 @@ if ($dbconnect->connect_error) {
         <h1 style="text-align:center;">Mitarbeiter bearbeiten</h1>
         <hr class="my-4">
         <div class="row">
-            <div class="col">
-                <div class="container bg-light shadow p-3 rounded-3 my-2 border border-primary">
-                    <form name="form" method="post" action="">
-        <input type="hidden" name="new" value="1" />
-        <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
-        <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
-        <?php // Mindestens benötigte Berechtigung: Personaler
-              if ($uPermLevel >= $perm_level_hr) { ?>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" value="<?php echo $row['spitzname'];?>" required>
-            <label for="floatingInput">Spitzname / OOC Name</label>
+          <div class="col-9"></div>
+          <div class="col custom-action-buttons text-end">
+            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
           </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="icname" placeholder="Paul Panzer" value="<?php echo $row['icname'];?>" required>
-            <label for="floatingInput">Name / IC Name</label>
-          </div>
-          <div class="form-floating mb-3">
-            <select id="floatingInput" class="form-control rounded-3" name="dienstgrad" placeholder="Oberstabsgeneral 17">
-                <option value="Geschäftsführer" <?php if($row['dienstgrad']=="Geschäftsführer") echo 'selected="selected"'; ?>>Geschäftsführer</option>
-                <option value="Vorstand" <?php if($row['dienstgrad']=="Vorstand") echo 'selected="selected"'; ?>>Vorstand</option>
-                <option value="Straßenmeister" <?php if($row['dienstgrad']=="Straßenmeister") echo 'selected="selected"'; ?>>Straßenmeister</option>
-                <option value="Kolonnenführer" <?php if($row['dienstgrad']=="Kolonnenführer") echo 'selected="selected"'; ?>>Kolonnenführer</option>
-                <option value="Verkehrswärter" <?php if($row['dienstgrad']=="Verkehrswärter") echo 'selected="selected"'; ?>>Verkehrswärter</option>
-                <option value="Straßenwärter" <?php if($row['dienstgrad']=="Straßenwärter") echo 'selected="selected"'; ?>>Straßenwärter</option>
-                <option value="Auszubildender" <?php if($row['dienstgrad']=="Auszubildender") echo 'selected="selected"'; ?>>Auszubildender</option>
-                <option value="Praktikant" <?php if($row['dienstgrad']=="Praktikant") echo 'selected="selected"'; ?>>Praktikant</option>
-            </select>
-            <label for="floatingInput">Dienstgrad</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="date" name="beitritt" placeholder="01.01.1900" value="<?php echo $row['beitritt'];?>" required>
-            <label for="floatingInput">Beitrittsdatum</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="telnr" placeholder="0800 666 666" value="<?php echo $row['telnr'];?>">
-            <label for="floatingInput">Telefonnummer</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123" value="<?php echo $row['iban'];?>">
-            <label for="floatingInput">IBAN</label>
-          </div>
-          <hr class="my-4">
-          <?php } ?>
-          <div class="mb-3">
-            <label for="floatingInput">Notizen</label>
-            <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="Netter Typ" style="height:100px;"></textarea>
-          </div>
-          <div class="form-floating mb-3">
-            <select id="floatingInput" class="form-control rounded-3" name="kommentarart" placeholder="Allgemein">
-              <option value="Allgemein" selected>Allgemein</option>
-              <option value="Gehalt">Gehalt</option>
-              <option value="Positiv">Positiv</option>
-              <option value="Negativ">Negativ</option>
-            </select>
-            <label for="floatingInput">Kommentar Art</label>
-          </div>
-          <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Eintrag bearbeiten" /></p>
-          <small class="text-muted"><?php echo $status; ?></small>
+        </div>
+          <!-- MODAL BEGIN -->
+
+          <div class="modal fade" id="userEditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userEditModalLabel">Mitarbeiterprofil bearbeiten</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form name="form" method="post" action="">
+                    <input type="hidden" name="new" value="1" />
+                    <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+                    <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
+                    <div class="form-floating mb-3">
+                      <input id="floatingInput" class="form-control rounded-3" type="text" name="spitzname" placeholder="TheLegend27" value="<?php echo $row['spitzname'];?>" required>
+                      <label for="floatingInput">Spitzname / OOC Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input id="floatingInput" class="form-control rounded-3" type="text" name="icname" placeholder="Paul Panzer" value="<?php echo $row['icname'];?>" required>
+                      <label for="floatingInput">Name / IC Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select id="floatingInput" class="form-control rounded-3" name="dienstgrad" placeholder="Oberstabsgeneral 17">
+                        <option value="Geschäftsführer" <?php if($row['dienstgrad']=="Geschäftsführer") echo 'selected="selected"'; ?>>Geschäftsführer</option>
+                        <option value="Vorstand" <?php if($row['dienstgrad']=="Vorstand") echo 'selected="selected"'; ?>>Vorstand</option>
+                        <option value="Straßenmeister" <?php if($row['dienstgrad']=="Straßenmeister") echo 'selected="selected"'; ?>>Straßenmeister</option>
+                        <option value="Kolonnenführer" <?php if($row['dienstgrad']=="Kolonnenführer") echo 'selected="selected"'; ?>>Kolonnenführer</option>
+                        <option value="Verkehrswärter" <?php if($row['dienstgrad']=="Verkehrswärter") echo 'selected="selected"'; ?>>Verkehrswärter</option>
+                        <option value="Straßenwärter" <?php if($row['dienstgrad']=="Straßenwärter") echo 'selected="selected"'; ?>>Straßenwärter</option>
+                        <option value="Auszubildender" <?php if($row['dienstgrad']=="Auszubildender") echo 'selected="selected"'; ?>>Auszubildender</option>
+                        <option value="Praktikant" <?php if($row['dienstgrad']=="Praktikant") echo 'selected="selected"'; ?>>Praktikant</option>
+                      </select>
+                      <label label for="floatingInput">Dienstgrad</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input id="floatingInput" class="form-control rounded-3" type="date" name="beitritt" placeholder="01.01.1900" value="<?php echo $row['beitritt'];?>" required>
+                      <label for="floatingInput">Beitrittsdatum</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input id="floatingInput" class="form-control rounded-3" type="text" name="telnr" placeholder="0800 666 666" value="<?php echo $row['telnr'];?>">
+                      <label for="floatingInput">Telefonnummer</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input id="floatingInput" class="form-control rounded-3" type="text" name="iban" placeholder="NH123123" value="<?php echo $row['iban'];?>">
+                      <label for="floatingInput">IBAN</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Bearbeiten" /></p>
+                    <small class="text-muted"><?php echo $status; ?></small>
           <?php // Mindestens benötigte Berechtigung: Personaler
                 if ($uPermLevel >= $perm_level_hr) { ?>
                         <br/>
                         <p><a href="../../assets/components/memdelete.php?id=<?=$row['id']?>" class="link-danger"><i class="fa-solid fa-trash-can"></i> Mitarbeiter löschen</a></p>
           <?php } ?> 
                     </form>
+                  </div>
                 </div>
+              </div>
+          </div>
+
+          <!-- MODAL END -->
+
+          <!-- MODAL BEGIN -->
+
+          <div class="modal fade" id="userNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userNoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userNoteModalLabel">Notiz hinzufügen</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form name="form" method="post" action="">
+                    <input type="hidden" name="new" value="2" />
+                    <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+                    <input name="changinguser" type="hidden" value="<?php echo $uUsedName;?>" />
+                    <div class="mb-3">
+                      <label for="floatingInput">Notizen</label>
+                      <textarea id="floatingInput" class="form-control rounded-3" name="notiz" placeholder="" style="height:100px;"></textarea>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select id="floatingInput" class="form-control rounded-3" name="kommentarart" placeholder="Allgemein">
+                        <option value="Allgemein" selected>Allgemein</option>
+                        <option value="Gehalt">Gehalt</option>
+                        <option value="Positiv">Positiv</option>
+                        <option value="Negativ">Negativ</option>
+                        <option value="Urlaub">Urlaub</option>
+                      </select>
+                      <label for="floatingInput">Art</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <p><input class="mb-2 btn btn-lg rounded-3 btn-primary" name="submit" type="submit" value="Hinzufügen" /></p>
+                    <small class="text-muted"><?php echo $status; ?></small>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- MODAL END -->
+        <div class="row">
+            <div class="col">
                 <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
                 <div class="accordion-item">
                 <h4 class="accordion-header" id="flush-headingOne">
@@ -225,11 +275,38 @@ if ($dbconnect->connect_error) {
             </div>
             </div>
             <div class="col-9">
-                <h4><?= $row['icname'] ?> (<?= $row['spitzname'] ?>)</h4>
-                <p><strong>Eingestellt am:</strong><br/> <?= $beAtf ?></p>
-                <p><strong>Dienstgrad:</strong><br/> <?= $row['dienstgrad'] ?></p>
-                <p><strong>Telefon:</strong><br/> <?= $row['telnr'] ?></p>
-                <p><strong>IBAN:</strong><br/> <?= $row['iban'] ?></p>
+              <form>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="icname" class="form-label">Vor- und Zuname</label>
+                    <input type="text" class="form-control" id="icname" value="<?= $row['icname'] ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="oocname" class="form-label">Spitzname (OOC)</label>
+                    <input type="text" class="form-control" id="oocname" value="<?= $row['spitzname'] ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="einstelldatum" class="form-label">Einstelldatum</label>
+                    <input type="text" class="form-control" id="einstelldatum" value="<?= $beAtf ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="dienstgradd" class="form-label">Dienstgrad</label>
+                    <input type="text" class="form-control" id="dienstgradd" value="<?= $row['dienstgrad'] ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="telnro" class="form-label">Telefonnummer</label>
+                    <input type="text" class="form-control" id="telnro" value="<?= $row['telnr'] ?>" readonly>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="ibann" class="form-label">IBAN</label>
+                    <input type="text" class="form-control" id="ibann" value="<?= $row['iban'] ?>" readonly>
+                  </div>
+                </div>
+              </form>
                 <div class="my-5"></div>
                 <hr class="my-3">
                 <h5>Kommentare:</h5>
@@ -261,8 +338,8 @@ if ($dbconnect->connect_error) {
                           $commentUser = "<span>– von <i>Unbekannt</i></span>";
                         }
 
-                        // Mindestens benötigte Berechtigung: Admin
-                        if ($uPermLevel >= $perm_level_admin) {
+                        // Mindestens benötigte Berechtigung: Verwaltung
+                        if ($uPermLevel >= $perm_level_manager) {
 
                         echo
                         "
