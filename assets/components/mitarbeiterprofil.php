@@ -127,7 +127,7 @@ if ($dbconnect->connect_error) {
         <div class="row">
           <div class="col-9"></div>
           <div class="col custom-action-buttons text-end">
-            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pen-to-square"></i></button>
+            <span style="margin-right:12px;"><button type="button" class="btn btn-outline-secondary" title="Notiz hinzufügen" data-bs-toggle="modal" data-bs-target="#userNoteModal"><i class="fa-solid fa-notebook"></i></button></span> <button type="button" class="btn btn-outline-secondary" title="Mitarbeiterprofil bearbeiten" data-bs-toggle="modal" data-bs-target="#userEditModal"><i class="fa-solid fa-pencil"></i></button>
           </div>
         </div>
           <!-- MODAL BEGIN -->
