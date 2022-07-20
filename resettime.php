@@ -15,8 +15,8 @@ include ('assets/steamauth/userInfo.php');
 include("assets/components/registerpaneluser.php");
 
 $dbconnect=mysqli_connect($hostname,$username,$password,$dbname);
-// Mindestens benötigte Berechtigung: Admin
-if ($uPermLevel >= $perm_level_admin) {
+// Mindestens benötigte Berechtigung: Personaler
+if ($uPermLevel >= $perm_level_hr) {
 $result = mysqli_query($dbconnect,"UPDATE UserPlaytimes SET online = '0', server = NULL") or die ( mysqli_error());
 header("Location: https://strassenmeisterei-neuberg.de/zeiten.php"); 
 } else {

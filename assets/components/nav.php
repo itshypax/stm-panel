@@ -28,11 +28,14 @@
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/mitarbeiter.php">Mitarbeiterübersicht</a>
         </li>
         <?php } 
-        // Mindestens benötigte Berechtigung: Admin
-        if ($uPermLevel >= $perm_level_admin) {?>
+        // Mindestens benötigte Berechtigung: Personaler
+        if ($uPermLevel >= $perm_level_hr) {?>
         <li class="nav-item">
-          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/zeiten.php">Zeitübersicht <span class="badge text-bg-secondary">BETA</span></a>
+          <a class="nav-link" href="https://strassenmeisterei-neuberg.de/zeiten.php">Zeitübersicht <span class="badge text-bg-dark">BETA</span></a>
         </li>
+        <?php }
+        // Mindestens benötigte Berechtigung: Admin
+        if ($uPermLevel >= $perm_level_admin) { ?>
         <li class="nav-item">
           <a class="nav-link" href="https://strassenmeisterei-neuberg.de/admin/user-management.php">Panel Benutzer</a>
         </li>
