@@ -136,7 +136,7 @@
                 $iconBefore = "";
                 $missingTime = 60 - $rankDiffD;
                 if ($rankDiffD < 60) {
-                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . ")'>";
+                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . " Tage)'>";
                 } elseif ($rankDiffD >= 62) {
                   $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um " . $rankDiffD . " Tage überschritten.'>";
                 } else {
@@ -147,7 +147,7 @@
                 $iconBefore = "";
                 $missingTime = 30 - $rankDiffD;
                 if ($rankDiffD < 30) {
-                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . ")'>";
+                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . " Tage)'>";
                 } elseif ($rankDiffD >= 32) {
                   $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um " . $rankDiffD . " Tage überschritten.'>";
                 } else {
@@ -158,7 +158,7 @@
                 $iconBefore = "";
                 $missingTime = 7 - $rankDiffD;
                 if ($rankDiffD < 7) {
-                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . ")'>";
+                  $rankTimeBadge = "<span class='badge bg-warning' title='Die Mindestzeit wurde noch nicht erreicht. (Fehlend: " . $missingTime . " Tage)'>";
                 } elseif ($rankDiffD >= 9) {
                   $rankTimeBadge = "<span class='badge bg-danger' title='Die Mindestzeit wurde um " . $rankDiffD . " Tage überschritten.'>";
                 } else {
