@@ -167,13 +167,43 @@ while ($row = mysqli_fetch_array($query)) {
       $rankTimeBadge = "<span>";
     }
 
+    // Dienstgrad Klartext Namen
+
+    if ($row['dienstgrad'] == 0) {
+      // Praktikant
+      $dienstgrad_kt = "Praktikant";
+    } elseif ($row['dienstgrad'] == 10) {
+      // Auszubildender
+      $dienstgrad_kt = "Auszubildender";
+    } elseif ($row['dienstgrad'] == 20) {
+      // Straßenwärter
+      $dienstgrad_kt = "Straßenwärter";
+    } elseif ($row['dienstgrad'] == 30) {
+      // Verkehrswärter
+      $dienstgrad_kt = "Verkehrswärter";
+    } elseif ($row['dienstgrad'] == 40) {
+      // Kolonnenführer
+      $dienstgrad_kt = "Kolonnenführer";
+    } elseif ($row['dienstgrad'] == 50) {
+      // Straßenmeister
+      $dienstgrad_kt = "Straßenmeister";
+    } elseif ($row['dienstgrad'] == 60) {
+      // Vorstand
+      $dienstgrad_kt = "Vorstand";
+    } elseif ($row['dienstgrad'] == 70) {
+      // Geschäftsführer
+      $dienstgrad_kt = "Geschäftsführer";
+    } else {
+      $dienstgrad_kt = "Fehlerhafte Dienstgrad-ID!";
+    }
+
     if ($row['deleted'] != 1) {
 
 	echo
 		"<tr>
 		    <th scope=''row'>{$row['id']}</th>
             <td>{$iconBefore}{$row['icname']}</td>
-            <td>{$rankTimeBadge}{$row['dienstgrad']}</span></td>
+            <td>{$rankTimeBadge}{$dienstgrad_kt}</span></td>
             <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-circle-info'></i> Profil öffnen</button></a></td>
     	</tr>";
     }
