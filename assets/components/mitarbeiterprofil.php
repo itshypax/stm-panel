@@ -59,11 +59,11 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
   $jetzt = date("Y-m-d H:i:s");
   $changingUserName = $_REQUEST['changinguser'];
   mysqli_query($dbconnect, "UPDATE memberManagement SET spitzname='" . $spitzname . "', icname='" . $icname . "', dienstgrad='" . $dienstgrad . "', beitritt='" . $beitritt . "', telnr='" . $telnr . "', iban='" . $iban . "', laufstieg='" . $laufstieg . "', gehalt='" . $gehalt . "', notiz='" . $notiz . "' WHERE id='" . $id . "'")
-    or die(mysql_error());
+    or die();
   $status = "Eintrag erfolgreich bearbeitet.";
   if ($oldRank != $dienstgrad) {
     mysqli_query($dbconnect, "INSERT INTO rankLog (mitarbeiterid, newRank, rankAt, changedBy) VALUES ('" . $id . "', '" . $dienstgrad . "', '" . $jetzt . "', '" . $changingUserName . "')")
-      or die(mysql_error());
+      or die();
   }
   header("Refresh:0");
 }
@@ -75,7 +75,7 @@ if (isset($_POST['new']) && $_POST['new'] == 2) {
   $jetzt = date("Y-m-d H:i:s");
   $changingUserName = $_REQUEST['changinguser'];
   mysqli_query($dbconnect, "INSERT INTO memberComments (mitarbeiterid, kommentartext, kommentarart, commentAt, commentUser) VALUES ('" . $id . "', '" . $notiz . "', '" . $kommentarart . "', '" . $jetzt . "', '" . $changingUserName . "')")
-    or die(mysql_error());
+    or die();
   $status = "Kommentar erfolgreich gesetzt.";
   header("Refresh:0");
 }
