@@ -57,7 +57,7 @@
         die("Fehler, Verbindung fehlgeschlagen:" . $dbconnect->connect_error);
       }
 
-      $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement ORDER BY (`dienstgrad`,INTEGER) DESC")
+      $query = mysqli_query($dbconnect, "SELECT * FROM memberManagement ORDER BY `dienstgrad` DESC")
         or die(mysqli_error($dbconnect));
 
       $nrorows = $query->num_rows;
