@@ -329,7 +329,7 @@ if (isset($_POST['new']) && $_POST['new'] == 2) {
 
                         echo
                         "
-                        <small>Rang wurde von {$changeUser} zu  ID <strong>{$eintrag['newRank']} ({$ndienstgrad_kt})</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
+                        <small>Rang wurde von {$changeUser} zu ID <strong>{$eintrag['newRank']} ({$ndienstgrad_kt})</strong> geändert.<br/>– {$acAt->format('d.m.Y H:i')}</small><hr>
                         ";
                       }
                     }
@@ -359,7 +359,7 @@ if (isset($_POST['new']) && $_POST['new'] == 2) {
                 </div>
                 <div class="col mb-3">
                   <label for="dienstgradd" class="form-label">Dienstgrad</label>
-                  <input type="text" class="form-control" id="dienstgradd" value="<?= $$dienstgrad_kt ?>" readonly>
+                  <input type="text" class="form-control" id="dienstgradd" value="<?= $dienstgrad_kt ?>" readonly>
                 </div>
               </div>
               <div class="row">
