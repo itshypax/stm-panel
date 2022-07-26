@@ -16,4 +16,4 @@ mysqli_query($dbconnect, "INSERT INTO OldPlaytimes (name, playtime) SELECT name,
 
 sleep(30);
 
-// mysqli_query($dbconnect, "UPDATE UserPlaytimes SET playtime='0'") or die(mysqli_error($dbconnect));
+mysqli_query($dbconnect, "UPDATE UserPlaytimes SET playtime='0'") or die(mysqli_error($dbconnect));
