@@ -144,7 +144,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
             <td style='text-align:center;'><a href='https://steamcommunity.com/profiles/{$rows['steamid']}' target='_blank'><i class='fa-brands fa-steam'></i></a></td>
             <td>{$rows['rlname']} ({$rows['forumname']})</td>
             <td><span class='badge {$spanCl}' title='{$aCTitle}'>{$rows['bwstatus']}</span></td>
-            <td><a href='/assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
+            <td><a href='/assets/components/bewerberprofil.php?id={$rows['id']}' title='Bewerbung bearbeiten'><button type='button' class='btn btn-sm btn-outline-dark'><i class='fa-solid fa-wrench'></i></button></a></td>
     	</tr>";
               } else {
 

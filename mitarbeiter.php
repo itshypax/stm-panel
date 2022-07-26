@@ -208,7 +208,7 @@
 		    <th scope=''row'>{$row['id']}</th>
             <td>{$iconBefore}{$row['icname']}</td>
             <td>{$rankTimeBadge}{$dienstgrad_kt}</span></td>
-            <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}'><button type='button' class='btn btn-outline-dark'><i class='fa-solid fa-circle-info'></i> Profil öffnen</button></a></td>
+            <td><a href='/assets/components/mitarbeiterprofil.php?id={$row['id']}'><button type='button' class='btn btn-sm btn-outline-dark'><i class='fa-solid fa-circle-info'></i> Profil öffnen</button></a></td>
     	</tr>";
               }
             }
